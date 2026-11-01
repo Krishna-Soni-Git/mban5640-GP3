@@ -1,0 +1,252 @@
+[
+ {
+  "id": "A01",
+  "cond": "C",
+  "persona": "a 29-year-old man studying biology as an undergraduate student"
+ },
+ {
+  "id": "A02",
+  "cond": "O",
+  "persona": "a 30-year-old man studying nursing as an undergraduate student"
+ },
+ {
+  "id": "A03",
+  "cond": "C",
+  "persona": "a 31-year-old man studying biology as a master's student"
+ },
+ {
+  "id": "A04",
+  "cond": "O",
+  "persona": "a 26-year-old man studying marketing as a master's student"
+ },
+ {
+  "id": "A05",
+  "cond": "O",
+  "persona": "a 34-year-old woman studying marketing as an undergraduate student"
+ },
+ {
+  "id": "A06",
+  "cond": "O",
+  "persona": "a 22-year-old woman studying mathematics as a master's student"
+ },
+ {
+  "id": "A07",
+  "cond": "O",
+  "persona": "a 21-year-old man studying statistics as an undergraduate student"
+ },
+ {
+  "id": "A08",
+  "cond": "C",
+  "persona": "a 33-year-old woman studying nursing as an undergraduate student"
+ },
+ {
+  "id": "A09",
+  "cond": "C",
+  "persona": "a 32-year-old man studying mathematics as a master's student"
+ },
+ {
+  "id": "A10",
+  "cond": "O",
+  "persona": "a 26-year-old man studying political science as an undergraduate student"
+ },
+ {
+  "id": "A11",
+  "cond": "C",
+  "persona": "a 34-year-old man studying communications as a master's student"
+ },
+ {
+  "id": "A12",
+  "cond": "O",
+  "persona": "a 31-year-old woman studying computer science as an undergraduate student"
+ },
+ {
+  "id": "A13",
+  "cond": "O",
+  "persona": "a 18-year-old woman studying economics as a PhD student"
+ },
+ {
+  "id": "A14",
+  "cond": "C",
+  "persona": "a 32-year-old man studying psychology as an undergraduate student"
+ },
+ {
+  "id": "A15",
+  "cond": "O",
+  "persona": "a 26-year-old man studying statistics as a master's student"
+ },
+ {
+  "id": "A16",
+  "cond": "O",
+  "persona": "a 33-year-old man studying finance as a PhD student"
+ },
+ {
+  "id": "A17",
+  "cond": "C",
+  "persona": "a 19-year-old man studying psychology as a master's student"
+ },
+ {
+  "id": "A18",
+  "cond": "O",
+  "persona": "a 21-year-old man studying mathematics as a PhD student"
+ },
+ {
+  "id": "A19",
+  "cond": "O",
+  "persona": "a 34-year-old man studying statistics as an undergraduate student"
+ },
+ {
+  "id": "A20",
+  "cond": "O",
+  "persona": "a 31-year-old man studying accounting as a PhD student"
+ },
+ {
+  "id": "A21",
+  "cond": "O",
+  "persona": "a 26-year-old man studying psychology as an undergraduate student"
+ },
+ {
+  "id": "A22",
+  "cond": "C",
+  "persona": "a 24-year-old man studying economics as a master's student"
+ },
+ {
+  "id": "A23",
+  "cond": "O",
+  "persona": "a 18-year-old woman studying business administration as a master's student"
+ },
+ {
+  "id": "A24",
+  "cond": "C",
+  "persona": "a 20-year-old woman studying engineering as an undergraduate student"
+ },
+ {
+  "id": "A25",
+  "cond": "C",
+  "persona": "a 19-year-old man studying political science as a PhD student"
+ },
+ {
+  "id": "A26",
+  "cond": "O",
+  "persona": "a 29-year-old woman studying business administration as an undergraduate student"
+ },
+ {
+  "id": "A27",
+  "cond": "C",
+  "persona": "a 33-year-old woman studying finance as an undergraduate student"
+ },
+ {
+  "id": "A28",
+  "cond": "C",
+  "persona": "a 33-year-old woman studying marketing as a PhD student"
+ },
+ {
+  "id": "A29",
+  "cond": "O",
+  "persona": "a 34-year-old man studying accounting as a master's student"
+ },
+ {
+  "id": "A30",
+  "cond": "C",
+  "persona": "a 23-year-old woman studying communications as a master's student"
+ },
+ {
+  "id": "A31",
+  "cond": "O",
+  "persona": "a 27-year-old man studying biology as an undergraduate student"
+ },
+ {
+  "id": "A32",
+  "cond": "C",
+  "persona": "a 34-year-old woman studying biology as an undergraduate student"
+ },
+ {
+  "id": "A33",
+  "cond": "O",
+  "persona": "a 21-year-old man studying chemistry as an undergraduate student"
+ },
+ {
+  "id": "A34",
+  "cond": "O",
+  "persona": "a 19-year-old man studying political science as an undergraduate student"
+ },
+ {
+  "id": "A35",
+  "cond": "O",
+  "persona": "a 18-year-old woman studying finance as a master's student"
+ },
+ {
+  "id": "A36",
+  "cond": "C",
+  "persona": "a 28-year-old man studying statistics as an undergraduate student"
+ },
+ {
+  "id": "A37",
+  "cond": "C",
+  "persona": "a 21-year-old man studying statistics as a master's student"
+ },
+ {
+  "id": "A38",
+  "cond": "C",
+  "persona": "a 23-year-old woman studying marketing as a master's student"
+ },
+ {
+  "id": "A39",
+  "cond": "C",
+  "persona": "a 24-year-old man studying marketing as an undergraduate student"
+ },
+ {
+  "id": "A40",
+  "cond": "C",
+  "persona": "a 32-year-old woman studying political science as a PhD student"
+ },
+ {
+  "id": "A41",
+  "cond": "C",
+  "persona": "a 20-year-old man studying business administration as an undergraduate student"
+ },
+ {
+  "id": "A42",
+  "cond": "C",
+  "persona": "a 23-year-old woman studying political science as a master's student"
+ },
+ {
+  "id": "A43",
+  "cond": "C",
+  "persona": "a 19-year-old man studying nursing as a PhD student"
+ },
+ {
+  "id": "A44",
+  "cond": "O",
+  "persona": "a 24-year-old man studying mathematics as a PhD student"
+ },
+ {
+  "id": "A45",
+  "cond": "O",
+  "persona": "a 18-year-old woman studying political science as a master's student"
+ },
+ {
+  "id": "A46",
+  "cond": "C",
+  "persona": "a 24-year-old woman studying economics as a PhD student"
+ },
+ {
+  "id": "A47",
+  "cond": "C",
+  "persona": "a 23-year-old man studying computer science as a master's student"
+ },
+ {
+  "id": "A48",
+  "cond": "C",
+  "persona": "a 31-year-old woman studying biology as an undergraduate student"
+ },
+ {
+  "id": "A49",
+  "cond": "O",
+  "persona": "a 23-year-old man studying economics as an undergraduate student"
+ },
+ {
+  "id": "A50",
+  "cond": "O",
+  "persona": "a 32-year-old man studying communications as a master's student"
+ }
+]

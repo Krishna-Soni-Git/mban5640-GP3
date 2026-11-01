@@ -1,0 +1,463 @@
+<title>Payment Framing Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky tab bar over four views. Play is a single-column ledger-style game; Results is a stack of figure cards. */
+:root{
+  --bg:#F2F4F6; --surface:#FFFFFF; --surface2:#E9EDF1; --ink:#14202B; --muted:#5A6B7A; --line:#D5DCE3;
+  --o:#C8681A; --o-soft:#F6E3D2; --c:#17808A; --c-soft:#D5ECEE; --good:#2E7D4F; --bad:#B3402F; --opt:#6B5BB5;
+  --display:"Bricolage Grotesque","Segoe UI",sans-serif; --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1318; --surface:#161D24; --surface2:#1E2831; --ink:#E7EDF2; --muted:#93A3B1; --line:#2B3743;
+  --o:#F0954A; --o-soft:#3A2A1B; --c:#4CC3CE; --c-soft:#17363A; --good:#5DBB86; --bad:#E27B68; --opt:#A596E8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1318; --surface:#161D24; --surface2:#1E2831; --ink:#E7EDF2; --muted:#93A3B1; --line:#2B3743;
+  --o:#F0954A; --o-soft:#3A2A1B; --c:#4CC3CE; --c-soft:#17363A; --good:#5DBB86; --bad:#E27B68; --opt:#A596E8; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:1100px;margin:0 auto}
+header.top{padding-top:22px}
+h1{font:700 clamp(26px,5vw,38px)/1.05 var(--display);letter-spacing:-.02em;margin:0}
+.sub{color:var(--muted);margin:6px 0 0;max-width:62ch}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;margin:18px 0 20px;border-bottom:1px solid var(--line);overflow-x:auto}
+nav button{font:500 14px var(--body);color:var(--muted);background:none;border:0;padding:12px 14px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--ink)}
+nav button:focus-visible,.btn:focus-visible,.q:focus-visible{outline:2px solid var(--opt);outline-offset:2px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))}
+h2{font:700 20px/1.2 var(--display);margin:0 0 4px;letter-spacing:-.01em}
+h3{font:600 12px var(--body);text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:0 0 8px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.btn{font:600 15px var(--body);border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.pill{display:inline-block;font:600 12px var(--mono);padding:3px 9px;border-radius:99px;letter-spacing:.04em}
+.pill.O{background:var(--o-soft);color:var(--o)}.pill.C{background:var(--c-soft);color:var(--c)}
+.rule{border-left:3px solid var(--line);padding-left:12px;margin:6px 0;color:var(--ink)}
+.rule b{font-weight:600}
+.hud{display:flex;gap:24px;flex-wrap:wrap;align-items:baseline;margin-bottom:12px}
+.hud .n{font:500 30px var(--mono);letter-spacing:-.02em}
+.hud .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.qs{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:10px 0 14px}
+.q{font:500 16px var(--mono);padding:11px 0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;cursor:pointer}
+.q[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dice{display:flex;gap:10px;font-size:64px;line-height:1;margin:6px 0}
+.dice span{display:inline-block}
+.dice.roll span{animation:tumble .18s linear infinite}
+@keyframes tumble{50%{transform:rotate(14deg) translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.dice.roll span{animation:none}}
+.result{background:var(--surface2);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:15px}
+.result .delta{font:600 22px var(--mono)}
+.delta.pos{color:var(--good)}.delta.neg{color:var(--bad)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:6px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.scroll{overflow-x:auto}
+svg text{fill:var(--muted);font:11px var(--mono)}
+svg .ink{fill:var(--ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;margin:4px 0 8px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:baseline}
+.callout{border:1px solid var(--line);border-left:4px solid var(--opt);border-radius:8px;padding:12px 14px;background:var(--surface)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi .n{font:500 28px var(--mono)}.kpi .l{font-size:12px;color:var(--muted)}
+.big{font:700 clamp(26px,4.2vw,44px)/1.1 var(--display);letter-spacing:-.02em;margin:0 0 14px}
+.lead{font-size:clamp(16px,2vw,21px);line-height:1.45;margin:10px 0}
+.slide{padding:clamp(18px,3vw,36px);min-height:420px}.kick{font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.pbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.steps{display:flex;gap:4px;flex-wrap:wrap}.ptools{display:flex;gap:8px;align-items:center}
+.stepdot{font:600 13px var(--mono);width:34px;height:34px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.stepdot[aria-current=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.sm{padding:5px 12px;font-size:13px}.pnav{display:flex;gap:10px;align-items:center;margin-top:14px}
+.slide ul{margin:6px 0;padding-left:20px}
+@media (max-width:520px){.qs{grid-template-columns:repeat(6,1fr)}.dice{font-size:52px}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <h1>Payment Framing Lab</h1>
+  <p class="sub">Same profit, different wording. Present the study, play the 25-day widget game live with the room, watch AI agents play it, and compare everyone.</p>
+</header>
+<nav role="tablist" id="tabs">
+  <button role="tab" data-t="present" aria-selected="true">Present</button>
+  <button role="tab" data-t="play" aria-selected="false">Live game</button>
+  <button role="tab" data-t="replay" aria-selected="false">AI replay</button>
+  <button role="tab" data-t="results" aria-selected="false">Humans vs AI</button>
+  <button role="tab" data-t="why" aria-selected="false">Why it matters</button>
+  <button role="tab" data-t="method" aria-selected="false">AI method</button>
+</nav>
+
+<section id="v-present"></section>
+<section id="v-play" hidden></section>
+<section id="v-replay" hidden></section>
+<section id="v-results" hidden></section>
+<section id="v-why" hidden></section>
+<section id="v-method" hidden></section>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const $ = s => document.querySelector(s);
+const FACES = ["⚀","⚁","⚂","⚃","⚄","⚅"], QMIN=3, QMAX=18, QSTAR=10.5;
+const fmt = (x,d=2)=> (x==null||isNaN(x))?"–":Number(x).toFixed(d);
+const mean = a => a.reduce((s,x)=>s+x,0)/a.length;
+const sd = a => { const m=mean(a); return Math.sqrt(a.reduce((s,x)=>s+(x-m)**2,0)/(a.length-1)); };
+
+/* ---------- theory: expected profit of ordering q (identical under O and C) ---------- */
+const pmf = (()=>{const p=Array(19).fill(0);for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)for(let c=1;c<=6;c++)p[a+b+c]+=1/216;return p})();
+const expProfit = q => { let e=0; for(let d=3;d<=18;d++) e+=pmf[d]*(2*Math.min(q,d)-q); return e; };
+
+/* ---------- tabs ---------- */
+function show(t){
+  document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===t));
+  ["present","play","replay","results","why","method"].forEach(k=>$("#v-"+k).hidden=k!==t);
+  if(t==="results") renderResults();
+  if(t==="present") renderPresent();
+  if(t==="replay") renderReplay();
+  try{ history.replaceState(null,"","#"+t) }catch(e){}
+}
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>show(b.dataset.t));
+
+/* ---------- shared class data ---------- */
+let classPlays = [];   // {cond, orders[]}
+let dbRef = null, myDoc = null;
+const sid = (()=>{ try{ let v=localStorage.getItem("plf-sid"); if(!v){v=Math.random().toString(36).slice(2,10);localStorage.setItem("plf-sid",v)} return v }catch(e){ return Math.random().toString(36).slice(2,10) } })();
+(async()=>{
+  try{
+    const db = await claude.use("db"); if(!db) return;
+    dbRef = db.collection("plays");
+    dbRef.onSnapshot(s=>{
+      classPlays = s.docs.map(d=>d.data()).filter(x=>x&&Array.isArray(x.orders)&&x.orders.length).map(x=>({cond:x.cond==="C"?"C":"O",orders:x.orders.map(Number).filter(n=>n>=3&&n<=18),done:!!x.done,id:x.sid}));
+      if(!$("#v-results").hidden) renderResults();
+      if(!$("#v-present").hidden) livePresent();
+      updateClassBadge();
+    },()=>{});
+  }catch(e){}
+})();
+function saveMine(){
+  if(!dbRef) return;
+  try{ dbRef.doc(sid).set({sid, cond:G.cond, orders:G.hist.map(h=>h.q), done:G.over, rounds:G.N, ts:Date.now()}).catch(()=>{}); }catch(e){}
+}
+
+/* ---------- game ---------- */
+const G = { cond:null, N:25, day:1, cash:100, hist:[], sel:null, phase:"intro", over:false, force:null, rolling:false, last:null };
+const INSTR = {
+ O:[["Decide order quantity","Each day, choose how many widgets to stock."],["−1 per unit ordered","You pay 1 play dollar for every widget you order."],["Random demand","Three dice are rolled. Their sum is the day’s demand."],["+2 per unit sold","You sell the smaller of demand and your stock, and receive 2 play dollars for each unit sold."],["Start empty","Leftovers are discarded."]],
+ C:[["Decide order quantity","Each day, choose how many widgets to stock."],["+1 per unit ordered","You receive 1 play dollar for every widget you order."],["Random demand","Three dice are rolled. Their sum is the day’s demand."],["−2 per unit unsold","You sell the smaller of demand and your stock. You pay 2 play dollars for every leftover unit."],["Start empty","Leftovers are discarded."]]
+};
+function newGame(){
+  G.cond = G.force || (Math.random()<.5?"O":"C");
+  Object.assign(G,{day:1,cash:100,hist:[],sel:null,phase:"order",over:false,last:null});
+  renderPlay(); saveMine();
+}
+function outcomeText(cond,q,r){
+  const sold=Math.min(q,r.demand), left=Math.max(q-r.demand,0);
+  return cond==="O"
+   ? `You ordered ${q} and paid ${q}. Demand ${r.demand}: you sold ${sold} and received ${2*sold}. ${left} left over.`
+   : `You ordered ${q} and received ${q} in advance. Demand ${r.demand}: you sold ${sold}. ${left} unsold, so you pay ${2*left}.`;
+}
+function roll(){
+  const q=G.sel; if(q==null||G.rolling) return;
+  G.rolling=true; G.phase="rolling"; renderPlay();
+  const dice=document.querySelector(".dice"); if(dice) dice.classList.add("roll");
+  const t=setInterval(()=>{ if(dice) dice.querySelectorAll("span").forEach(s=>s.textContent=FACES[Math.floor(Math.random()*6)]) },90);
+  setTimeout(()=>{
+    clearInterval(t);
+    const d=[1,2,3].map(()=>1+Math.floor(Math.random()*6)), demand=d[0]+d[1]+d[2];
+    const sold=Math.min(q,demand), left=Math.max(q-demand,0);
+    const change = G.cond==="O" ? 2*sold-q : q-2*left;
+    G.cash+=change; G.last={q,d,demand,sold,left,change};
+    G.hist.push({day:G.day,q,d,demand,sold,left,change,cash:G.cash});
+    G.rolling=false; G.phase="result"; G.over=G.day>=G.N; renderPlay(); saveMine();
+  }, matchMedia("(prefers-reduced-motion:reduce)").matches?100:900);
+}
+function next(){ G.day++; G.sel=null; G.phase="order"; renderPlay(); }
+
+function renderPlay(){
+  const el=$("#v-play");
+  if(G.phase==="intro"){
+    el.innerHTML=`<div class="grid g2">
+      <div class="card"><h2>Run a widget shop</h2>
+        <p class="muted">You get a random pay scheme. Both schemes give the same profit for any order and any demand, but they are worded differently.</p>
+        <div class="legend"><label>Length <select id="nsel" class="mono"><option value="25">25 days (original)</option><option value="10">10 days (quick)</option></select></label></div>
+        <button class="btn" id="go">Start game</button>
+        <p class="muted" style="font-size:13px;margin-top:14px">Presenter: assign <button class="btn ghost" id="fO" style="padding:3px 9px;font-size:12px">O</button> <button class="btn ghost" id="fC" style="padding:3px 9px;font-size:12px">C</button> <button class="btn ghost" id="fR" style="padding:3px 9px;font-size:12px">random</button> <span id="fnote" class="mono"></span></p>
+      </div>
+      <div class="card"><h3>Class so far</h3><div id="clsbadge" class="mono">–</div>
+        <p class="muted" style="font-size:13px">Everyone who opens this page and finishes (or plays part of) a game is counted live on the Humans vs AI tab.</p></div></div>`;
+    $("#go").onclick=()=>{G.N=+$("#nsel").value;newGame()};
+    $("#fO").onclick=()=>{G.force="O";$("#fnote").textContent="next game: O"};
+    $("#fC").onclick=()=>{G.force="C";$("#fnote").textContent="next game: C"};
+    $("#fR").onclick=()=>{G.force=null;$("#fnote").textContent="next game: random"};
+    updateClassBadge(); return;
+  }
+  const c=G.cond, h=G.hist;
+  const rules=INSTR[c].map(r=>`<div class="rule"><b>${r[0]}.</b> ${r[1]}</div>`).join("");
+  let body="";
+  if(G.over && G.phase==="result"){
+    body=finalHTML();
+  } else {
+    const dice = G.last ? G.last.d.map(x=>FACES[x-1]) : ["⚀","⚀","⚀"];
+    const picker = `<div class="qs" role="group" aria-label="Order quantity">${Array.from({length:16},(_,i)=>i+3).map(n=>`<button class="q" aria-pressed="${G.sel===n}" data-q="${n}" ${G.phase!=="order"?"disabled":""}>${n}</button>`).join("")}</div>`;
+    const verb = c==="O" ? "At this moment you pay 1 play dollar per unit." : "At this moment you receive 1 play dollar per unit as an advance.";
+    let res="";
+    if(G.phase==="result"&&G.last){
+      res=`<div class="result"><div>${outcomeText(c,G.last.q,G.last)}</div><div class="delta ${G.last.change>=0?"pos":"neg"}">${G.last.change>=0?"+":""}${G.last.change} play dollars</div></div>`;
+    }
+    body=`<div class="hud"><div><div class="n">${G.day}<span class="muted" style="font-size:16px"> / ${G.N}</span></div><div class="l">Day</div></div>
+      <div><div class="n">${G.cash}</div><div class="l">Play dollars</div></div><div><span class="pill ${c}">${c==="O"?"OWN FINANCING":"CUSTOMER FINANCING"}</span></div></div>
+      <p class="muted" style="margin:0">How many widgets for Day ${G.day}? ${verb}</p>${picker}
+      <div class="dice" aria-label="Dice">${dice.map(x=>`<span>${x}</span>`).join("")}</div>${res}
+      <div>${G.phase==="order"?`<button class="btn" id="place" ${G.sel==null?"disabled":""}>${G.sel==null?"Choose a quantity":`Order ${G.sel} and roll`}</button>`:G.phase==="result"?`<button class="btn" id="nx">Day ${G.day+1}</button>`:`<span class="muted">Rolling…</span>`}</div>`;
+  }
+  el.innerHTML=`<div class="grid g2"><div class="card">${body}</div>
+    <div class="grid" style="align-content:start"><div class="card"><h3>Instructions you were given</h3>${rules}<p class="muted" style="font-size:13px;margin:8px 0 0">Start with 100 play dollars. Goal: finish with as many as possible.</p></div>
+    <div class="card"><h3>Your orders</h3>${sparkOrders()}</div></div></div>`;
+  el.querySelectorAll(".q").forEach(b=>b.onclick=()=>{G.sel=+b.dataset.q;renderPlay()});
+  const p=$("#place"); if(p) p.onclick=roll; const n=$("#nx"); if(n) n.onclick=next;
+  const a=$("#again"); if(a) a.onclick=()=>{G.phase="intro";renderPlay()};
+  const rv=$("#reveal"); if(rv) rv.onclick=()=>{ $("#revealbox").hidden=false; rv.hidden=true };
+}
+function sparkOrders(){
+  const h=G.hist; if(!h.length) return `<p class="muted" style="margin:0">Your orders will be plotted here. The dashed line marks the profit-maximizing 10 to 11.</p>`;
+  const W=360,H=120,L=26,B=16,n=Math.max(G.N,2), x=i=>L+(W-L-6)*i/(n-1), y=q=>H-B-(H-B-8)*(q-QMIN)/(QMAX-QMIN);
+  const col = G.cond==="O"?"var(--o)":"var(--c)";
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Your order quantities by day">`;
+  [3,10.5,18].forEach(v=>s+=`<text x="2" y="${y(v)+4}">${v===10.5?"10.5":v}</text>`);
+  s+=`<line x1="${L}" x2="${W-6}" y1="${y(10.5)}" y2="${y(10.5)}" stroke="var(--opt)" stroke-dasharray="4 3"/>`;
+  s+=`<polyline fill="none" stroke="${col}" stroke-width="2" points="${h.map((r,i)=>x(i)+","+y(r.q)).join(" ")}"/>`;
+  h.forEach((r,i)=>s+=`<circle cx="${x(i)}" cy="${y(r.q)}" r="3" fill="${col}"/>`);
+  return s+`<text x="${L}" y="${H-2}">Day 1</text><text x="${W-6}" y="${H-2}" text-anchor="end">Day ${G.N}</text></svg>`;
+}
+function finalHTML(){
+  const qs=G.hist.map(r=>r.q), m=mean(qs), c=G.cond, other=c==="O"?"C":"O";
+  const hum = DATA.humanPooled[c].mean, ai = DATA.ai.byCond[c]?.mean;
+  const lastR=G.hist[G.hist.length-1];
+  const twin = outcomeText(other,lastR.q,lastR);
+  return `<h2>Finished with ${G.cash} play dollars</h2>
+   <div class="kpis" style="margin:12px 0"><div class="kpi"><div class="n">${fmt(m,1)}</div><div class="l">your average order</div></div>
+   <div class="kpi"><div class="n">${fmt(hum,1)}</div><div class="l">humans in ${c}</div></div>
+   <div class="kpi"><div class="n">${fmt(ai,1)}</div><div class="l">Claude agents in ${c}</div></div>
+   <div class="kpi"><div class="n">10–11</div><div class="l">profit-maximizing</div></div></div>
+   <p>${m>11.2?"You ordered above the optimum.":m<9.8?"You ordered below the optimum.":"You stayed close to the optimum."} Under both schemes, the expected profit is highest at 10 or 11 units.</p>
+   <button class="btn" id="reveal">Show your last day in the other wording</button>
+   <div id="revealbox" hidden class="callout" style="margin-top:10px"><b>Scheme ${other}, same order and same dice:</b><br>${twin}<br><span class="mono">Change: ${lastR.change>=0?"+":""}${lastR.change} play dollars, identical to what you got.</span></div>
+   <p style="margin-top:14px"><button class="btn ghost" id="again">Play again</button></p>`;
+}
+function updateClassBadge(){
+  const b=$("#clsbadge"); if(!b) return;
+  const O=classPlays.filter(p=>p.cond==="O"), C=classPlays.filter(p=>p.cond==="C");
+  b.innerHTML=`${classPlays.length} players &nbsp; <span class="pill O">O ${O.length}</span> <span class="pill C">C ${C.length}</span>`;
+}
+
+/* ---------- results ---------- */
+function classStats(){
+  const out={};
+  for(const c of ["O","C"]){
+    const avgs=classPlays.filter(p=>p.cond===c&&p.orders.length).map(p=>mean(p.orders));
+    out[c]={n:avgs.length,mean:avgs.length?mean(avgs):null,avgs};
+  } return out;
+}
+function dumbbell(rows){
+  const W=640,rowH=44,T=26,L=150,R=70,H=T+rows.length*rowH+24, xmin=8.5,xmax=14, x=v=>L+(W-L-R)*(v-xmin)/(xmax-xmin);
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Mean order quantity by payment scheme for each sample">`;
+  s+=`<rect x="${x(10)}" y="${T-8}" width="${x(11)-x(10)}" height="${rows.length*rowH}" fill="var(--opt)" opacity=".13"/>`;
+  s+=`<text x="${(x(10)+x(11))/2}" y="${T-12}" text-anchor="middle" style="fill:var(--opt)">profit-max</text>`;
+  for(let v=9;v<=14;v++){ s+=`<line x1="${x(v)}" x2="${x(v)}" y1="${T-8}" y2="${T-8+rows.length*rowH}" stroke="var(--line)"/><text x="${x(v)}" y="${H-6}" text-anchor="middle">${v}</text>`; }
+  rows.forEach((r,i)=>{
+    const y=T+i*rowH+12;
+    s+=`<text x="${L-12}" y="${y+4}" text-anchor="end" class="ink" style="font-family:var(--body);font-size:12.5px">${r.label}</text>`;
+    if(r.O==null||r.C==null){ s+=`<text x="${L}" y="${y+4}">waiting for players…</text>`; return; }
+    s+=`<line x1="${x(r.C)}" x2="${x(r.O)}" y1="${y}" y2="${y}" stroke="var(--muted)" stroke-width="2"/>`;
+    s+=`<circle cx="${x(r.C)}" cy="${y}" r="7" fill="var(--c)"/><circle cx="${x(r.O)}" cy="${y}" r="7" fill="var(--o)"/>`;
+    s+=`<text x="${W-R+10}" y="${y+4}" class="ink">${r.O-r.C>=0?"+":""}${fmt(r.O-r.C,2)}</text>`;
+    if(r.sub) s+=`<text x="${L-12}" y="${y+18}" text-anchor="end" style="font-size:10px">${r.sub}</text>`;
+  });
+  return s+`</svg>`;
+}
+function strip(groups,title){
+  const W=420,H=200,L=30,B=22,T=10, y=v=>H-B-(H-B-T)*(v-6)/(17-6), gx=i=>L+(W-L)*(i+.5)/groups.length;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${title}">`;
+  [6,8,10,12,14,16].forEach(v=>s+=`<line x1="${L}" x2="${W}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="2" y="${y(v)+4}">${v}</text>`);
+  s+=`<line x1="${L}" x2="${W}" y1="${y(10.5)}" y2="${y(10.5)}" stroke="var(--opt)" stroke-dasharray="4 3"/>`;
+  groups.forEach((g,i)=>{
+    const col=g.c==="O"?"var(--o)":"var(--c)"; let k=0;
+    g.vals.forEach(v=>{ const jx=((k++*37)%23-11)*1.4; s+=`<circle cx="${gx(i)+jx}" cy="${y(Math.max(6,Math.min(17,v)))}" r="3.2" fill="${col}" opacity=".6"/>`; });
+    if(g.vals.length){ const m=mean(g.vals); s+=`<line x1="${gx(i)-30}" x2="${gx(i)+30}" y1="${y(m)}" y2="${y(m)}" stroke="var(--ink)" stroke-width="2.5"/><text x="${gx(i)}" y="${H-6}" text-anchor="middle">${g.label}</text>`; }
+    else s+=`<text x="${gx(i)}" y="${H-6}" text-anchor="middle">${g.label}</text>`;
+  });
+  return s+`</svg>`;
+}
+function lines(series){
+  const W=640,H=230,L=34,B=22,T=10,R=8,n=25, x=i=>L+(W-L-R)*(i-1)/(n-1), y=v=>H-B-(H-B-T)*(v-8)/(15-8);
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Mean order by day">`;
+  [8,10,12,14].forEach(v=>s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="2" y="${y(v)+4}">${v}</text>`);
+  s+=`<line x1="${L}" x2="${W-R}" y1="${y(10.5)}" y2="${y(10.5)}" stroke="var(--opt)" stroke-dasharray="4 3"/>`;
+  [1,5,10,15,20,25].forEach(d=>s+=`<text x="${x(d)}" y="${H-6}" text-anchor="middle">${d}</text>`);
+  series.forEach(se=>{ s+=`<polyline fill="none" stroke="${se.c==="O"?"var(--o)":"var(--c)"}" stroke-width="2.2" ${se.dash===1?'stroke-dasharray="6 4"':se.dash===2?'stroke-dasharray="1 4" stroke-linecap="round"':""} points="${se.v.map((v,i)=>x(i+1)+","+y(Math.max(8,Math.min(15,v)))).join(" ")}"/>`; });
+  return s+`</svg>`;
+}
+function profitCurve(){
+  const W=640,H=220,L=40,B=24,T=12,R=10, x=q=>L+(W-L-R)*(q-3)/15, ymin=-4,ymax=3.2, y=v=>H-B-(H-B-T)*(v-ymin)/(ymax-ymin);
+  let pts=[]; for(let q=3;q<=18;q++) pts.push([q,expProfit(q)]);
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Expected profit per day by order quantity">`;
+  [-4,-2,0,2].forEach(v=>s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="2" y="${y(v)+4}">${v}</text>`);
+  [3,6,9,12,15,18].forEach(q=>s+=`<text x="${x(q)}" y="${H-6}" text-anchor="middle">${q}</text>`);
+  s+=`<polyline fill="none" stroke="var(--ink)" stroke-width="2.5" points="${pts.map(p=>x(p[0])+","+y(p[1])).join(" ")}"/>`;
+  [[DATA.humanPooled.O.mean,"var(--o)","human O"],[DATA.humanPooled.C.mean,"var(--c)","human C"]].forEach(([m,col,lab])=>{
+    s+=`<line x1="${x(m)}" x2="${x(m)}" y1="${T}" y2="${H-B}" stroke="${col}" stroke-dasharray="3 3"/><circle cx="${x(m)}" cy="${y(expProfit(m))}" r="5" fill="${col}"/>`;
+  });
+  s+=`<circle cx="${x(10)}" cy="${y(expProfit(10))}" r="5" fill="var(--opt)"/><text x="${x(10)-8}" y="${y(expProfit(10))-10}" text-anchor="end" style="fill:var(--opt)">best: ${fmt(expProfit(10),2)}/day</text>`;
+  return s+`</svg>`;
+}
+
+function renderResults(){
+  const cs=classStats(), D=DATA;
+  const rows=[
+    {label:"Original study",sub:"Duke, n=50",O:D.samples[0].mean_O,C:D.samples[0].mean_C},
+    {label:"UM online",sub:`n=${D.samples[1].n_O+D.samples[1].n_C}`,O:D.samples[1].mean_O,C:D.samples[1].mean_C},
+    {label:"UTD online",sub:`n=${D.samples[2].n_O+D.samples[2].n_C}`,O:D.samples[2].mean_O,C:D.samples[2].mean_C},
+    {label:"UM in person",sub:`n=${D.samples[3].n_O+D.samples[3].n_C}`,O:D.samples[3].mean_O,C:D.samples[3].mean_C},
+    {label:"Claude agents",sub:`n=${D.ai.byCond.O.n+D.ai.byCond.C.n}`,O:D.ai.byCond.O.mean,C:D.ai.byCond.C.mean},
+    {label:"Llama agents",sub:`n=${D.llama.byCond.O.n+D.llama.byCond.C.n}`,O:D.llama.byCond.O.mean,C:D.llama.byCond.C.mean},
+    {label:"This class (live)",sub:`n=${cs.O.n+cs.C.n}`,O:cs.O.n&&cs.C.n?cs.O.mean:null,C:cs.O.n&&cs.C.n?cs.C.mean:null}
+  ];
+  const hp=D.humanPooled, ai=D.ai;
+  const tbl=D.samples.concat([D.aiRow,D.llamaRow]).map(s=>`<tr><td>${s.sample}</td><td>${s.n_O}/${s.n_C}</td><td>${fmt(s.mean_O)}</td><td>${fmt(s.mean_C)}</td><td>${(s.diff>=0?"+":"")+fmt(s.diff)}</td><td>${s.d==null?"–":fmt(s.d)}</td><td>${s.p==null?"–":(s.p<0.001?"<0.001":fmt(s.p,3))}</td></tr>`).join("");
+  $("#v-results").innerHTML=`
+  <div class="card callout" style="margin-bottom:16px"><h2>${D.headline}</h2><p style="margin:6px 0 0">${D.verdict}</p></div>
+  <div class="grid">
+   <div class="card"><h2>Mean order by scheme</h2><div class="legend"><span><i class="dot" style="background:var(--o)"></i>O: pay per unit ordered</span><span><i class="dot" style="background:var(--c)"></i>C: advance payment, refund unsold</span></div>${dumbbell(rows)}
+     <p class="muted" style="font-size:13px;margin:4px 0 0">Right column is O minus C. Shaded band is the profit-maximizing order. Humans order more under O; Claude agents lean the same way but much less; Llama orders far above the optimum.</p></div>
+   <div class="grid g2">
+    <div class="card"><h2>Each participant’s average</h2>${strip([{label:"Human O",c:"O",vals:hp.O.avgs},{label:"Human C",c:"C",vals:hp.C.avgs},{label:"Claude O",c:"O",vals:ai.byCond.O.avgs},{label:"Claude C",c:"C",vals:ai.byCond.C.avgs},{label:"Llama O",c:"O",vals:D.llama.byCond.O.avgs},{label:"Llama C",c:"C",vals:D.llama.byCond.C.avgs}],"Participant averages")}
+      <p class="muted" style="font-size:13px;margin:0">One dot per person or agent; bar is the group mean. Human data pools the three replications.</p></div>
+    <div class="card"><h2>Class distribution</h2>${strip([{label:"Class O",c:"O",vals:cs.O.avgs},{label:"Class C",c:"C",vals:cs.C.avgs}],"Class averages")}
+      <p class="muted" style="font-size:13px;margin:0">${cs.O.n+cs.C.n} players so far. Ask the room to play, then watch this fill in.</p></div>
+   </div>
+   <div class="card"><h2>Orders by day</h2><div class="legend"><span><i class="dot" style="background:var(--o)"></i>O</span><span><i class="dot" style="background:var(--c)"></i>C</span><span class="muted">solid: humans (pooled) &nbsp; dashed: Claude &nbsp; dotted: Llama</span></div>
+     ${lines([{c:"O",v:hp.O.byDay},{c:"C",v:hp.C.byDay},{c:"O",v:ai.byCond.O.byDay,dash:1},{c:"C",v:ai.byCond.C.byDay,dash:1},{c:"O",v:D.llama.byCond.O.byDay,dash:2},{c:"C",v:D.llama.byCond.C.byDay,dash:2}])}</div>
+   <div class="card"><h2>What a wrong order costs</h2>${profitCurve()}
+     <p class="muted" style="font-size:13px;margin:0">Expected profit per day is the same curve in both schemes. Human O averages ${fmt(hp.O.mean,1)} and human C ${fmt(hp.C.mean,1)}, both near the top, so the bias is small in dollars but systematic.</p></div>
+   <div class="card scroll"><h2>Statistics</h2><table><thead><tr><th>Sample</th><th>n O/C</th><th>Mean O</th><th>Mean C</th><th>O − C</th><th>Cohen d</th><th>p</th></tr></thead><tbody>${tbl}</tbody></table>
+     <p class="muted" style="font-size:12px;margin:8px 0 0">Unit of analysis is the participant’s 25-day average (two-sample t-test), as in the replication report. Original-study row is from the report (SDs not published).</p></div>
+  </div>`;
+}
+
+/* ---------- why / method ---------- */
+$("#v-why").innerHTML=`<div class="grid g2">
+ <div class="card"><h2>The two schemes are the same game</h2>
+  <p>Per unit ordered and sold, scheme O pays −1 then +2. Scheme C pays +1 then, for each unsold unit, −2. Ordering <span class="mono">q</span> when demand is <span class="mono">D</span> gives <span class="mono">2·min(q,D) − q</span> in O and <span class="mono">q − 2·max(q−D,0)</span> in C. These are equal for every q and D.</p>
+  <p>With demand from three dice, the best order is 10 or 11 under either scheme.</p></div>
+ <div class="card"><h2>Mental accounting</h2>
+  <p>Chen, Kök &amp; Tong argue that people split payments into “before demand” and “after demand” accounts and underweight the first. In O the order-time payment is a cost, so the cost looms small and orders go up. In C the order-time payment is a gain, so the refund risk feels larger and orders go down.</p>
+  <p class="muted">Pull-to-center, loss aversion and time discounting do not predict this pattern.</p></div>
+ <div class="card"><h2>Business link</h2><p>Supply chains use these schemes in practice: buyer-financed orders (O), trade credit from suppliers, and customer prepayment (C). The same economics can lead to different stocking.</p></div>
+ <div class="card"><h2>Source</h2><p class="muted">Chen, L., Kök, A. G., &amp; Tong, J. D. (2013). The effect of payment schemes on inventory decisions: The role of mental accounting. <i>Management Science</i>, 59(2), 436–451. Replication data: Leider &amp; Keppler (Michigan), Hyndman &amp; Katok (UT Dallas), MS Replication Project.</p></div></div>`;
+$("#v-method").innerHTML=`<div class="grid g2">
+ <div class="card"><h2>Agents</h2><p>${DATA.method.agents}</p></div>
+ <div class="card"><h2>Game engine</h2><p>${DATA.method.engine}</p></div>
+ <div class="card"><h2>Data checks</h2><p>${DATA.method.checks}</p></div>
+ <div class="card"><h2>Limits</h2><p>${DATA.method.limits}</p></div>
+ <div class="card"><h2>Second model: Llama 3.1 8B</h2><p>The same game, personas and instructions run through a LangGraph agent (decide, play, loop, debrief with structured output and message-history memory) on a free local Llama via Ollama. ${DATA.llamaExtra.fail} of 50 agents failed the comprehension check and only ${fmt(100*(DATA.llamaExtra.share1011.O+DATA.llamaExtra.share1011.C)/2,0)}% of orders fall in 10 to 11, so its gap reflects weak task understanding more than human-like bias.</p></div></div>`;
+
+/* ---------- presenter mode ---------- */
+const P = { i:0, t0:null, timer:null };
+const STEPS = [
+ {k:"Question",sec:30,html:()=>`<h2 class="big">Can AI agents reproduce payment-framing bias?</h2>
+   <p class="lead">Two ways to word the same newsvendor game. People order more under one of them. Do AI agents?</p>
+   <div class="kpis"><div class="kpi"><div class="n">50</div><div class="l">Claude agents</div></div><div class="kpi"><div class="n">50</div><div class="l">Llama agents</div></div><div class="kpi"><div class="n">25</div><div class="l">rounds each</div></div><div class="kpi"><div class="n">4</div><div class="l">human samples</div></div></div>`},
+ {k:"Background",sec:90,html:()=>`<h2 class="big">Same payoffs, different framing</h2>
+   <div class="grid g2"><div class="card"><span class="pill O">O · OWN FINANCING</span><p class="lead">Pay $1 per unit when you order. Receive $2 per unit sold.</p></div>
+   <div class="card"><span class="pill C">C · CUSTOMER FINANCING</span><p class="lead">Receive $1 per unit when you order. Pay $2 per unit left unsold.</p></div></div>
+   <p class="lead">Net change is identical: <span class="mono">2·min(q,D) − q</span> in O and <span class="mono">q − 2·max(q−D,0)</span> in C. Demand is three dice, so the best order is 10 or 11.</p>
+   <div class="callout"><b>Mental accounting:</b> in O the cost is paid before demand is known, so it looms as a sure loss and people order more. Chen, Kök &amp; Tong (2013).</div>`},
+ {k:"Live demo: class",sec:120,html:()=>`<h2 class="big">Live demo: you are the participants</h2>
+   <p class="lead">Open the Live game tab on your phone or laptop. You are randomly given O or C. Play 10 quick days.</p>
+   <div class="card"><h3>Class so far</h3><div id="livebox"></div></div>
+   <p><button class="btn" id="goplay">Open the Live game</button> <button class="btn ghost" id="goresults">Open comparison</button></p>`},
+ {k:"Human results",sec:60,html:()=>{const rows=[0,1,2,3].map(i=>{const s=DATA.samples[i];return {label:s.sample,sub:`n=${s.n_O+s.n_C}`,O:s.mean_O,C:s.mean_C}});
+   return `<h2 class="big">Humans order more under O, every time</h2><div class="card"><div class="legend"><span><i class="dot" style="background:var(--o)"></i>O</span><span><i class="dot" style="background:var(--c)"></i>C</span></div>${dumbbell(rows)}</div>
+   <p class="lead">Gap O − C: ${DATA.samples.map(s=>(s.diff>=0?"+":"")+fmt(s.diff,2)).join(", ")} units. People are scattered: spread about 1.7 units.</p>`}},
+ {k:"AI design",sec:90,html:()=>`<h2 class="big">AI design: simulated participants</h2>
+   <div class="kpis"><div class="card"><h3>1 Persona</h3>Age 18–34, gender, major, degree level</div><div class="card"><h3>2 Instructions</h3>Original O or C text, word for word</div><div class="card"><h3>3 Game engine</h3>Validates orders, rolls real dice after the order</div><div class="card"><h3>4 Memory</h3>Each agent remembers all earlier days</div></div>
+   <p class="lead">Claude Sonnet sub-agents (n=50) and a LangGraph agent on a free local Llama 3.1 8B (n=50). Same prompts, same engine.</p>`},
+ {k:"Live demo: AI",sec:90,html:()=>`<h2 class="big">Live demo: watch an AI agent play</h2>
+   <p class="lead">Replay a real agent day by day: its persona, orders, dice, cash and its own explanation of its strategy.</p>
+   <p><button class="btn" id="goreplay">Open the AI replay</button></p>`},
+ {k:"Comparison",sec:120,html:()=>{const cs=classStats(),D=DATA;
+   const rows=[0,1,2,3].map(i=>{const s=D.samples[i];return {label:s.sample,sub:`n=${s.n_O+s.n_C}`,O:s.mean_O,C:s.mean_C}}).concat([
+     {label:"Claude agents",sub:"n=50",O:D.ai.byCond.O.mean,C:D.ai.byCond.C.mean},{label:"Llama agents",sub:"n=50",O:D.llama.byCond.O.mean,C:D.llama.byCond.C.mean},
+     {label:"This class (live)",sub:`n=${cs.O.n+cs.C.n}`,O:cs.O.n&&cs.C.n?cs.O.mean:null,C:cs.O.n&&cs.C.n?cs.C.mean:null}]);
+   return `<h2 class="big">Human versus AI</h2><div class="card">${dumbbell(rows)}</div>
+   <div class="kpis"><div class="kpi"><div class="n">${fmt(D.aiRow.diff)}</div><div class="l">Claude gap (humans 0.9 to 2.0)</div></div><div class="kpi"><div class="n">${fmt(D.llamaRow.diff)}</div><div class="l">Llama gap</div></div><div class="kpi"><div class="n">97%</div><div class="l">Claude orders in 10–11</div></div><div class="kpi"><div class="n">${fmt(100*(D.llamaExtra.share1011.O+D.llamaExtra.share1011.C)/2,0)}%</div><div class="l">Llama orders in 10–11</div></div></div>`}},
+ {k:"Why",sec:60,html:()=>`<h2 class="big">What drives each order?</h2>
+   <div class="grid g2"><div class="card"><h3>Humans</h3><p>Anchor on their own last order (mean |Shapley| 1.18). Frame explains about 17% of explained variation. Cross-validated R² 0.37.</p></div>
+   <div class="card"><h3>Claude agents</h3><p>React more to the frame (about 39%) and, with history, to last demand and profit. R² 0.50, up to 0.70 with history.</p></div></div>
+   <p class="lead">Agents act like a consistent rule. Humans act like a noisy habit. Llama is the opposite problem: ${DATA.llamaExtra.fail} of 50 failed the comprehension check, and orders drift from about ${fmt((DATA.llamaExtra.early[0]+DATA.llamaExtra.early[1])/2,0)} to about ${fmt((DATA.llamaExtra.late[0]+DATA.llamaExtra.late[1])/2,0)}.</p>`},
+ {k:"Conclusion",sec:60,html:()=>`<h2 class="big">AI gets the direction, not the size</h2>
+   <p class="lead">Claude shows the O > C gap at a third to a half of human size, with far less variation. Llama shows a gap for the wrong reasons. Use AI to test whether a framing effect exists, then confirm with people.</p>
+   <div class="card"><h3>Limitations</h3><ul><li>The 50 agents in a model are not independent people</li><li>Simple personas, no stakes, silent reasoning</li><li>Agents were told demand is the sum of three dice</li><li>Results depend on the model (Claude vs Llama)</li></ul></div>
+   <p class="lead"><b>Questions?</b></p>`}
+];
+function fmtT(s){ s=Math.max(0,Math.round(s)); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); }
+function renderPresent(){
+  const s=STEPS[P.i], total=STEPS.reduce((a,x)=>a+x.sec,0);
+  const dots=STEPS.map((x,i)=>`<button class="stepdot" data-i="${i}" aria-current="${i===P.i}" title="${x.k}">${i+1}</button>`).join("");
+  $("#v-present").innerHTML=`<div class="pbar"><div class="steps">${dots}</div><div class="ptools"><span class="mono" id="clk">${P.t0?fmtT((Date.now()-P.t0)/1000):"0:00"}</span><span class="muted mono">/ ${fmtT(total)}</span>
+    <button class="btn ghost sm" id="tstart">${P.timer?"Stop":"Start timer"}</button><button class="btn ghost sm" id="fs">Full screen</button></div></div>
+    <div class="slide card" aria-live="polite"><div class="kick">${s.k} · about ${fmtT(s.sec)}</div>${s.html()}</div>
+    <div class="pnav"><button class="btn ghost" id="pp" ${P.i===0?"disabled":""}>Back</button><button class="btn" id="pn" ${P.i===STEPS.length-1?"disabled":""}>Next</button><span class="muted" style="font-size:13px">Arrow keys also work</span></div>`;
+  document.querySelectorAll(".stepdot").forEach(b=>b.onclick=()=>{P.i=+b.dataset.i;renderPresent()});
+  $("#pp").onclick=()=>{P.i--;renderPresent()}; $("#pn").onclick=()=>{P.i++;renderPresent()};
+  $("#tstart").onclick=()=>{ if(P.timer){clearInterval(P.timer);P.timer=null}else{P.t0=P.t0||Date.now();P.timer=setInterval(()=>{const c=$("#clk");if(c)c.textContent=fmtT((Date.now()-P.t0)/1000)},500)} renderPresent(); };
+  $("#fs").onclick=()=>{ try{ document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen() }catch(e){} };
+  const g=(id,t)=>{const b=$("#"+id); if(b) b.onclick=()=>show(t)}; g("goplay","play"); g("goresults","results"); g("goreplay","replay");
+  livePresent();
+}
+function livePresent(){
+  const b=$("#livebox"); if(!b) return; const cs=classStats();
+  b.innerHTML=`<div class="kpis"><div class="kpi"><div class="n">${classPlays.length}</div><div class="l">players</div></div><div class="kpi"><div class="n">${cs.O.n}</div><div class="l">in O</div></div><div class="kpi"><div class="n">${cs.C.n}</div><div class="l">in C</div></div><div class="kpi"><div class="n">${cs.O.n&&cs.C.n?(cs.O.mean-cs.C.mean>=0?"+":"")+fmt(cs.O.mean-cs.C.mean):"–"}</div><div class="l">class gap O − C</div></div></div>
+   <div class="legend"><span><i class="dot" style="background:var(--o)"></i>O mean ${cs.O.n?fmt(cs.O.mean,1):"–"}</span><span><i class="dot" style="background:var(--c)"></i>C mean ${cs.C.n?fmt(cs.C.mean,1):"–"}</span><span class="muted">${classPlays.filter(p=>p.done).length} finished</span></div>`;
+}
+document.addEventListener("keydown",e=>{
+  if($("#v-present").hidden||/INPUT|SELECT|TEXTAREA/.test((e.target.tagName||""))) return;
+  if(e.key==="ArrowRight"&&P.i<STEPS.length-1){P.i++;renderPresent()}
+  if(e.key==="ArrowLeft"&&P.i>0){P.i--;renderPresent()}
+});
+
+/* ---------- AI replay ---------- */
+const RP = { k:0, day:0, timer:null, speed:700 };
+function renderReplay(){
+  const rps=DATA.replays, r=rps[RP.k], rounds=r.rounds.slice(0,RP.day), last=rounds[rounds.length-1];
+  const opts=rps.map((x,i)=>`<option value="${i}" ${i===RP.k?"selected":""}>${x.model} agent ${x.id} · scheme ${x.cond}</option>`).join("");
+  const dice=last?last.d.map(x=>FACES[x-1]):["⚀","⚀","⚀"];
+  const W=420,H=130,L=26,B=16,n=25, x=i=>L+(W-L-6)*i/(n-1), y=q=>H-B-(H-B-8)*(q-3)/(18-3), col=r.cond==="O"?"var(--o)":"var(--c)";
+  let sv=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Agent order quantities by day">`+[3,10.5,18].map(v=>`<text x="2" y="${y(v)+4}">${v===10.5?"10.5":v}</text>`).join("")+`<line x1="${L}" x2="${W-6}" y1="${y(10.5)}" y2="${y(10.5)}" stroke="var(--opt)" stroke-dasharray="4 3"/>`;
+  if(rounds.length) sv+=`<polyline fill="none" stroke="${col}" stroke-width="2" points="${rounds.map((q,i)=>x(i)+","+y(q.q)).join(" ")}"/>`+rounds.map((q,i)=>`<circle cx="${x(i)}" cy="${y(q.q)}" r="3" fill="${col}"/>`).join("");
+  sv+=`</svg>`;
+  const done=RP.day>=25, txt=last?outcomeText(r.cond,last.q,{demand:last.demand}):"Press Play to start the replay.";
+  $("#v-replay").innerHTML=`<div class="grid g2"><div class="card">
+    <div class="legend"><label>Agent <select id="rsel" class="mono">${opts}</select></label></div>
+    <p class="muted" style="margin:4px 0 10px">Persona: ${r.persona}. <span class="pill ${r.cond}">${r.cond==="O"?"OWN FINANCING":"CUSTOMER FINANCING"}</span></p>
+    <div class="hud"><div><div class="n">${RP.day}<span class="muted" style="font-size:16px"> / 25</span></div><div class="l">Day</div></div><div><div class="n">${last?last.cash:100}</div><div class="l">Play dollars</div></div><div><div class="n">${last?last.q:"–"}</div><div class="l">Agent ordered</div></div></div>
+    <div class="dice" aria-label="Dice">${dice.map(d=>`<span>${d}</span>`).join("")}</div>
+    <div class="result"><div>${txt}</div>${last?`<div class="delta ${last.change>=0?"pos":"neg"}">${last.change>=0?"+":""}${last.change} play dollars</div>`:""}</div>
+    <p><button class="btn" id="rplay">${RP.timer?"Pause":(done?"Replay":"Play")}</button> <button class="btn ghost" id="rstep" ${done?"disabled":""}>Next day</button> <button class="btn ghost" id="rreset">Restart</button>
+    <label class="muted" style="margin-left:8px">Speed <select id="rspd" class="mono"><option value="1200" ${RP.speed==1200?"selected":""}>slow</option><option value="700" ${RP.speed==700?"selected":""}>normal</option><option value="250" ${RP.speed==250?"selected":""}>fast</option></select></label></p></div>
+   <div class="grid" style="align-content:start"><div class="card"><h3>Orders so far</h3>${sv}<p class="muted" style="font-size:13px;margin:0">Dashed line marks the profit-maximizing 10 to 11.</p></div>
+    <div class="card"><h3>In the agent’s own words</h3>${done?`<p>“${r.strategy}”</p><p class="muted" style="font-size:13px;margin:0">${r.comprehensionFail?"This agent failed the end-of-game comprehension question.":"This agent passed the comprehension question."}</p>`:`<p class="muted" style="margin:0">Revealed after day 25.</p>`}</div></div></div>`;
+  $("#rsel").onchange=e=>{stopRP();RP.k=+e.target.value;RP.day=0;renderReplay()};
+  $("#rspd").onchange=e=>{RP.speed=+e.target.value;if(RP.timer){stopRP();startRP()}};
+  $("#rreset").onclick=()=>{stopRP();RP.day=0;renderReplay()};
+  $("#rstep").onclick=()=>{stopRP();if(RP.day<25)RP.day++;renderReplay()};
+  $("#rplay").onclick=()=>{ if(RP.timer){stopRP();renderReplay()} else {if(RP.day>=25)RP.day=0;startRP()} };
+}
+function stopRP(){ if(RP.timer){clearInterval(RP.timer);RP.timer=null} }
+function startRP(){ RP.timer=setInterval(()=>{ if(RP.day>=25){stopRP();renderReplay();return} RP.day++; renderReplay(); },RP.speed); renderReplay(); }
+
+renderPlay();
+const h0=(location.hash||"").slice(1); if(["present","play","replay","results","why","method"].includes(h0)) show(h0); else renderPresent();
+</script>

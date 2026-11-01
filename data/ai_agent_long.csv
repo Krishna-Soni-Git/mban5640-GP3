@@ -1,0 +1,1251 @@
+agent_id,condition,persona,day,order,d1,d2,d3,demand,sold,leftover,change,cash_end
+A01,C,a 29-year-old man studying biology as an undergraduate student,1,10,5,2,5,12,10,0,10,110
+A01,C,a 29-year-old man studying biology as an undergraduate student,2,10,4,3,4,11,10,0,10,120
+A01,C,a 29-year-old man studying biology as an undergraduate student,3,10,1,5,3,9,9,1,8,128
+A01,C,a 29-year-old man studying biology as an undergraduate student,4,10,6,4,5,15,10,0,10,138
+A01,C,a 29-year-old man studying biology as an undergraduate student,5,10,6,6,1,13,10,0,10,148
+A01,C,a 29-year-old man studying biology as an undergraduate student,6,10,6,6,3,15,10,0,10,158
+A01,C,a 29-year-old man studying biology as an undergraduate student,7,10,5,3,5,13,10,0,10,168
+A01,C,a 29-year-old man studying biology as an undergraduate student,8,10,1,2,6,9,9,1,8,176
+A01,C,a 29-year-old man studying biology as an undergraduate student,9,10,2,2,5,9,9,1,8,184
+A01,C,a 29-year-old man studying biology as an undergraduate student,10,10,4,3,1,8,8,2,6,190
+A01,C,a 29-year-old man studying biology as an undergraduate student,11,10,5,6,4,15,10,0,10,200
+A01,C,a 29-year-old man studying biology as an undergraduate student,12,10,4,6,1,11,10,0,10,210
+A01,C,a 29-year-old man studying biology as an undergraduate student,13,10,4,2,2,8,8,2,6,216
+A01,C,a 29-year-old man studying biology as an undergraduate student,14,10,1,2,1,4,4,6,-2,214
+A01,C,a 29-year-old man studying biology as an undergraduate student,15,10,3,1,6,10,10,0,10,224
+A01,C,a 29-year-old man studying biology as an undergraduate student,16,10,1,6,3,10,10,0,10,234
+A01,C,a 29-year-old man studying biology as an undergraduate student,17,10,5,2,3,10,10,0,10,244
+A01,C,a 29-year-old man studying biology as an undergraduate student,18,10,4,3,3,10,10,0,10,254
+A01,C,a 29-year-old man studying biology as an undergraduate student,19,10,2,4,4,10,10,0,10,264
+A01,C,a 29-year-old man studying biology as an undergraduate student,20,10,6,4,5,15,10,0,10,274
+A01,C,a 29-year-old man studying biology as an undergraduate student,21,10,3,5,4,12,10,0,10,284
+A01,C,a 29-year-old man studying biology as an undergraduate student,22,10,4,6,2,12,10,0,10,294
+A01,C,a 29-year-old man studying biology as an undergraduate student,23,10,2,3,4,9,9,1,8,302
+A01,C,a 29-year-old man studying biology as an undergraduate student,24,10,4,4,4,12,10,0,10,312
+A01,C,a 29-year-old man studying biology as an undergraduate student,25,10,6,6,2,14,10,0,10,322
+A02,O,a 30-year-old man studying nursing as an undergraduate student,1,10,5,4,1,10,10,0,10,110
+A02,O,a 30-year-old man studying nursing as an undergraduate student,2,10,4,6,5,15,10,0,10,120
+A02,O,a 30-year-old man studying nursing as an undergraduate student,3,11,4,6,2,12,11,0,11,131
+A02,O,a 30-year-old man studying nursing as an undergraduate student,4,11,2,5,5,12,11,0,11,142
+A02,O,a 30-year-old man studying nursing as an undergraduate student,5,11,4,3,3,10,10,1,9,151
+A02,O,a 30-year-old man studying nursing as an undergraduate student,6,10,1,4,4,9,9,1,8,159
+A02,O,a 30-year-old man studying nursing as an undergraduate student,7,10,4,2,5,11,10,0,10,169
+A02,O,a 30-year-old man studying nursing as an undergraduate student,8,11,5,3,6,14,11,0,11,180
+A02,O,a 30-year-old man studying nursing as an undergraduate student,9,11,5,1,5,11,11,0,11,191
+A02,O,a 30-year-old man studying nursing as an undergraduate student,10,10,3,2,2,7,7,3,4,195
+A02,O,a 30-year-old man studying nursing as an undergraduate student,11,10,1,6,5,12,10,0,10,205
+A02,O,a 30-year-old man studying nursing as an undergraduate student,12,11,4,1,6,11,11,0,11,216
+A02,O,a 30-year-old man studying nursing as an undergraduate student,13,11,2,6,1,9,9,2,7,223
+A02,O,a 30-year-old man studying nursing as an undergraduate student,14,10,1,5,1,7,7,3,4,227
+A02,O,a 30-year-old man studying nursing as an undergraduate student,15,10,5,1,5,11,10,0,10,237
+A02,O,a 30-year-old man studying nursing as an undergraduate student,16,11,2,2,3,7,7,4,3,240
+A02,O,a 30-year-old man studying nursing as an undergraduate student,17,10,1,3,5,9,9,1,8,248
+A02,O,a 30-year-old man studying nursing as an undergraduate student,18,10,4,6,4,14,10,0,10,258
+A02,O,a 30-year-old man studying nursing as an undergraduate student,19,11,2,6,3,11,11,0,11,269
+A02,O,a 30-year-old man studying nursing as an undergraduate student,20,11,6,2,2,10,10,1,9,278
+A02,O,a 30-year-old man studying nursing as an undergraduate student,21,10,4,4,2,10,10,0,10,288
+A02,O,a 30-year-old man studying nursing as an undergraduate student,22,10,3,3,1,7,7,3,4,292
+A02,O,a 30-year-old man studying nursing as an undergraduate student,23,10,3,2,2,7,7,3,4,296
+A02,O,a 30-year-old man studying nursing as an undergraduate student,24,10,6,2,6,14,10,0,10,306
+A02,O,a 30-year-old man studying nursing as an undergraduate student,25,10,6,3,3,12,10,0,10,316
+A03,C,a 31-year-old man studying biology as a master's student,1,10,5,1,1,7,7,3,4,104
+A03,C,a 31-year-old man studying biology as a master's student,2,10,4,5,6,15,10,0,10,114
+A03,C,a 31-year-old man studying biology as a master's student,3,10,1,2,1,4,4,6,-2,112
+A03,C,a 31-year-old man studying biology as a master's student,4,10,4,1,3,8,8,2,6,118
+A03,C,a 31-year-old man studying biology as a master's student,5,10,2,5,6,13,10,0,10,128
+A03,C,a 31-year-old man studying biology as a master's student,6,10,5,5,1,11,10,0,10,138
+A03,C,a 31-year-old man studying biology as a master's student,7,10,4,6,5,15,10,0,10,148
+A03,C,a 31-year-old man studying biology as a master's student,8,10,3,1,2,6,6,4,2,150
+A03,C,a 31-year-old man studying biology as a master's student,9,10,4,5,3,12,10,0,10,160
+A03,C,a 31-year-old man studying biology as a master's student,10,10,1,5,1,7,7,3,4,164
+A03,C,a 31-year-old man studying biology as a master's student,11,10,4,3,2,9,9,1,8,172
+A03,C,a 31-year-old man studying biology as a master's student,12,10,6,3,4,13,10,0,10,182
+A03,C,a 31-year-old man studying biology as a master's student,13,10,6,4,6,16,10,0,10,192
+A03,C,a 31-year-old man studying biology as a master's student,14,10,6,5,2,13,10,0,10,202
+A03,C,a 31-year-old man studying biology as a master's student,15,10,5,2,2,9,9,1,8,210
+A03,C,a 31-year-old man studying biology as a master's student,16,10,6,4,1,11,10,0,10,220
+A03,C,a 31-year-old man studying biology as a master's student,17,10,1,3,6,10,10,0,10,230
+A03,C,a 31-year-old man studying biology as a master's student,18,10,5,3,3,11,10,0,10,240
+A03,C,a 31-year-old man studying biology as a master's student,19,10,4,2,6,12,10,0,10,250
+A03,C,a 31-year-old man studying biology as a master's student,20,10,2,6,5,13,10,0,10,260
+A03,C,a 31-year-old man studying biology as a master's student,21,10,4,5,6,15,10,0,10,270
+A03,C,a 31-year-old man studying biology as a master's student,22,10,3,6,5,14,10,0,10,280
+A03,C,a 31-year-old man studying biology as a master's student,23,10,1,6,2,9,9,1,8,288
+A03,C,a 31-year-old man studying biology as a master's student,24,10,4,5,6,15,10,0,10,298
+A03,C,a 31-year-old man studying biology as a master's student,25,10,2,2,1,5,5,5,0,298
+A04,O,a 26-year-old man studying marketing as a master's student,1,10,6,5,5,16,10,0,10,110
+A04,O,a 26-year-old man studying marketing as a master's student,2,11,2,3,4,9,9,2,7,117
+A04,O,a 26-year-old man studying marketing as a master's student,3,10,5,2,3,10,10,0,10,127
+A04,O,a 26-year-old man studying marketing as a master's student,4,11,4,3,4,11,11,0,11,138
+A04,O,a 26-year-old man studying marketing as a master's student,5,11,3,4,3,10,10,1,9,147
+A04,O,a 26-year-old man studying marketing as a master's student,6,10,2,3,4,9,9,1,8,155
+A04,O,a 26-year-old man studying marketing as a master's student,7,10,5,4,2,11,10,0,10,165
+A04,O,a 26-year-old man studying marketing as a master's student,8,11,2,6,3,11,11,0,11,176
+A04,O,a 26-year-old man studying marketing as a master's student,9,11,2,4,5,11,11,0,11,187
+A04,O,a 26-year-old man studying marketing as a master's student,10,11,4,3,3,10,10,1,9,196
+A04,O,a 26-year-old man studying marketing as a master's student,11,10,1,4,1,6,6,4,2,198
+A04,O,a 26-year-old man studying marketing as a master's student,12,10,6,2,5,13,10,0,10,208
+A04,O,a 26-year-old man studying marketing as a master's student,13,11,3,4,2,9,9,2,7,215
+A04,O,a 26-year-old man studying marketing as a master's student,14,10,4,6,2,12,10,0,10,225
+A04,O,a 26-year-old man studying marketing as a master's student,15,11,3,1,5,9,9,2,7,232
+A04,O,a 26-year-old man studying marketing as a master's student,16,10,1,4,5,10,10,0,10,242
+A04,O,a 26-year-old man studying marketing as a master's student,17,11,6,2,4,12,11,0,11,253
+A04,O,a 26-year-old man studying marketing as a master's student,18,11,3,5,2,10,10,1,9,262
+A04,O,a 26-year-old man studying marketing as a master's student,19,10,4,3,2,9,9,1,8,270
+A04,O,a 26-year-old man studying marketing as a master's student,20,10,6,4,5,15,10,0,10,280
+A04,O,a 26-year-old man studying marketing as a master's student,21,11,1,6,1,8,8,3,5,285
+A04,O,a 26-year-old man studying marketing as a master's student,22,10,6,4,3,13,10,0,10,295
+A04,O,a 26-year-old man studying marketing as a master's student,23,11,1,3,5,9,9,2,7,302
+A04,O,a 26-year-old man studying marketing as a master's student,24,10,1,3,1,5,5,5,0,302
+A04,O,a 26-year-old man studying marketing as a master's student,25,10,1,4,5,10,10,0,10,312
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,1,10,5,3,2,10,10,0,10,110
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,2,11,6,3,3,12,11,0,11,121
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,3,11,4,1,3,8,8,3,5,126
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,4,10,1,6,2,9,9,1,8,134
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,5,10,2,2,3,7,7,3,4,138
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,6,10,1,5,6,12,10,0,10,148
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,7,11,4,3,5,12,11,0,11,159
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,8,11,5,5,6,16,11,0,11,170
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,9,11,6,5,1,12,11,0,11,181
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,10,11,3,5,4,12,11,0,11,192
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,11,11,4,6,3,13,11,0,11,203
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,12,11,2,3,5,10,10,1,9,212
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,13,10,4,3,3,10,10,0,10,222
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,14,11,1,1,3,5,5,6,-1,221
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,15,10,4,6,3,13,10,0,10,231
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,16,11,6,3,1,10,10,1,9,240
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,17,10,4,5,1,10,10,0,10,250
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,18,11,4,3,3,10,10,1,9,259
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,19,10,5,4,1,10,10,0,10,269
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,20,11,2,2,6,10,10,1,9,278
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,21,10,2,3,3,8,8,2,6,284
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,22,10,3,2,3,8,8,2,6,290
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,23,10,5,5,4,14,10,0,10,300
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,24,11,6,1,4,11,11,0,11,311
+A05,O,a 34-year-old woman studying marketing as an undergraduate student,25,10,1,3,5,9,9,1,8,319
+A06,O,a 22-year-old woman studying mathematics as a master's student,1,10,4,3,2,9,9,1,8,108
+A06,O,a 22-year-old woman studying mathematics as a master's student,2,10,1,3,3,7,7,3,4,112
+A06,O,a 22-year-old woman studying mathematics as a master's student,3,10,1,4,3,8,8,2,6,118
+A06,O,a 22-year-old woman studying mathematics as a master's student,4,10,4,1,5,10,10,0,10,128
+A06,O,a 22-year-old woman studying mathematics as a master's student,5,10,4,2,5,11,10,0,10,138
+A06,O,a 22-year-old woman studying mathematics as a master's student,6,10,2,1,2,5,5,5,0,138
+A06,O,a 22-year-old woman studying mathematics as a master's student,7,10,2,6,1,9,9,1,8,146
+A06,O,a 22-year-old woman studying mathematics as a master's student,8,10,2,4,3,9,9,1,8,154
+A06,O,a 22-year-old woman studying mathematics as a master's student,9,10,1,5,5,11,10,0,10,164
+A06,O,a 22-year-old woman studying mathematics as a master's student,10,10,5,2,2,9,9,1,8,172
+A06,O,a 22-year-old woman studying mathematics as a master's student,11,11,6,2,1,9,9,2,7,179
+A06,O,a 22-year-old woman studying mathematics as a master's student,12,10,1,5,5,11,10,0,10,189
+A06,O,a 22-year-old woman studying mathematics as a master's student,13,10,2,6,6,14,10,0,10,199
+A06,O,a 22-year-old woman studying mathematics as a master's student,14,11,3,2,1,6,6,5,1,200
+A06,O,a 22-year-old woman studying mathematics as a master's student,15,10,2,5,5,12,10,0,10,210
+A06,O,a 22-year-old woman studying mathematics as a master's student,16,11,2,3,1,6,6,5,1,211
+A06,O,a 22-year-old woman studying mathematics as a master's student,17,10,4,4,1,9,9,1,8,219
+A06,O,a 22-year-old woman studying mathematics as a master's student,18,10,4,3,5,12,10,0,10,229
+A06,O,a 22-year-old woman studying mathematics as a master's student,19,10,4,3,6,13,10,0,10,239
+A06,O,a 22-year-old woman studying mathematics as a master's student,20,11,3,5,4,12,11,0,11,250
+A06,O,a 22-year-old woman studying mathematics as a master's student,21,11,4,4,3,11,11,0,11,261
+A06,O,a 22-year-old woman studying mathematics as a master's student,22,11,2,4,5,11,11,0,11,272
+A06,O,a 22-year-old woman studying mathematics as a master's student,23,11,5,2,3,10,10,1,9,281
+A06,O,a 22-year-old woman studying mathematics as a master's student,24,10,1,4,3,8,8,2,6,287
+A06,O,a 22-year-old woman studying mathematics as a master's student,25,10,5,4,3,12,10,0,10,297
+A07,O,a 21-year-old man studying statistics as an undergraduate student,1,11,2,5,6,13,11,0,11,111
+A07,O,a 21-year-old man studying statistics as an undergraduate student,2,11,4,2,6,12,11,0,11,122
+A07,O,a 21-year-old man studying statistics as an undergraduate student,3,11,1,2,1,4,4,7,-3,119
+A07,O,a 21-year-old man studying statistics as an undergraduate student,4,11,3,2,2,7,7,4,3,122
+A07,O,a 21-year-old man studying statistics as an undergraduate student,5,11,5,5,6,16,11,0,11,133
+A07,O,a 21-year-old man studying statistics as an undergraduate student,6,11,4,6,1,11,11,0,11,144
+A07,O,a 21-year-old man studying statistics as an undergraduate student,7,11,1,4,4,9,9,2,7,151
+A07,O,a 21-year-old man studying statistics as an undergraduate student,8,11,3,1,4,8,8,3,5,156
+A07,O,a 21-year-old man studying statistics as an undergraduate student,9,10,2,6,3,11,10,0,10,166
+A07,O,a 21-year-old man studying statistics as an undergraduate student,10,11,6,4,4,14,11,0,11,177
+A07,O,a 21-year-old man studying statistics as an undergraduate student,11,11,3,4,2,9,9,2,7,184
+A07,O,a 21-year-old man studying statistics as an undergraduate student,12,10,4,5,4,13,10,0,10,194
+A07,O,a 21-year-old man studying statistics as an undergraduate student,13,11,1,6,3,10,10,1,9,203
+A07,O,a 21-year-old man studying statistics as an undergraduate student,14,10,4,2,3,9,9,1,8,211
+A07,O,a 21-year-old man studying statistics as an undergraduate student,15,11,5,3,3,11,11,0,11,222
+A07,O,a 21-year-old man studying statistics as an undergraduate student,16,11,4,3,6,13,11,0,11,233
+A07,O,a 21-year-old man studying statistics as an undergraduate student,17,11,3,3,2,8,8,3,5,238
+A07,O,a 21-year-old man studying statistics as an undergraduate student,18,10,4,4,6,14,10,0,10,248
+A07,O,a 21-year-old man studying statistics as an undergraduate student,19,11,2,5,2,9,9,2,7,255
+A07,O,a 21-year-old man studying statistics as an undergraduate student,20,10,4,6,1,11,10,0,10,265
+A07,O,a 21-year-old man studying statistics as an undergraduate student,21,11,3,1,2,6,6,5,1,266
+A07,O,a 21-year-old man studying statistics as an undergraduate student,22,10,4,5,6,15,10,0,10,276
+A07,O,a 21-year-old man studying statistics as an undergraduate student,23,11,3,5,4,12,11,0,11,287
+A07,O,a 21-year-old man studying statistics as an undergraduate student,24,11,2,4,2,8,8,3,5,292
+A07,O,a 21-year-old man studying statistics as an undergraduate student,25,10,3,4,2,9,9,1,8,300
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,1,10,3,1,3,7,7,3,4,104
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,2,10,1,1,1,3,3,7,-4,100
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,3,10,3,3,1,7,7,3,4,104
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,4,10,5,3,6,14,10,0,10,114
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,5,10,3,5,2,10,10,0,10,124
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,6,10,1,4,5,10,10,0,10,134
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,7,10,6,3,1,10,10,0,10,144
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,8,10,2,1,4,7,7,3,4,148
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,9,10,1,3,5,9,9,1,8,156
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,10,10,4,1,5,10,10,0,10,166
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,11,10,3,5,6,14,10,0,10,176
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,12,10,1,4,1,6,6,4,2,178
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,13,10,2,2,6,10,10,0,10,188
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,14,10,1,5,3,9,9,1,8,196
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,15,10,4,2,1,7,7,3,4,200
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,16,10,2,1,6,9,9,1,8,208
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,17,10,5,1,6,12,10,0,10,218
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,18,10,6,6,5,17,10,0,10,228
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,19,10,4,6,5,15,10,0,10,238
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,20,10,6,2,1,9,9,1,8,246
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,21,10,4,6,6,16,10,0,10,256
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,22,10,5,4,6,15,10,0,10,266
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,23,10,4,5,1,10,10,0,10,276
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,24,10,5,5,1,11,10,0,10,286
+A08,C,a 33-year-old woman studying nursing as an undergraduate student,25,10,4,1,4,9,9,1,8,294
+A09,C,a 32-year-old man studying mathematics as a master's student,1,10,4,1,5,10,10,0,10,110
+A09,C,a 32-year-old man studying mathematics as a master's student,2,10,1,1,5,7,7,3,4,114
+A09,C,a 32-year-old man studying mathematics as a master's student,3,10,1,3,1,5,5,5,0,114
+A09,C,a 32-year-old man studying mathematics as a master's student,4,10,4,1,5,10,10,0,10,124
+A09,C,a 32-year-old man studying mathematics as a master's student,5,10,5,1,4,10,10,0,10,134
+A09,C,a 32-year-old man studying mathematics as a master's student,6,10,2,2,4,8,8,2,6,140
+A09,C,a 32-year-old man studying mathematics as a master's student,7,10,5,5,4,14,10,0,10,150
+A09,C,a 32-year-old man studying mathematics as a master's student,8,10,6,1,4,11,10,0,10,160
+A09,C,a 32-year-old man studying mathematics as a master's student,9,10,2,5,5,12,10,0,10,170
+A09,C,a 32-year-old man studying mathematics as a master's student,10,10,6,5,3,14,10,0,10,180
+A09,C,a 32-year-old man studying mathematics as a master's student,11,10,4,1,3,8,8,2,6,186
+A09,C,a 32-year-old man studying mathematics as a master's student,12,10,5,6,5,16,10,0,10,196
+A09,C,a 32-year-old man studying mathematics as a master's student,13,10,2,2,2,6,6,4,2,198
+A09,C,a 32-year-old man studying mathematics as a master's student,14,10,1,5,5,11,10,0,10,208
+A09,C,a 32-year-old man studying mathematics as a master's student,15,10,5,4,4,13,10,0,10,218
+A09,C,a 32-year-old man studying mathematics as a master's student,16,10,4,3,6,13,10,0,10,228
+A09,C,a 32-year-old man studying mathematics as a master's student,17,10,1,1,1,3,3,7,-4,224
+A09,C,a 32-year-old man studying mathematics as a master's student,18,10,1,3,5,9,9,1,8,232
+A09,C,a 32-year-old man studying mathematics as a master's student,19,10,1,3,2,6,6,4,2,234
+A09,C,a 32-year-old man studying mathematics as a master's student,20,10,3,4,1,8,8,2,6,240
+A09,C,a 32-year-old man studying mathematics as a master's student,21,10,5,6,5,16,10,0,10,250
+A09,C,a 32-year-old man studying mathematics as a master's student,22,10,5,4,3,12,10,0,10,260
+A09,C,a 32-year-old man studying mathematics as a master's student,23,10,1,3,6,10,10,0,10,270
+A09,C,a 32-year-old man studying mathematics as a master's student,24,10,1,2,4,7,7,3,4,274
+A09,C,a 32-year-old man studying mathematics as a master's student,25,10,1,2,5,8,8,2,6,280
+A10,O,a 26-year-old man studying political science as an undergraduate student,1,10,3,3,1,7,7,3,4,104
+A10,O,a 26-year-old man studying political science as an undergraduate student,2,10,2,5,4,11,10,0,10,114
+A10,O,a 26-year-old man studying political science as an undergraduate student,3,10,4,4,4,12,10,0,10,124
+A10,O,a 26-year-old man studying political science as an undergraduate student,4,11,4,5,4,13,11,0,11,135
+A10,O,a 26-year-old man studying political science as an undergraduate student,5,11,1,6,3,10,10,1,9,144
+A10,O,a 26-year-old man studying political science as an undergraduate student,6,11,4,2,6,12,11,0,11,155
+A10,O,a 26-year-old man studying political science as an undergraduate student,7,11,2,4,1,7,7,4,3,158
+A10,O,a 26-year-old man studying political science as an undergraduate student,8,10,3,6,1,10,10,0,10,168
+A10,O,a 26-year-old man studying political science as an undergraduate student,9,11,5,1,2,8,8,3,5,173
+A10,O,a 26-year-old man studying political science as an undergraduate student,10,10,6,2,3,11,10,0,10,183
+A10,O,a 26-year-old man studying political science as an undergraduate student,11,11,5,3,6,14,11,0,11,194
+A10,O,a 26-year-old man studying political science as an undergraduate student,12,10,1,1,3,5,5,5,0,194
+A10,O,a 26-year-old man studying political science as an undergraduate student,13,10,2,3,4,9,9,1,8,202
+A10,O,a 26-year-old man studying political science as an undergraduate student,14,10,2,1,6,9,9,1,8,210
+A10,O,a 26-year-old man studying political science as an undergraduate student,15,10,5,1,3,9,9,1,8,218
+A10,O,a 26-year-old man studying political science as an undergraduate student,16,10,2,6,4,12,10,0,10,228
+A10,O,a 26-year-old man studying political science as an undergraduate student,17,11,6,4,6,16,11,0,11,239
+A10,O,a 26-year-old man studying political science as an undergraduate student,18,11,5,3,2,10,10,1,9,248
+A10,O,a 26-year-old man studying political science as an undergraduate student,19,10,5,4,3,12,10,0,10,258
+A10,O,a 26-year-old man studying political science as an undergraduate student,20,11,6,1,5,12,11,0,11,269
+A10,O,a 26-year-old man studying political science as an undergraduate student,21,11,3,3,6,12,11,0,11,280
+A10,O,a 26-year-old man studying political science as an undergraduate student,22,11,5,4,4,13,11,0,11,291
+A10,O,a 26-year-old man studying political science as an undergraduate student,23,11,3,6,6,15,11,0,11,302
+A10,O,a 26-year-old man studying political science as an undergraduate student,24,11,1,3,5,9,9,2,7,309
+A10,O,a 26-year-old man studying political science as an undergraduate student,25,10,1,3,2,6,6,4,2,311
+A11,C,a 34-year-old man studying communications as a master's student,1,10,2,3,4,9,9,1,8,108
+A11,C,a 34-year-old man studying communications as a master's student,2,10,1,6,1,8,8,2,6,114
+A11,C,a 34-year-old man studying communications as a master's student,3,9,1,4,5,10,9,0,9,123
+A11,C,a 34-year-old man studying communications as a master's student,4,10,5,6,3,14,10,0,10,133
+A11,C,a 34-year-old man studying communications as a master's student,5,10,5,3,2,10,10,0,10,143
+A11,C,a 34-year-old man studying communications as a master's student,6,10,1,5,3,9,9,1,8,151
+A11,C,a 34-year-old man studying communications as a master's student,7,10,4,4,2,10,10,0,10,161
+A11,C,a 34-year-old man studying communications as a master's student,8,10,5,4,2,11,10,0,10,171
+A11,C,a 34-year-old man studying communications as a master's student,9,10,5,1,2,8,8,2,6,177
+A11,C,a 34-year-old man studying communications as a master's student,10,10,1,1,2,4,4,6,-2,175
+A11,C,a 34-year-old man studying communications as a master's student,11,10,3,4,6,13,10,0,10,185
+A11,C,a 34-year-old man studying communications as a master's student,12,10,3,6,5,14,10,0,10,195
+A11,C,a 34-year-old man studying communications as a master's student,13,10,4,5,6,15,10,0,10,205
+A11,C,a 34-year-old man studying communications as a master's student,14,10,6,3,6,15,10,0,10,215
+A11,C,a 34-year-old man studying communications as a master's student,15,10,3,2,2,7,7,3,4,219
+A11,C,a 34-year-old man studying communications as a master's student,16,10,2,3,3,8,8,2,6,225
+A11,C,a 34-year-old man studying communications as a master's student,17,10,5,6,3,14,10,0,10,235
+A11,C,a 34-year-old man studying communications as a master's student,18,10,4,2,4,10,10,0,10,245
+A11,C,a 34-year-old man studying communications as a master's student,19,10,2,5,6,13,10,0,10,255
+A11,C,a 34-year-old man studying communications as a master's student,20,10,6,1,2,9,9,1,8,263
+A11,C,a 34-year-old man studying communications as a master's student,21,10,3,3,2,8,8,2,6,269
+A11,C,a 34-year-old man studying communications as a master's student,22,10,6,2,2,10,10,0,10,279
+A11,C,a 34-year-old man studying communications as a master's student,23,10,5,6,3,14,10,0,10,289
+A11,C,a 34-year-old man studying communications as a master's student,24,10,4,6,6,16,10,0,10,299
+A11,C,a 34-year-old man studying communications as a master's student,25,10,5,6,5,16,10,0,10,309
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,1,11,1,1,6,8,8,3,5,105
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,2,10,5,6,2,13,10,0,10,115
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,3,11,3,3,6,12,11,0,11,126
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,4,11,2,6,4,12,11,0,11,137
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,5,11,5,3,1,9,9,2,7,144
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,6,11,2,3,5,10,10,1,9,153
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,7,11,5,1,1,7,7,4,3,156
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,8,11,4,5,2,11,11,0,11,167
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,9,11,5,3,5,13,11,0,11,178
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,10,11,5,2,3,10,10,1,9,187
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,11,11,5,6,3,14,11,0,11,198
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,12,11,5,4,2,11,11,0,11,209
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,13,11,2,1,5,8,8,3,5,214
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,14,11,2,2,2,6,6,5,1,215
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,15,11,6,4,4,14,11,0,11,226
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,16,11,4,2,6,12,11,0,11,237
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,17,11,3,5,1,9,9,2,7,244
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,18,11,5,4,1,10,10,1,9,253
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,19,11,1,1,5,7,7,4,3,256
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,20,11,1,3,6,10,10,1,9,265
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,21,11,5,6,4,15,11,0,11,276
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,22,11,4,3,1,8,8,3,5,281
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,23,11,2,4,4,10,10,1,9,290
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,24,11,1,6,6,13,11,0,11,301
+A12,O,a 31-year-old woman studying computer science as an undergraduate student,25,11,4,5,4,13,11,0,11,312
+A13,O,a 18-year-old woman studying economics as a PhD student,1,10,3,1,2,6,6,4,2,102
+A13,O,a 18-year-old woman studying economics as a PhD student,2,10,6,2,4,12,10,0,10,112
+A13,O,a 18-year-old woman studying economics as a PhD student,3,11,5,1,6,12,11,0,11,123
+A13,O,a 18-year-old woman studying economics as a PhD student,4,11,6,2,2,10,10,1,9,132
+A13,O,a 18-year-old woman studying economics as a PhD student,5,11,6,5,1,12,11,0,11,143
+A13,O,a 18-year-old woman studying economics as a PhD student,6,11,2,2,6,10,10,1,9,152
+A13,O,a 18-year-old woman studying economics as a PhD student,7,11,4,5,4,13,11,0,11,163
+A13,O,a 18-year-old woman studying economics as a PhD student,8,11,2,2,1,5,5,6,-1,162
+A13,O,a 18-year-old woman studying economics as a PhD student,9,10,1,3,2,6,6,4,2,164
+A13,O,a 18-year-old woman studying economics as a PhD student,10,10,2,6,4,12,10,0,10,174
+A13,O,a 18-year-old woman studying economics as a PhD student,11,11,3,3,1,7,7,4,3,177
+A13,O,a 18-year-old woman studying economics as a PhD student,12,10,3,5,2,10,10,0,10,187
+A13,O,a 18-year-old woman studying economics as a PhD student,13,11,4,1,5,10,10,1,9,196
+A13,O,a 18-year-old woman studying economics as a PhD student,14,10,3,2,2,7,7,3,4,200
+A13,O,a 18-year-old woman studying economics as a PhD student,15,10,6,6,6,18,10,0,10,210
+A13,O,a 18-year-old woman studying economics as a PhD student,16,11,4,6,2,12,11,0,11,221
+A13,O,a 18-year-old woman studying economics as a PhD student,17,11,4,6,3,13,11,0,11,232
+A13,O,a 18-year-old woman studying economics as a PhD student,18,11,4,5,6,15,11,0,11,243
+A13,O,a 18-year-old woman studying economics as a PhD student,19,11,2,1,6,9,9,2,7,250
+A13,O,a 18-year-old woman studying economics as a PhD student,20,10,3,4,3,10,10,0,10,260
+A13,O,a 18-year-old woman studying economics as a PhD student,21,11,1,3,3,7,7,4,3,263
+A13,O,a 18-year-old woman studying economics as a PhD student,22,10,1,2,5,8,8,2,6,269
+A13,O,a 18-year-old woman studying economics as a PhD student,23,10,6,5,3,14,10,0,10,279
+A13,O,a 18-year-old woman studying economics as a PhD student,24,11,6,2,2,10,10,1,9,288
+A13,O,a 18-year-old woman studying economics as a PhD student,25,10,1,1,2,4,4,6,-2,286
+A14,C,a 32-year-old man studying psychology as an undergraduate student,1,10,1,6,2,9,9,1,8,108
+A14,C,a 32-year-old man studying psychology as an undergraduate student,2,10,3,1,6,10,10,0,10,118
+A14,C,a 32-year-old man studying psychology as an undergraduate student,3,10,2,5,4,11,10,0,10,128
+A14,C,a 32-year-old man studying psychology as an undergraduate student,4,11,1,2,2,5,5,6,-1,127
+A14,C,a 32-year-old man studying psychology as an undergraduate student,5,10,5,5,2,12,10,0,10,137
+A14,C,a 32-year-old man studying psychology as an undergraduate student,6,10,3,3,5,11,10,0,10,147
+A14,C,a 32-year-old man studying psychology as an undergraduate student,7,10,1,4,4,9,9,1,8,155
+A14,C,a 32-year-old man studying psychology as an undergraduate student,8,10,5,6,5,16,10,0,10,165
+A14,C,a 32-year-old man studying psychology as an undergraduate student,9,10,3,3,3,9,9,1,8,173
+A14,C,a 32-year-old man studying psychology as an undergraduate student,10,10,5,5,2,12,10,0,10,183
+A14,C,a 32-year-old man studying psychology as an undergraduate student,11,10,1,1,3,5,5,5,0,183
+A14,C,a 32-year-old man studying psychology as an undergraduate student,12,10,5,2,2,9,9,1,8,191
+A14,C,a 32-year-old man studying psychology as an undergraduate student,13,10,1,4,5,10,10,0,10,201
+A14,C,a 32-year-old man studying psychology as an undergraduate student,14,10,5,4,2,11,10,0,10,211
+A14,C,a 32-year-old man studying psychology as an undergraduate student,15,10,2,1,2,5,5,5,0,211
+A14,C,a 32-year-old man studying psychology as an undergraduate student,16,10,3,6,3,12,10,0,10,221
+A14,C,a 32-year-old man studying psychology as an undergraduate student,17,10,2,2,6,10,10,0,10,231
+A14,C,a 32-year-old man studying psychology as an undergraduate student,18,10,4,1,3,8,8,2,6,237
+A14,C,a 32-year-old man studying psychology as an undergraduate student,19,10,2,6,5,13,10,0,10,247
+A14,C,a 32-year-old man studying psychology as an undergraduate student,20,10,3,5,1,9,9,1,8,255
+A14,C,a 32-year-old man studying psychology as an undergraduate student,21,10,4,1,1,6,6,4,2,257
+A14,C,a 32-year-old man studying psychology as an undergraduate student,22,10,1,5,6,12,10,0,10,267
+A14,C,a 32-year-old man studying psychology as an undergraduate student,23,10,5,1,5,11,10,0,10,277
+A14,C,a 32-year-old man studying psychology as an undergraduate student,24,10,3,4,3,10,10,0,10,287
+A14,C,a 32-year-old man studying psychology as an undergraduate student,25,10,6,5,2,13,10,0,10,297
+A15,O,a 26-year-old man studying statistics as a master's student,1,11,5,1,3,9,9,2,7,107
+A15,O,a 26-year-old man studying statistics as a master's student,2,11,6,1,5,12,11,0,11,118
+A15,O,a 26-year-old man studying statistics as a master's student,3,11,1,4,5,10,10,1,9,127
+A15,O,a 26-year-old man studying statistics as a master's student,4,11,2,6,5,13,11,0,11,138
+A15,O,a 26-year-old man studying statistics as a master's student,5,11,2,5,2,9,9,2,7,145
+A15,O,a 26-year-old man studying statistics as a master's student,6,11,6,4,2,12,11,0,11,156
+A15,O,a 26-year-old man studying statistics as a master's student,7,11,4,3,2,9,9,2,7,163
+A15,O,a 26-year-old man studying statistics as a master's student,8,11,1,3,4,8,8,3,5,168
+A15,O,a 26-year-old man studying statistics as a master's student,9,11,3,2,2,7,7,4,3,171
+A15,O,a 26-year-old man studying statistics as a master's student,10,11,6,1,6,13,11,0,11,182
+A15,O,a 26-year-old man studying statistics as a master's student,11,11,1,5,3,9,9,2,7,189
+A15,O,a 26-year-old man studying statistics as a master's student,12,11,6,3,2,11,11,0,11,200
+A15,O,a 26-year-old man studying statistics as a master's student,13,11,4,1,5,10,10,1,9,209
+A15,O,a 26-year-old man studying statistics as a master's student,14,11,1,2,4,7,7,4,3,212
+A15,O,a 26-year-old man studying statistics as a master's student,15,11,2,2,4,8,8,3,5,217
+A15,O,a 26-year-old man studying statistics as a master's student,16,11,1,4,3,8,8,3,5,222
+A15,O,a 26-year-old man studying statistics as a master's student,17,11,3,4,4,11,11,0,11,233
+A15,O,a 26-year-old man studying statistics as a master's student,18,11,5,3,1,9,9,2,7,240
+A15,O,a 26-year-old man studying statistics as a master's student,19,11,3,4,6,13,11,0,11,251
+A15,O,a 26-year-old man studying statistics as a master's student,20,11,2,6,1,9,9,2,7,258
+A15,O,a 26-year-old man studying statistics as a master's student,21,11,6,4,4,14,11,0,11,269
+A15,O,a 26-year-old man studying statistics as a master's student,22,11,1,5,5,11,11,0,11,280
+A15,O,a 26-year-old man studying statistics as a master's student,23,11,6,4,2,12,11,0,11,291
+A15,O,a 26-year-old man studying statistics as a master's student,24,11,4,3,4,11,11,0,11,302
+A15,O,a 26-year-old man studying statistics as a master's student,25,11,3,2,1,6,6,5,1,303
+A16,O,a 33-year-old man studying finance as a PhD student,1,10,1,3,4,8,8,2,6,106
+A16,O,a 33-year-old man studying finance as a PhD student,2,10,1,2,6,9,9,1,8,114
+A16,O,a 33-year-old man studying finance as a PhD student,3,10,2,5,5,12,10,0,10,124
+A16,O,a 33-year-old man studying finance as a PhD student,4,10,6,5,5,16,10,0,10,134
+A16,O,a 33-year-old man studying finance as a PhD student,5,11,3,4,5,12,11,0,11,145
+A16,O,a 33-year-old man studying finance as a PhD student,6,10,2,1,3,6,6,4,2,147
+A16,O,a 33-year-old man studying finance as a PhD student,7,10,4,1,3,8,8,2,6,153
+A16,O,a 33-year-old man studying finance as a PhD student,8,10,1,2,3,6,6,4,2,155
+A16,O,a 33-year-old man studying finance as a PhD student,9,10,1,2,3,6,6,4,2,157
+A16,O,a 33-year-old man studying finance as a PhD student,10,10,6,1,6,13,10,0,10,167
+A16,O,a 33-year-old man studying finance as a PhD student,11,10,4,5,1,10,10,0,10,177
+A16,O,a 33-year-old man studying finance as a PhD student,12,10,3,1,2,6,6,4,2,179
+A16,O,a 33-year-old man studying finance as a PhD student,13,10,6,6,6,18,10,0,10,189
+A16,O,a 33-year-old man studying finance as a PhD student,14,10,6,5,4,15,10,0,10,199
+A16,O,a 33-year-old man studying finance as a PhD student,15,11,3,6,1,10,10,1,9,208
+A16,O,a 33-year-old man studying finance as a PhD student,16,10,2,2,3,7,7,3,4,212
+A16,O,a 33-year-old man studying finance as a PhD student,17,10,5,3,2,10,10,0,10,222
+A16,O,a 33-year-old man studying finance as a PhD student,18,10,3,6,4,13,10,0,10,232
+A16,O,a 33-year-old man studying finance as a PhD student,19,10,4,5,1,10,10,0,10,242
+A16,O,a 33-year-old man studying finance as a PhD student,20,10,3,4,1,8,8,2,6,248
+A16,O,a 33-year-old man studying finance as a PhD student,21,10,5,4,5,14,10,0,10,258
+A16,O,a 33-year-old man studying finance as a PhD student,22,11,3,4,4,11,11,0,11,269
+A16,O,a 33-year-old man studying finance as a PhD student,23,10,3,5,1,9,9,1,8,277
+A16,O,a 33-year-old man studying finance as a PhD student,24,10,1,4,4,9,9,1,8,285
+A16,O,a 33-year-old man studying finance as a PhD student,25,10,5,3,4,12,10,0,10,295
+A17,C,a 19-year-old man studying psychology as a master's student,1,10,1,1,1,3,3,7,-4,96
+A17,C,a 19-year-old man studying psychology as a master's student,2,10,3,2,3,8,8,2,6,102
+A17,C,a 19-year-old man studying psychology as a master's student,3,9,2,5,5,12,9,0,9,111
+A17,C,a 19-year-old man studying psychology as a master's student,4,10,6,5,1,12,10,0,10,121
+A17,C,a 19-year-old man studying psychology as a master's student,5,11,6,6,2,14,11,0,11,132
+A17,C,a 19-year-old man studying psychology as a master's student,6,11,1,2,6,9,9,2,7,139
+A17,C,a 19-year-old man studying psychology as a master's student,7,10,2,2,4,8,8,2,6,145
+A17,C,a 19-year-old man studying psychology as a master's student,8,10,3,3,3,9,9,1,8,153
+A17,C,a 19-year-old man studying psychology as a master's student,9,10,5,4,3,12,10,0,10,163
+A17,C,a 19-year-old man studying psychology as a master's student,10,10,5,6,1,12,10,0,10,173
+A17,C,a 19-year-old man studying psychology as a master's student,11,10,3,4,4,11,10,0,10,183
+A17,C,a 19-year-old man studying psychology as a master's student,12,10,2,4,4,10,10,0,10,193
+A17,C,a 19-year-old man studying psychology as a master's student,13,10,4,3,3,10,10,0,10,203
+A17,C,a 19-year-old man studying psychology as a master's student,14,10,4,1,2,7,7,3,4,207
+A17,C,a 19-year-old man studying psychology as a master's student,15,10,1,4,1,6,6,4,2,209
+A17,C,a 19-year-old man studying psychology as a master's student,16,10,4,5,1,10,10,0,10,219
+A17,C,a 19-year-old man studying psychology as a master's student,17,10,3,3,2,8,8,2,6,225
+A17,C,a 19-year-old man studying psychology as a master's student,18,10,2,2,5,9,9,1,8,233
+A17,C,a 19-year-old man studying psychology as a master's student,19,10,1,2,1,4,4,6,-2,231
+A17,C,a 19-year-old man studying psychology as a master's student,20,10,2,4,2,8,8,2,6,237
+A17,C,a 19-year-old man studying psychology as a master's student,21,10,5,4,4,13,10,0,10,247
+A17,C,a 19-year-old man studying psychology as a master's student,22,10,6,3,2,11,10,0,10,257
+A17,C,a 19-year-old man studying psychology as a master's student,23,10,4,4,1,9,9,1,8,265
+A17,C,a 19-year-old man studying psychology as a master's student,24,10,4,4,4,12,10,0,10,275
+A17,C,a 19-year-old man studying psychology as a master's student,25,10,6,6,4,16,10,0,10,285
+A18,O,a 21-year-old man studying mathematics as a PhD student,1,10,1,6,5,12,10,0,10,110
+A18,O,a 21-year-old man studying mathematics as a PhD student,2,10,2,5,5,12,10,0,10,120
+A18,O,a 21-year-old man studying mathematics as a PhD student,3,11,2,6,4,12,11,0,11,131
+A18,O,a 21-year-old man studying mathematics as a PhD student,4,11,3,6,6,15,11,0,11,142
+A18,O,a 21-year-old man studying mathematics as a PhD student,5,11,2,3,1,6,6,5,1,143
+A18,O,a 21-year-old man studying mathematics as a PhD student,6,10,6,4,4,14,10,0,10,153
+A18,O,a 21-year-old man studying mathematics as a PhD student,7,11,4,1,2,7,7,4,3,156
+A18,O,a 21-year-old man studying mathematics as a PhD student,8,10,6,4,4,14,10,0,10,166
+A18,O,a 21-year-old man studying mathematics as a PhD student,9,11,5,3,1,9,9,2,7,173
+A18,O,a 21-year-old man studying mathematics as a PhD student,10,10,4,3,6,13,10,0,10,183
+A18,O,a 21-year-old man studying mathematics as a PhD student,11,11,4,6,2,12,11,0,11,194
+A18,O,a 21-year-old man studying mathematics as a PhD student,12,11,5,3,2,10,10,1,9,203
+A18,O,a 21-year-old man studying mathematics as a PhD student,13,10,4,3,6,13,10,0,10,213
+A18,O,a 21-year-old man studying mathematics as a PhD student,14,11,4,1,1,6,6,5,1,214
+A18,O,a 21-year-old man studying mathematics as a PhD student,15,10,5,3,6,14,10,0,10,224
+A18,O,a 21-year-old man studying mathematics as a PhD student,16,11,2,3,6,11,11,0,11,235
+A18,O,a 21-year-old man studying mathematics as a PhD student,17,11,1,1,2,4,4,7,-3,232
+A18,O,a 21-year-old man studying mathematics as a PhD student,18,10,3,1,2,6,6,4,2,234
+A18,O,a 21-year-old man studying mathematics as a PhD student,19,10,2,5,6,13,10,0,10,244
+A18,O,a 21-year-old man studying mathematics as a PhD student,20,11,2,6,4,12,11,0,11,255
+A18,O,a 21-year-old man studying mathematics as a PhD student,21,11,3,6,2,11,11,0,11,266
+A18,O,a 21-year-old man studying mathematics as a PhD student,22,11,2,3,4,9,9,2,7,273
+A18,O,a 21-year-old man studying mathematics as a PhD student,23,10,2,2,2,6,6,4,2,275
+A18,O,a 21-year-old man studying mathematics as a PhD student,24,10,3,6,3,12,10,0,10,285
+A18,O,a 21-year-old man studying mathematics as a PhD student,25,11,1,6,5,12,11,0,11,296
+A19,O,a 34-year-old man studying statistics as an undergraduate student,1,10,2,3,3,8,8,2,6,106
+A19,O,a 34-year-old man studying statistics as an undergraduate student,2,10,2,6,1,9,9,1,8,114
+A19,O,a 34-year-old man studying statistics as an undergraduate student,3,10,1,4,2,7,7,3,4,118
+A19,O,a 34-year-old man studying statistics as an undergraduate student,4,11,3,5,1,9,9,2,7,125
+A19,O,a 34-year-old man studying statistics as an undergraduate student,5,10,4,1,1,6,6,4,2,127
+A19,O,a 34-year-old man studying statistics as an undergraduate student,6,10,1,6,3,10,10,0,10,137
+A19,O,a 34-year-old man studying statistics as an undergraduate student,7,11,3,6,5,14,11,0,11,148
+A19,O,a 34-year-old man studying statistics as an undergraduate student,8,11,4,5,5,14,11,0,11,159
+A19,O,a 34-year-old man studying statistics as an undergraduate student,9,11,4,3,5,12,11,0,11,170
+A19,O,a 34-year-old man studying statistics as an undergraduate student,10,11,1,4,2,7,7,4,3,173
+A19,O,a 34-year-old man studying statistics as an undergraduate student,11,10,4,6,3,13,10,0,10,183
+A19,O,a 34-year-old man studying statistics as an undergraduate student,12,11,1,4,1,6,6,5,1,184
+A19,O,a 34-year-old man studying statistics as an undergraduate student,13,10,4,2,3,9,9,1,8,192
+A19,O,a 34-year-old man studying statistics as an undergraduate student,14,10,2,1,4,7,7,3,4,196
+A19,O,a 34-year-old man studying statistics as an undergraduate student,15,10,1,5,1,7,7,3,4,200
+A19,O,a 34-year-old man studying statistics as an undergraduate student,16,10,5,1,6,12,10,0,10,210
+A19,O,a 34-year-old man studying statistics as an undergraduate student,17,11,2,3,3,8,8,3,5,215
+A19,O,a 34-year-old man studying statistics as an undergraduate student,18,10,3,2,3,8,8,2,6,221
+A19,O,a 34-year-old man studying statistics as an undergraduate student,19,10,5,5,3,13,10,0,10,231
+A19,O,a 34-year-old man studying statistics as an undergraduate student,20,11,6,3,2,11,11,0,11,242
+A19,O,a 34-year-old man studying statistics as an undergraduate student,21,11,3,1,6,10,10,1,9,251
+A19,O,a 34-year-old man studying statistics as an undergraduate student,22,10,2,5,1,8,8,2,6,257
+A19,O,a 34-year-old man studying statistics as an undergraduate student,23,10,5,2,1,8,8,2,6,263
+A19,O,a 34-year-old man studying statistics as an undergraduate student,24,10,5,6,6,17,10,0,10,273
+A19,O,a 34-year-old man studying statistics as an undergraduate student,25,11,4,2,2,8,8,3,5,278
+A20,O,a 31-year-old man studying accounting as a PhD student,1,11,6,6,5,17,11,0,11,111
+A20,O,a 31-year-old man studying accounting as a PhD student,2,11,5,5,3,13,11,0,11,122
+A20,O,a 31-year-old man studying accounting as a PhD student,3,11,3,3,2,8,8,3,5,127
+A20,O,a 31-year-old man studying accounting as a PhD student,4,11,3,5,4,12,11,0,11,138
+A20,O,a 31-year-old man studying accounting as a PhD student,5,11,3,6,3,12,11,0,11,149
+A20,O,a 31-year-old man studying accounting as a PhD student,6,11,4,3,6,13,11,0,11,160
+A20,O,a 31-year-old man studying accounting as a PhD student,7,11,2,5,6,13,11,0,11,171
+A20,O,a 31-year-old man studying accounting as a PhD student,8,11,3,1,1,5,5,6,-1,170
+A20,O,a 31-year-old man studying accounting as a PhD student,9,11,2,6,2,10,10,1,9,179
+A20,O,a 31-year-old man studying accounting as a PhD student,10,11,6,1,3,10,10,1,9,188
+A20,O,a 31-year-old man studying accounting as a PhD student,11,11,6,4,6,16,11,0,11,199
+A20,O,a 31-year-old man studying accounting as a PhD student,12,11,6,1,3,10,10,1,9,208
+A20,O,a 31-year-old man studying accounting as a PhD student,13,11,3,3,4,10,10,1,9,217
+A20,O,a 31-year-old man studying accounting as a PhD student,14,11,6,5,2,13,11,0,11,228
+A20,O,a 31-year-old man studying accounting as a PhD student,15,11,6,4,1,11,11,0,11,239
+A20,O,a 31-year-old man studying accounting as a PhD student,16,11,2,5,2,9,9,2,7,246
+A20,O,a 31-year-old man studying accounting as a PhD student,17,11,2,2,3,7,7,4,3,249
+A20,O,a 31-year-old man studying accounting as a PhD student,18,11,2,3,5,10,10,1,9,258
+A20,O,a 31-year-old man studying accounting as a PhD student,19,11,5,5,1,11,11,0,11,269
+A20,O,a 31-year-old man studying accounting as a PhD student,20,11,2,5,2,9,9,2,7,276
+A20,O,a 31-year-old man studying accounting as a PhD student,21,11,6,5,5,16,11,0,11,287
+A20,O,a 31-year-old man studying accounting as a PhD student,22,11,6,6,3,15,11,0,11,298
+A20,O,a 31-year-old man studying accounting as a PhD student,23,11,2,2,6,10,10,1,9,307
+A20,O,a 31-year-old man studying accounting as a PhD student,24,11,5,5,2,12,11,0,11,318
+A20,O,a 31-year-old man studying accounting as a PhD student,25,11,4,2,3,9,9,2,7,325
+A21,O,a 26-year-old man studying psychology as an undergraduate student,1,10,6,2,5,13,10,0,10,110
+A21,O,a 26-year-old man studying psychology as an undergraduate student,2,11,6,1,4,11,11,0,11,121
+A21,O,a 26-year-old man studying psychology as an undergraduate student,3,11,6,3,5,14,11,0,11,132
+A21,O,a 26-year-old man studying psychology as an undergraduate student,4,12,2,4,6,12,12,0,12,144
+A21,O,a 26-year-old man studying psychology as an undergraduate student,5,12,2,5,2,9,9,3,6,150
+A21,O,a 26-year-old man studying psychology as an undergraduate student,6,10,2,5,1,8,8,2,6,156
+A21,O,a 26-year-old man studying psychology as an undergraduate student,7,10,4,1,3,8,8,2,6,162
+A21,O,a 26-year-old man studying psychology as an undergraduate student,8,10,6,4,5,15,10,0,10,172
+A21,O,a 26-year-old man studying psychology as an undergraduate student,9,11,6,5,1,12,11,0,11,183
+A21,O,a 26-year-old man studying psychology as an undergraduate student,10,11,1,2,6,9,9,2,7,190
+A21,O,a 26-year-old man studying psychology as an undergraduate student,11,10,6,2,2,10,10,0,10,200
+A21,O,a 26-year-old man studying psychology as an undergraduate student,12,11,2,4,4,10,10,1,9,209
+A21,O,a 26-year-old man studying psychology as an undergraduate student,13,10,3,3,3,9,9,1,8,217
+A21,O,a 26-year-old man studying psychology as an undergraduate student,14,10,4,4,2,10,10,0,10,227
+A21,O,a 26-year-old man studying psychology as an undergraduate student,15,11,6,2,5,13,11,0,11,238
+A21,O,a 26-year-old man studying psychology as an undergraduate student,16,11,5,5,6,16,11,0,11,249
+A21,O,a 26-year-old man studying psychology as an undergraduate student,17,12,2,2,3,7,7,5,2,251
+A21,O,a 26-year-old man studying psychology as an undergraduate student,18,10,3,5,4,12,10,0,10,261
+A21,O,a 26-year-old man studying psychology as an undergraduate student,19,11,4,1,6,11,11,0,11,272
+A21,O,a 26-year-old man studying psychology as an undergraduate student,20,11,6,3,4,13,11,0,11,283
+A21,O,a 26-year-old man studying psychology as an undergraduate student,21,11,5,6,4,15,11,0,11,294
+A21,O,a 26-year-old man studying psychology as an undergraduate student,22,12,2,4,3,9,9,3,6,300
+A21,O,a 26-year-old man studying psychology as an undergraduate student,23,10,5,3,2,10,10,0,10,310
+A21,O,a 26-year-old man studying psychology as an undergraduate student,24,11,2,1,6,9,9,2,7,317
+A21,O,a 26-year-old man studying psychology as an undergraduate student,25,10,1,3,6,10,10,0,10,327
+A22,C,a 24-year-old man studying economics as a master's student,1,10,4,4,3,11,10,0,10,110
+A22,C,a 24-year-old man studying economics as a master's student,2,10,3,2,4,9,9,1,8,118
+A22,C,a 24-year-old man studying economics as a master's student,3,10,3,3,3,9,9,1,8,126
+A22,C,a 24-year-old man studying economics as a master's student,4,10,2,1,5,8,8,2,6,132
+A22,C,a 24-year-old man studying economics as a master's student,5,10,6,5,4,15,10,0,10,142
+A22,C,a 24-year-old man studying economics as a master's student,6,10,5,4,5,14,10,0,10,152
+A22,C,a 24-year-old man studying economics as a master's student,7,10,1,2,3,6,6,4,2,154
+A22,C,a 24-year-old man studying economics as a master's student,8,10,1,1,4,6,6,4,2,156
+A22,C,a 24-year-old man studying economics as a master's student,9,10,4,5,4,13,10,0,10,166
+A22,C,a 24-year-old man studying economics as a master's student,10,10,6,4,3,13,10,0,10,176
+A22,C,a 24-year-old man studying economics as a master's student,11,10,2,4,5,11,10,0,10,186
+A22,C,a 24-year-old man studying economics as a master's student,12,10,5,2,1,8,8,2,6,192
+A22,C,a 24-year-old man studying economics as a master's student,13,10,3,1,3,7,7,3,4,196
+A22,C,a 24-year-old man studying economics as a master's student,14,10,5,4,4,13,10,0,10,206
+A22,C,a 24-year-old man studying economics as a master's student,15,10,5,5,6,16,10,0,10,216
+A22,C,a 24-year-old man studying economics as a master's student,16,10,3,3,2,8,8,2,6,222
+A22,C,a 24-year-old man studying economics as a master's student,17,10,2,2,2,6,6,4,2,224
+A22,C,a 24-year-old man studying economics as a master's student,18,10,4,1,2,7,7,3,4,228
+A22,C,a 24-year-old man studying economics as a master's student,19,10,6,2,5,13,10,0,10,238
+A22,C,a 24-year-old man studying economics as a master's student,20,10,4,3,5,12,10,0,10,248
+A22,C,a 24-year-old man studying economics as a master's student,21,10,2,5,5,12,10,0,10,258
+A22,C,a 24-year-old man studying economics as a master's student,22,10,5,5,6,16,10,0,10,268
+A22,C,a 24-year-old man studying economics as a master's student,23,10,1,2,3,6,6,4,2,270
+A22,C,a 24-year-old man studying economics as a master's student,24,10,3,2,5,10,10,0,10,280
+A22,C,a 24-year-old man studying economics as a master's student,25,10,1,3,3,7,7,3,4,284
+A23,O,a 18-year-old woman studying business administration as a master's student,1,10,1,1,6,8,8,2,6,106
+A23,O,a 18-year-old woman studying business administration as a master's student,2,10,3,6,4,13,10,0,10,116
+A23,O,a 18-year-old woman studying business administration as a master's student,3,11,2,3,5,10,10,1,9,125
+A23,O,a 18-year-old woman studying business administration as a master's student,4,10,3,6,6,15,10,0,10,135
+A23,O,a 18-year-old woman studying business administration as a master's student,5,11,4,5,2,11,11,0,11,146
+A23,O,a 18-year-old woman studying business administration as a master's student,6,11,1,6,3,10,10,1,9,155
+A23,O,a 18-year-old woman studying business administration as a master's student,7,11,4,4,5,13,11,0,11,166
+A23,O,a 18-year-old woman studying business administration as a master's student,8,11,3,1,1,5,5,6,-1,165
+A23,O,a 18-year-old woman studying business administration as a master's student,9,10,6,6,1,13,10,0,10,175
+A23,O,a 18-year-old woman studying business administration as a master's student,10,11,1,6,2,9,9,2,7,182
+A23,O,a 18-year-old woman studying business administration as a master's student,11,10,6,3,1,10,10,0,10,192
+A23,O,a 18-year-old woman studying business administration as a master's student,12,11,4,3,5,12,11,0,11,203
+A23,O,a 18-year-old woman studying business administration as a master's student,13,11,4,6,5,15,11,0,11,214
+A23,O,a 18-year-old woman studying business administration as a master's student,14,11,2,2,6,10,10,1,9,223
+A23,O,a 18-year-old woman studying business administration as a master's student,15,11,3,1,5,9,9,2,7,230
+A23,O,a 18-year-old woman studying business administration as a master's student,16,10,5,6,5,16,10,0,10,240
+A23,O,a 18-year-old woman studying business administration as a master's student,17,11,5,6,3,14,11,0,11,251
+A23,O,a 18-year-old woman studying business administration as a master's student,18,11,4,4,2,10,10,1,9,260
+A23,O,a 18-year-old woman studying business administration as a master's student,19,11,3,4,6,13,11,0,11,271
+A23,O,a 18-year-old woman studying business administration as a master's student,20,11,6,4,5,15,11,0,11,282
+A23,O,a 18-year-old woman studying business administration as a master's student,21,11,5,5,1,11,11,0,11,293
+A23,O,a 18-year-old woman studying business administration as a master's student,22,11,5,5,2,12,11,0,11,304
+A23,O,a 18-year-old woman studying business administration as a master's student,23,11,4,1,1,6,6,5,1,305
+A23,O,a 18-year-old woman studying business administration as a master's student,24,11,6,3,1,10,10,1,9,314
+A23,O,a 18-year-old woman studying business administration as a master's student,25,11,4,6,6,16,11,0,11,325
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,1,10,5,4,6,15,10,0,10,110
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,2,10,5,2,1,8,8,2,6,116
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,3,10,6,3,6,15,10,0,10,126
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,4,10,2,5,2,9,9,1,8,134
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,5,10,1,6,5,12,10,0,10,144
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,6,10,4,1,5,10,10,0,10,154
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,7,10,6,1,5,12,10,0,10,164
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,8,10,3,4,5,12,10,0,10,174
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,9,10,4,6,6,16,10,0,10,184
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,10,10,3,4,3,10,10,0,10,194
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,11,10,5,3,4,12,10,0,10,204
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,12,10,2,4,1,7,7,3,4,208
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,13,10,3,1,1,5,5,5,0,208
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,14,10,3,1,2,6,6,4,2,210
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,15,10,4,2,1,7,7,3,4,214
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,16,10,6,3,5,14,10,0,10,224
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,17,10,5,6,6,17,10,0,10,234
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,18,10,3,5,4,12,10,0,10,244
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,19,10,5,1,5,11,10,0,10,254
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,20,10,1,4,2,7,7,3,4,258
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,21,10,2,2,2,6,6,4,2,260
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,22,10,5,1,1,7,7,3,4,264
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,23,10,5,1,6,12,10,0,10,274
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,24,10,5,3,5,13,10,0,10,284
+A24,C,a 20-year-old woman studying engineering as an undergraduate student,25,10,2,2,2,6,6,4,2,286
+A25,C,a 19-year-old man studying political science as a PhD student,1,10,2,6,2,10,10,0,10,110
+A25,C,a 19-year-old man studying political science as a PhD student,2,10,3,2,2,7,7,3,4,114
+A25,C,a 19-year-old man studying political science as a PhD student,3,10,5,4,1,10,10,0,10,124
+A25,C,a 19-year-old man studying political science as a PhD student,4,10,2,1,6,9,9,1,8,132
+A25,C,a 19-year-old man studying political science as a PhD student,5,10,3,3,4,10,10,0,10,142
+A25,C,a 19-year-old man studying political science as a PhD student,6,10,1,2,3,6,6,4,2,144
+A25,C,a 19-year-old man studying political science as a PhD student,7,10,6,4,3,13,10,0,10,154
+A25,C,a 19-year-old man studying political science as a PhD student,8,10,5,2,4,11,10,0,10,164
+A25,C,a 19-year-old man studying political science as a PhD student,9,10,2,4,6,12,10,0,10,174
+A25,C,a 19-year-old man studying political science as a PhD student,10,10,3,4,3,10,10,0,10,184
+A25,C,a 19-year-old man studying political science as a PhD student,11,10,4,6,1,11,10,0,10,194
+A25,C,a 19-year-old man studying political science as a PhD student,12,10,6,3,2,11,10,0,10,204
+A25,C,a 19-year-old man studying political science as a PhD student,13,10,3,3,4,10,10,0,10,214
+A25,C,a 19-year-old man studying political science as a PhD student,14,10,3,4,2,9,9,1,8,222
+A25,C,a 19-year-old man studying political science as a PhD student,15,10,2,2,6,10,10,0,10,232
+A25,C,a 19-year-old man studying political science as a PhD student,16,10,2,1,3,6,6,4,2,234
+A25,C,a 19-year-old man studying political science as a PhD student,17,10,1,3,6,10,10,0,10,244
+A25,C,a 19-year-old man studying political science as a PhD student,18,10,3,3,2,8,8,2,6,250
+A25,C,a 19-year-old man studying political science as a PhD student,19,10,4,4,5,13,10,0,10,260
+A25,C,a 19-year-old man studying political science as a PhD student,20,10,6,2,6,14,10,0,10,270
+A25,C,a 19-year-old man studying political science as a PhD student,21,10,5,1,6,12,10,0,10,280
+A25,C,a 19-year-old man studying political science as a PhD student,22,10,5,2,4,11,10,0,10,290
+A25,C,a 19-year-old man studying political science as a PhD student,23,10,6,2,1,9,9,1,8,298
+A25,C,a 19-year-old man studying political science as a PhD student,24,10,2,2,5,9,9,1,8,306
+A25,C,a 19-year-old man studying political science as a PhD student,25,10,6,5,1,12,10,0,10,316
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,1,10,3,2,3,8,8,2,6,106
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,2,10,3,4,5,12,10,0,10,116
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,3,11,3,4,2,9,9,2,7,123
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,4,10,5,6,6,17,10,0,10,133
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,5,11,2,5,1,8,8,3,5,138
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,6,10,6,3,3,12,10,0,10,148
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,7,11,2,4,6,12,11,0,11,159
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,8,11,5,4,5,14,11,0,11,170
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,9,11,2,1,3,6,6,5,1,171
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,10,10,2,4,3,9,9,1,8,179
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,11,10,4,1,3,8,8,2,6,185
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,12,10,6,6,6,18,10,0,10,195
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,13,11,5,4,2,11,11,0,11,206
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,14,11,3,6,6,15,11,0,11,217
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,15,11,2,1,5,8,8,3,5,222
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,16,10,1,4,4,9,9,1,8,230
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,17,10,5,3,4,12,10,0,10,240
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,18,11,2,6,2,10,10,1,9,249
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,19,10,3,4,1,8,8,2,6,255
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,20,10,3,6,6,15,10,0,10,265
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,21,11,5,6,2,13,11,0,11,276
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,22,11,5,6,3,14,11,0,11,287
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,23,11,5,6,6,17,11,0,11,298
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,24,11,5,4,6,15,11,0,11,309
+A26,O,a 29-year-old woman studying business administration as an undergraduate student,25,11,2,1,1,4,4,7,-3,306
+A27,C,a 33-year-old woman studying finance as an undergraduate student,1,10,5,5,4,14,10,0,10,110
+A27,C,a 33-year-old woman studying finance as an undergraduate student,2,10,1,6,6,13,10,0,10,120
+A27,C,a 33-year-old woman studying finance as an undergraduate student,3,10,3,1,3,7,7,3,4,124
+A27,C,a 33-year-old woman studying finance as an undergraduate student,4,10,2,3,2,7,7,3,4,128
+A27,C,a 33-year-old woman studying finance as an undergraduate student,5,10,4,2,3,9,9,1,8,136
+A27,C,a 33-year-old woman studying finance as an undergraduate student,6,10,1,6,2,9,9,1,8,144
+A27,C,a 33-year-old woman studying finance as an undergraduate student,7,10,3,3,3,9,9,1,8,152
+A27,C,a 33-year-old woman studying finance as an undergraduate student,8,10,4,4,1,9,9,1,8,160
+A27,C,a 33-year-old woman studying finance as an undergraduate student,9,9,2,4,3,9,9,0,9,169
+A27,C,a 33-year-old woman studying finance as an undergraduate student,10,9,4,1,3,8,8,1,7,176
+A27,C,a 33-year-old woman studying finance as an undergraduate student,11,9,6,2,5,13,9,0,9,185
+A27,C,a 33-year-old woman studying finance as an undergraduate student,12,10,3,1,5,9,9,1,8,193
+A27,C,a 33-year-old woman studying finance as an undergraduate student,13,10,5,1,4,10,10,0,10,203
+A27,C,a 33-year-old woman studying finance as an undergraduate student,14,10,5,3,5,13,10,0,10,213
+A27,C,a 33-year-old woman studying finance as an undergraduate student,15,10,1,1,4,6,6,4,2,215
+A27,C,a 33-year-old woman studying finance as an undergraduate student,16,10,2,6,6,14,10,0,10,225
+A27,C,a 33-year-old woman studying finance as an undergraduate student,17,10,3,1,6,10,10,0,10,235
+A27,C,a 33-year-old woman studying finance as an undergraduate student,18,10,2,4,2,8,8,2,6,241
+A27,C,a 33-year-old woman studying finance as an undergraduate student,19,10,1,2,6,9,9,1,8,249
+A27,C,a 33-year-old woman studying finance as an undergraduate student,20,10,4,6,2,12,10,0,10,259
+A27,C,a 33-year-old woman studying finance as an undergraduate student,21,10,2,2,6,10,10,0,10,269
+A27,C,a 33-year-old woman studying finance as an undergraduate student,22,10,3,2,2,7,7,3,4,273
+A27,C,a 33-year-old woman studying finance as an undergraduate student,23,10,5,6,2,13,10,0,10,283
+A27,C,a 33-year-old woman studying finance as an undergraduate student,24,10,6,3,6,15,10,0,10,293
+A27,C,a 33-year-old woman studying finance as an undergraduate student,25,10,2,6,3,11,10,0,10,303
+A28,C,a 33-year-old woman studying marketing as a PhD student,1,10,3,1,2,6,6,4,2,102
+A28,C,a 33-year-old woman studying marketing as a PhD student,2,10,2,5,4,11,10,0,10,112
+A28,C,a 33-year-old woman studying marketing as a PhD student,3,10,4,4,3,11,10,0,10,122
+A28,C,a 33-year-old woman studying marketing as a PhD student,4,10,4,2,4,10,10,0,10,132
+A28,C,a 33-year-old woman studying marketing as a PhD student,5,10,3,5,2,10,10,0,10,142
+A28,C,a 33-year-old woman studying marketing as a PhD student,6,10,2,4,5,11,10,0,10,152
+A28,C,a 33-year-old woman studying marketing as a PhD student,7,10,1,1,4,6,6,4,2,154
+A28,C,a 33-year-old woman studying marketing as a PhD student,8,10,6,5,2,13,10,0,10,164
+A28,C,a 33-year-old woman studying marketing as a PhD student,9,10,2,3,1,6,6,4,2,166
+A28,C,a 33-year-old woman studying marketing as a PhD student,10,10,3,2,3,8,8,2,6,172
+A28,C,a 33-year-old woman studying marketing as a PhD student,11,10,1,5,1,7,7,3,4,176
+A28,C,a 33-year-old woman studying marketing as a PhD student,12,10,6,2,5,13,10,0,10,186
+A28,C,a 33-year-old woman studying marketing as a PhD student,13,10,6,4,6,16,10,0,10,196
+A28,C,a 33-year-old woman studying marketing as a PhD student,14,10,2,2,6,10,10,0,10,206
+A28,C,a 33-year-old woman studying marketing as a PhD student,15,10,5,5,3,13,10,0,10,216
+A28,C,a 33-year-old woman studying marketing as a PhD student,16,10,5,2,4,11,10,0,10,226
+A28,C,a 33-year-old woman studying marketing as a PhD student,17,10,4,2,1,7,7,3,4,230
+A28,C,a 33-year-old woman studying marketing as a PhD student,18,10,5,2,1,8,8,2,6,236
+A28,C,a 33-year-old woman studying marketing as a PhD student,19,10,6,6,6,18,10,0,10,246
+A28,C,a 33-year-old woman studying marketing as a PhD student,20,10,2,6,2,10,10,0,10,256
+A28,C,a 33-year-old woman studying marketing as a PhD student,21,10,4,6,1,11,10,0,10,266
+A28,C,a 33-year-old woman studying marketing as a PhD student,22,10,6,2,6,14,10,0,10,276
+A28,C,a 33-year-old woman studying marketing as a PhD student,23,10,6,5,2,13,10,0,10,286
+A28,C,a 33-year-old woman studying marketing as a PhD student,24,10,1,5,2,8,8,2,6,292
+A28,C,a 33-year-old woman studying marketing as a PhD student,25,10,6,6,1,13,10,0,10,302
+A29,O,a 34-year-old man studying accounting as a master's student,1,11,1,3,2,6,6,5,1,101
+A29,O,a 34-year-old man studying accounting as a master's student,2,11,2,3,4,9,9,2,7,108
+A29,O,a 34-year-old man studying accounting as a master's student,3,10,6,5,2,13,10,0,10,118
+A29,O,a 34-year-old man studying accounting as a master's student,4,11,6,4,4,14,11,0,11,129
+A29,O,a 34-year-old man studying accounting as a master's student,5,11,4,3,5,12,11,0,11,140
+A29,O,a 34-year-old man studying accounting as a master's student,6,11,1,1,2,4,4,7,-3,137
+A29,O,a 34-year-old man studying accounting as a master's student,7,11,4,3,4,11,11,0,11,148
+A29,O,a 34-year-old man studying accounting as a master's student,8,11,1,2,1,4,4,7,-3,145
+A29,O,a 34-year-old man studying accounting as a master's student,9,10,2,1,4,7,7,3,4,149
+A29,O,a 34-year-old man studying accounting as a master's student,10,10,3,1,5,9,9,1,8,157
+A29,O,a 34-year-old man studying accounting as a master's student,11,10,6,4,3,13,10,0,10,167
+A29,O,a 34-year-old man studying accounting as a master's student,12,11,3,6,6,15,11,0,11,178
+A29,O,a 34-year-old man studying accounting as a master's student,13,11,6,5,3,14,11,0,11,189
+A29,O,a 34-year-old man studying accounting as a master's student,14,11,2,6,5,13,11,0,11,200
+A29,O,a 34-year-old man studying accounting as a master's student,15,11,4,3,6,13,11,0,11,211
+A29,O,a 34-year-old man studying accounting as a master's student,16,11,3,4,1,8,8,3,5,216
+A29,O,a 34-year-old man studying accounting as a master's student,17,10,1,5,5,11,10,0,10,226
+A29,O,a 34-year-old man studying accounting as a master's student,18,11,5,6,1,12,11,0,11,237
+A29,O,a 34-year-old man studying accounting as a master's student,19,11,3,1,1,5,5,6,-1,236
+A29,O,a 34-year-old man studying accounting as a master's student,20,10,3,6,1,10,10,0,10,246
+A29,O,a 34-year-old man studying accounting as a master's student,21,11,4,4,1,9,9,2,7,253
+A29,O,a 34-year-old man studying accounting as a master's student,22,10,4,5,4,13,10,0,10,263
+A29,O,a 34-year-old man studying accounting as a master's student,23,11,3,5,4,12,11,0,11,274
+A29,O,a 34-year-old man studying accounting as a master's student,24,11,4,4,5,13,11,0,11,285
+A29,O,a 34-year-old man studying accounting as a master's student,25,11,3,1,3,7,7,4,3,288
+A30,C,a 23-year-old woman studying communications as a master's student,1,10,2,6,3,11,10,0,10,110
+A30,C,a 23-year-old woman studying communications as a master's student,2,10,4,6,3,13,10,0,10,120
+A30,C,a 23-year-old woman studying communications as a master's student,3,10,6,4,3,13,10,0,10,130
+A30,C,a 23-year-old woman studying communications as a master's student,4,10,1,3,1,5,5,5,0,130
+A30,C,a 23-year-old woman studying communications as a master's student,5,10,2,4,6,12,10,0,10,140
+A30,C,a 23-year-old woman studying communications as a master's student,6,10,6,1,2,9,9,1,8,148
+A30,C,a 23-year-old woman studying communications as a master's student,7,10,4,6,6,16,10,0,10,158
+A30,C,a 23-year-old woman studying communications as a master's student,8,10,2,5,3,10,10,0,10,168
+A30,C,a 23-year-old woman studying communications as a master's student,9,10,6,2,6,14,10,0,10,178
+A30,C,a 23-year-old woman studying communications as a master's student,10,10,2,6,6,14,10,0,10,188
+A30,C,a 23-year-old woman studying communications as a master's student,11,10,1,6,1,8,8,2,6,194
+A30,C,a 23-year-old woman studying communications as a master's student,12,10,3,2,5,10,10,0,10,204
+A30,C,a 23-year-old woman studying communications as a master's student,13,10,2,3,3,8,8,2,6,210
+A30,C,a 23-year-old woman studying communications as a master's student,14,10,5,6,6,17,10,0,10,220
+A30,C,a 23-year-old woman studying communications as a master's student,15,10,3,6,4,13,10,0,10,230
+A30,C,a 23-year-old woman studying communications as a master's student,16,10,4,2,5,11,10,0,10,240
+A30,C,a 23-year-old woman studying communications as a master's student,17,10,4,4,6,14,10,0,10,250
+A30,C,a 23-year-old woman studying communications as a master's student,18,10,5,4,3,12,10,0,10,260
+A30,C,a 23-year-old woman studying communications as a master's student,19,10,3,5,2,10,10,0,10,270
+A30,C,a 23-year-old woman studying communications as a master's student,20,10,3,6,4,13,10,0,10,280
+A30,C,a 23-year-old woman studying communications as a master's student,21,10,2,5,6,13,10,0,10,290
+A30,C,a 23-year-old woman studying communications as a master's student,22,10,1,1,3,5,5,5,0,290
+A30,C,a 23-year-old woman studying communications as a master's student,23,10,6,2,1,9,9,1,8,298
+A30,C,a 23-year-old woman studying communications as a master's student,24,10,4,4,6,14,10,0,10,308
+A30,C,a 23-year-old woman studying communications as a master's student,25,10,6,6,6,18,10,0,10,318
+A31,O,a 27-year-old man studying biology as an undergraduate student,1,11,4,2,5,11,11,0,11,111
+A31,O,a 27-year-old man studying biology as an undergraduate student,2,11,4,1,5,10,10,1,9,120
+A31,O,a 27-year-old man studying biology as an undergraduate student,3,11,3,5,5,13,11,0,11,131
+A31,O,a 27-year-old man studying biology as an undergraduate student,4,11,3,2,1,6,6,5,1,132
+A31,O,a 27-year-old man studying biology as an undergraduate student,5,11,3,2,2,7,7,4,3,135
+A31,O,a 27-year-old man studying biology as an undergraduate student,6,11,3,1,2,6,6,5,1,136
+A31,O,a 27-year-old man studying biology as an undergraduate student,7,10,5,5,6,16,10,0,10,146
+A31,O,a 27-year-old man studying biology as an undergraduate student,8,11,4,6,4,14,11,0,11,157
+A31,O,a 27-year-old man studying biology as an undergraduate student,9,11,5,1,4,10,10,1,9,166
+A31,O,a 27-year-old man studying biology as an undergraduate student,10,11,6,4,3,13,11,0,11,177
+A31,O,a 27-year-old man studying biology as an undergraduate student,11,11,5,3,5,13,11,0,11,188
+A31,O,a 27-year-old man studying biology as an undergraduate student,12,11,4,4,5,13,11,0,11,199
+A31,O,a 27-year-old man studying biology as an undergraduate student,13,11,3,2,3,8,8,3,5,204
+A31,O,a 27-year-old man studying biology as an undergraduate student,14,11,6,6,3,15,11,0,11,215
+A31,O,a 27-year-old man studying biology as an undergraduate student,15,11,3,5,2,10,10,1,9,224
+A31,O,a 27-year-old man studying biology as an undergraduate student,16,11,2,3,3,8,8,3,5,229
+A31,O,a 27-year-old man studying biology as an undergraduate student,17,11,3,5,5,13,11,0,11,240
+A31,O,a 27-year-old man studying biology as an undergraduate student,18,11,1,5,2,8,8,3,5,245
+A31,O,a 27-year-old man studying biology as an undergraduate student,19,11,3,2,5,10,10,1,9,254
+A31,O,a 27-year-old man studying biology as an undergraduate student,20,11,2,5,2,9,9,2,7,261
+A31,O,a 27-year-old man studying biology as an undergraduate student,21,11,1,4,1,6,6,5,1,262
+A31,O,a 27-year-old man studying biology as an undergraduate student,22,11,5,2,4,11,11,0,11,273
+A31,O,a 27-year-old man studying biology as an undergraduate student,23,11,6,5,3,14,11,0,11,284
+A31,O,a 27-year-old man studying biology as an undergraduate student,24,11,4,2,4,10,10,1,9,293
+A31,O,a 27-year-old man studying biology as an undergraduate student,25,11,4,5,1,10,10,1,9,302
+A32,C,a 34-year-old woman studying biology as an undergraduate student,1,10,5,5,1,11,10,0,10,110
+A32,C,a 34-year-old woman studying biology as an undergraduate student,2,10,2,2,3,7,7,3,4,114
+A32,C,a 34-year-old woman studying biology as an undergraduate student,3,10,6,1,5,12,10,0,10,124
+A32,C,a 34-year-old woman studying biology as an undergraduate student,4,10,3,6,4,13,10,0,10,134
+A32,C,a 34-year-old woman studying biology as an undergraduate student,5,10,5,5,1,11,10,0,10,144
+A32,C,a 34-year-old woman studying biology as an undergraduate student,6,10,2,1,6,9,9,1,8,152
+A32,C,a 34-year-old woman studying biology as an undergraduate student,7,10,6,2,1,9,9,1,8,160
+A32,C,a 34-year-old woman studying biology as an undergraduate student,8,10,1,2,1,4,4,6,-2,158
+A32,C,a 34-year-old woman studying biology as an undergraduate student,9,10,3,4,5,12,10,0,10,168
+A32,C,a 34-year-old woman studying biology as an undergraduate student,10,10,1,2,5,8,8,2,6,174
+A32,C,a 34-year-old woman studying biology as an undergraduate student,11,10,5,6,4,15,10,0,10,184
+A32,C,a 34-year-old woman studying biology as an undergraduate student,12,10,3,5,1,9,9,1,8,192
+A32,C,a 34-year-old woman studying biology as an undergraduate student,13,10,1,1,1,3,3,7,-4,188
+A32,C,a 34-year-old woman studying biology as an undergraduate student,14,10,5,6,4,15,10,0,10,198
+A32,C,a 34-year-old woman studying biology as an undergraduate student,15,10,4,3,1,8,8,2,6,204
+A32,C,a 34-year-old woman studying biology as an undergraduate student,16,10,1,2,2,5,5,5,0,204
+A32,C,a 34-year-old woman studying biology as an undergraduate student,17,10,4,1,4,9,9,1,8,212
+A32,C,a 34-year-old woman studying biology as an undergraduate student,18,10,3,4,1,8,8,2,6,218
+A32,C,a 34-year-old woman studying biology as an undergraduate student,19,10,1,4,6,11,10,0,10,228
+A32,C,a 34-year-old woman studying biology as an undergraduate student,20,10,6,1,1,8,8,2,6,234
+A32,C,a 34-year-old woman studying biology as an undergraduate student,21,10,2,4,6,12,10,0,10,244
+A32,C,a 34-year-old woman studying biology as an undergraduate student,22,10,3,5,4,12,10,0,10,254
+A32,C,a 34-year-old woman studying biology as an undergraduate student,23,10,4,2,1,7,7,3,4,258
+A32,C,a 34-year-old woman studying biology as an undergraduate student,24,10,2,1,6,9,9,1,8,266
+A32,C,a 34-year-old woman studying biology as an undergraduate student,25,10,6,1,6,13,10,0,10,276
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,1,10,2,4,4,10,10,0,10,110
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,2,10,3,4,6,13,10,0,10,120
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,3,11,2,1,3,6,6,5,1,121
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,4,10,5,2,5,12,10,0,10,131
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,5,10,3,3,4,10,10,0,10,141
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,6,10,5,3,4,12,10,0,10,151
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,7,11,6,4,3,13,11,0,11,162
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,8,11,2,6,6,14,11,0,11,173
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,9,11,5,4,5,14,11,0,11,184
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,10,11,6,4,6,16,11,0,11,195
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,11,11,3,2,3,8,8,3,5,200
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,12,11,3,3,6,12,11,0,11,211
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,13,11,2,1,2,5,5,6,-1,210
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,14,10,5,2,5,12,10,0,10,220
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,15,11,5,5,4,14,11,0,11,231
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,16,11,2,4,2,8,8,3,5,236
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,17,11,4,5,1,10,10,1,9,245
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,18,11,1,1,5,7,7,4,3,248
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,19,10,3,4,5,12,10,0,10,258
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,20,11,5,6,1,12,11,0,11,269
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,21,11,4,6,6,16,11,0,11,280
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,22,11,4,2,1,7,7,4,3,283
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,23,10,2,6,4,12,10,0,10,293
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,24,11,6,4,2,12,11,0,11,304
+A33,O,a 21-year-old man studying chemistry as an undergraduate student,25,11,6,4,4,14,11,0,11,315
+A34,O,a 19-year-old man studying political science as an undergraduate student,1,10,2,1,2,5,5,5,0,100
+A34,O,a 19-year-old man studying political science as an undergraduate student,2,10,5,5,3,13,10,0,10,110
+A34,O,a 19-year-old man studying political science as an undergraduate student,3,11,5,6,3,14,11,0,11,121
+A34,O,a 19-year-old man studying political science as an undergraduate student,4,11,4,6,3,13,11,0,11,132
+A34,O,a 19-year-old man studying political science as an undergraduate student,5,12,6,1,6,13,12,0,12,144
+A34,O,a 19-year-old man studying political science as an undergraduate student,6,12,2,2,6,10,10,2,8,152
+A34,O,a 19-year-old man studying political science as an undergraduate student,7,11,3,3,3,9,9,2,7,159
+A34,O,a 19-year-old man studying political science as an undergraduate student,8,10,2,5,6,13,10,0,10,169
+A34,O,a 19-year-old man studying political science as an undergraduate student,9,11,5,5,5,15,11,0,11,180
+A34,O,a 19-year-old man studying political science as an undergraduate student,10,11,1,2,5,8,8,3,5,185
+A34,O,a 19-year-old man studying political science as an undergraduate student,11,10,2,3,1,6,6,4,2,187
+A34,O,a 19-year-old man studying political science as an undergraduate student,12,10,2,1,1,4,4,6,-2,185
+A34,O,a 19-year-old man studying political science as an undergraduate student,13,10,5,6,6,17,10,0,10,195
+A34,O,a 19-year-old man studying political science as an undergraduate student,14,11,6,4,5,15,11,0,11,206
+A34,O,a 19-year-old man studying political science as an undergraduate student,15,11,5,3,1,9,9,2,7,213
+A34,O,a 19-year-old man studying political science as an undergraduate student,16,10,3,3,4,10,10,0,10,223
+A34,O,a 19-year-old man studying political science as an undergraduate student,17,11,1,1,3,5,5,6,-1,222
+A34,O,a 19-year-old man studying political science as an undergraduate student,18,10,6,6,2,14,10,0,10,232
+A34,O,a 19-year-old man studying political science as an undergraduate student,19,11,1,6,1,8,8,3,5,237
+A34,O,a 19-year-old man studying political science as an undergraduate student,20,10,3,5,5,13,10,0,10,247
+A34,O,a 19-year-old man studying political science as an undergraduate student,21,11,4,4,3,11,11,0,11,258
+A34,O,a 19-year-old man studying political science as an undergraduate student,22,11,2,1,3,6,6,5,1,259
+A34,O,a 19-year-old man studying political science as an undergraduate student,23,10,6,2,4,12,10,0,10,269
+A34,O,a 19-year-old man studying political science as an undergraduate student,24,11,4,4,2,10,10,1,9,278
+A34,O,a 19-year-old man studying political science as an undergraduate student,25,10,6,1,4,11,10,0,10,288
+A35,O,a 18-year-old woman studying finance as a master's student,1,10,1,6,5,12,10,0,10,110
+A35,O,a 18-year-old woman studying finance as a master's student,2,11,5,4,2,11,11,0,11,121
+A35,O,a 18-year-old woman studying finance as a master's student,3,11,1,4,6,11,11,0,11,132
+A35,O,a 18-year-old woman studying finance as a master's student,4,11,2,2,6,10,10,1,9,141
+A35,O,a 18-year-old woman studying finance as a master's student,5,11,1,6,4,11,11,0,11,152
+A35,O,a 18-year-old woman studying finance as a master's student,6,11,1,4,1,6,6,5,1,153
+A35,O,a 18-year-old woman studying finance as a master's student,7,11,2,4,6,12,11,0,11,164
+A35,O,a 18-year-old woman studying finance as a master's student,8,11,1,3,5,9,9,2,7,171
+A35,O,a 18-year-old woman studying finance as a master's student,9,11,5,1,1,7,7,4,3,174
+A35,O,a 18-year-old woman studying finance as a master's student,10,10,3,6,4,13,10,0,10,184
+A35,O,a 18-year-old woman studying finance as a master's student,11,11,2,2,6,10,10,1,9,193
+A35,O,a 18-year-old woman studying finance as a master's student,12,10,3,3,5,11,10,0,10,203
+A35,O,a 18-year-old woman studying finance as a master's student,13,11,4,1,6,11,11,0,11,214
+A35,O,a 18-year-old woman studying finance as a master's student,14,11,3,5,5,13,11,0,11,225
+A35,O,a 18-year-old woman studying finance as a master's student,15,11,6,2,1,9,9,2,7,232
+A35,O,a 18-year-old woman studying finance as a master's student,16,10,4,1,6,11,10,0,10,242
+A35,O,a 18-year-old woman studying finance as a master's student,17,11,4,5,2,11,11,0,11,253
+A35,O,a 18-year-old woman studying finance as a master's student,18,11,4,6,6,16,11,0,11,264
+A35,O,a 18-year-old woman studying finance as a master's student,19,11,2,5,6,13,11,0,11,275
+A35,O,a 18-year-old woman studying finance as a master's student,20,11,4,1,4,9,9,2,7,282
+A35,O,a 18-year-old woman studying finance as a master's student,21,10,1,5,6,12,10,0,10,292
+A35,O,a 18-year-old woman studying finance as a master's student,22,11,2,4,4,10,10,1,9,301
+A35,O,a 18-year-old woman studying finance as a master's student,23,11,5,6,1,12,11,0,11,312
+A35,O,a 18-year-old woman studying finance as a master's student,24,11,1,5,3,9,9,2,7,319
+A35,O,a 18-year-old woman studying finance as a master's student,25,11,5,5,6,16,11,0,11,330
+A36,C,a 28-year-old man studying statistics as an undergraduate student,1,9,6,1,6,13,9,0,9,109
+A36,C,a 28-year-old man studying statistics as an undergraduate student,2,9,5,4,6,15,9,0,9,118
+A36,C,a 28-year-old man studying statistics as an undergraduate student,3,9,1,5,1,7,7,2,5,123
+A36,C,a 28-year-old man studying statistics as an undergraduate student,4,9,6,4,3,13,9,0,9,132
+A36,C,a 28-year-old man studying statistics as an undergraduate student,5,9,6,6,5,17,9,0,9,141
+A36,C,a 28-year-old man studying statistics as an undergraduate student,6,9,3,2,5,10,9,0,9,150
+A36,C,a 28-year-old man studying statistics as an undergraduate student,7,9,5,2,6,13,9,0,9,159
+A36,C,a 28-year-old man studying statistics as an undergraduate student,8,9,4,4,3,11,9,0,9,168
+A36,C,a 28-year-old man studying statistics as an undergraduate student,9,9,6,2,5,13,9,0,9,177
+A36,C,a 28-year-old man studying statistics as an undergraduate student,10,9,2,2,4,8,8,1,7,184
+A36,C,a 28-year-old man studying statistics as an undergraduate student,11,9,4,2,2,8,8,1,7,191
+A36,C,a 28-year-old man studying statistics as an undergraduate student,12,9,5,4,1,10,9,0,9,200
+A36,C,a 28-year-old man studying statistics as an undergraduate student,13,9,4,3,4,11,9,0,9,209
+A36,C,a 28-year-old man studying statistics as an undergraduate student,14,9,6,4,2,12,9,0,9,218
+A36,C,a 28-year-old man studying statistics as an undergraduate student,15,9,5,6,1,12,9,0,9,227
+A36,C,a 28-year-old man studying statistics as an undergraduate student,16,9,2,3,5,10,9,0,9,236
+A36,C,a 28-year-old man studying statistics as an undergraduate student,17,9,2,1,2,5,5,4,1,237
+A36,C,a 28-year-old man studying statistics as an undergraduate student,18,9,2,1,3,6,6,3,3,240
+A36,C,a 28-year-old man studying statistics as an undergraduate student,19,9,2,1,6,9,9,0,9,249
+A36,C,a 28-year-old man studying statistics as an undergraduate student,20,9,3,6,6,15,9,0,9,258
+A36,C,a 28-year-old man studying statistics as an undergraduate student,21,9,5,1,4,10,9,0,9,267
+A36,C,a 28-year-old man studying statistics as an undergraduate student,22,9,3,2,5,10,9,0,9,276
+A36,C,a 28-year-old man studying statistics as an undergraduate student,23,9,6,5,2,13,9,0,9,285
+A36,C,a 28-year-old man studying statistics as an undergraduate student,24,9,5,2,1,8,8,1,7,292
+A36,C,a 28-year-old man studying statistics as an undergraduate student,25,9,1,1,1,3,3,6,-3,289
+A37,C,a 21-year-old man studying statistics as a master's student,1,10,2,1,5,8,8,2,6,106
+A37,C,a 21-year-old man studying statistics as a master's student,2,10,3,5,2,10,10,0,10,116
+A37,C,a 21-year-old man studying statistics as a master's student,3,10,1,1,1,3,3,7,-4,112
+A37,C,a 21-year-old man studying statistics as a master's student,4,10,6,3,1,10,10,0,10,122
+A37,C,a 21-year-old man studying statistics as a master's student,5,10,3,5,4,12,10,0,10,132
+A37,C,a 21-year-old man studying statistics as a master's student,6,10,1,6,5,12,10,0,10,142
+A37,C,a 21-year-old man studying statistics as a master's student,7,10,4,2,1,7,7,3,4,146
+A37,C,a 21-year-old man studying statistics as a master's student,8,10,2,3,2,7,7,3,4,150
+A37,C,a 21-year-old man studying statistics as a master's student,9,10,1,2,2,5,5,5,0,150
+A37,C,a 21-year-old man studying statistics as a master's student,10,10,4,4,5,13,10,0,10,160
+A37,C,a 21-year-old man studying statistics as a master's student,11,10,1,3,6,10,10,0,10,170
+A37,C,a 21-year-old man studying statistics as a master's student,12,10,5,3,2,10,10,0,10,180
+A37,C,a 21-year-old man studying statistics as a master's student,13,10,4,1,3,8,8,2,6,186
+A37,C,a 21-year-old man studying statistics as a master's student,14,10,5,3,3,11,10,0,10,196
+A37,C,a 21-year-old man studying statistics as a master's student,15,10,2,3,3,8,8,2,6,202
+A37,C,a 21-year-old man studying statistics as a master's student,16,10,6,1,5,12,10,0,10,212
+A37,C,a 21-year-old man studying statistics as a master's student,17,10,2,6,6,14,10,0,10,222
+A37,C,a 21-year-old man studying statistics as a master's student,18,10,6,2,2,10,10,0,10,232
+A37,C,a 21-year-old man studying statistics as a master's student,19,10,2,4,5,11,10,0,10,242
+A37,C,a 21-year-old man studying statistics as a master's student,20,10,2,6,5,13,10,0,10,252
+A37,C,a 21-year-old man studying statistics as a master's student,21,10,6,6,1,13,10,0,10,262
+A37,C,a 21-year-old man studying statistics as a master's student,22,10,5,5,5,15,10,0,10,272
+A37,C,a 21-year-old man studying statistics as a master's student,23,10,3,2,5,10,10,0,10,282
+A37,C,a 21-year-old man studying statistics as a master's student,24,10,4,5,6,15,10,0,10,292
+A37,C,a 21-year-old man studying statistics as a master's student,25,10,3,6,1,10,10,0,10,302
+A38,C,a 23-year-old woman studying marketing as a master's student,1,10,6,3,2,11,10,0,10,110
+A38,C,a 23-year-old woman studying marketing as a master's student,2,10,2,2,6,10,10,0,10,120
+A38,C,a 23-year-old woman studying marketing as a master's student,3,10,6,6,6,18,10,0,10,130
+A38,C,a 23-year-old woman studying marketing as a master's student,4,10,5,6,5,16,10,0,10,140
+A38,C,a 23-year-old woman studying marketing as a master's student,5,10,3,6,4,13,10,0,10,150
+A38,C,a 23-year-old woman studying marketing as a master's student,6,10,5,1,6,12,10,0,10,160
+A38,C,a 23-year-old woman studying marketing as a master's student,7,10,3,5,3,11,10,0,10,170
+A38,C,a 23-year-old woman studying marketing as a master's student,8,10,5,5,3,13,10,0,10,180
+A38,C,a 23-year-old woman studying marketing as a master's student,9,10,5,1,1,7,7,3,4,184
+A38,C,a 23-year-old woman studying marketing as a master's student,10,10,3,1,2,6,6,4,2,186
+A38,C,a 23-year-old woman studying marketing as a master's student,11,10,3,6,4,13,10,0,10,196
+A38,C,a 23-year-old woman studying marketing as a master's student,12,10,4,1,4,9,9,1,8,204
+A38,C,a 23-year-old woman studying marketing as a master's student,13,10,4,4,4,12,10,0,10,214
+A38,C,a 23-year-old woman studying marketing as a master's student,14,10,1,4,3,8,8,2,6,220
+A38,C,a 23-year-old woman studying marketing as a master's student,15,10,3,4,3,10,10,0,10,230
+A38,C,a 23-year-old woman studying marketing as a master's student,16,10,2,5,3,10,10,0,10,240
+A38,C,a 23-year-old woman studying marketing as a master's student,17,10,6,5,1,12,10,0,10,250
+A38,C,a 23-year-old woman studying marketing as a master's student,18,10,5,4,3,12,10,0,10,260
+A38,C,a 23-year-old woman studying marketing as a master's student,19,10,5,4,3,12,10,0,10,270
+A38,C,a 23-year-old woman studying marketing as a master's student,20,10,5,2,4,11,10,0,10,280
+A38,C,a 23-year-old woman studying marketing as a master's student,21,10,1,6,3,10,10,0,10,290
+A38,C,a 23-year-old woman studying marketing as a master's student,22,10,6,4,6,16,10,0,10,300
+A38,C,a 23-year-old woman studying marketing as a master's student,23,10,5,4,6,15,10,0,10,310
+A38,C,a 23-year-old woman studying marketing as a master's student,24,10,5,4,1,10,10,0,10,320
+A38,C,a 23-year-old woman studying marketing as a master's student,25,10,6,1,3,10,10,0,10,330
+A39,C,a 24-year-old man studying marketing as an undergraduate student,1,11,3,5,6,14,11,0,11,111
+A39,C,a 24-year-old man studying marketing as an undergraduate student,2,11,6,3,4,13,11,0,11,122
+A39,C,a 24-year-old man studying marketing as an undergraduate student,3,11,2,5,5,12,11,0,11,133
+A39,C,a 24-year-old man studying marketing as an undergraduate student,4,11,6,5,6,17,11,0,11,144
+A39,C,a 24-year-old man studying marketing as an undergraduate student,5,11,1,3,6,10,10,1,9,153
+A39,C,a 24-year-old man studying marketing as an undergraduate student,6,11,2,3,3,8,8,3,5,158
+A39,C,a 24-year-old man studying marketing as an undergraduate student,7,11,6,4,2,12,11,0,11,169
+A39,C,a 24-year-old man studying marketing as an undergraduate student,8,11,1,6,4,11,11,0,11,180
+A39,C,a 24-year-old man studying marketing as an undergraduate student,9,11,6,4,6,16,11,0,11,191
+A39,C,a 24-year-old man studying marketing as an undergraduate student,10,11,2,1,5,8,8,3,5,196
+A39,C,a 24-year-old man studying marketing as an undergraduate student,11,11,1,4,3,8,8,3,5,201
+A39,C,a 24-year-old man studying marketing as an undergraduate student,12,11,1,5,6,12,11,0,11,212
+A39,C,a 24-year-old man studying marketing as an undergraduate student,13,11,3,5,1,9,9,2,7,219
+A39,C,a 24-year-old man studying marketing as an undergraduate student,14,11,2,2,6,10,10,1,9,228
+A39,C,a 24-year-old man studying marketing as an undergraduate student,15,11,3,4,2,9,9,2,7,235
+A39,C,a 24-year-old man studying marketing as an undergraduate student,16,11,3,3,4,10,10,1,9,244
+A39,C,a 24-year-old man studying marketing as an undergraduate student,17,11,1,2,6,9,9,2,7,251
+A39,C,a 24-year-old man studying marketing as an undergraduate student,18,11,4,1,3,8,8,3,5,256
+A39,C,a 24-year-old man studying marketing as an undergraduate student,19,11,5,6,5,16,11,0,11,267
+A39,C,a 24-year-old man studying marketing as an undergraduate student,20,11,6,4,1,11,11,0,11,278
+A39,C,a 24-year-old man studying marketing as an undergraduate student,21,11,2,4,2,8,8,3,5,283
+A39,C,a 24-year-old man studying marketing as an undergraduate student,22,11,4,4,3,11,11,0,11,294
+A39,C,a 24-year-old man studying marketing as an undergraduate student,23,11,6,3,6,15,11,0,11,305
+A39,C,a 24-year-old man studying marketing as an undergraduate student,24,11,2,5,1,8,8,3,5,310
+A39,C,a 24-year-old man studying marketing as an undergraduate student,25,11,5,3,4,12,11,0,11,321
+A40,C,a 32-year-old woman studying political science as a PhD student,1,10,2,4,3,9,9,1,8,108
+A40,C,a 32-year-old woman studying political science as a PhD student,2,10,4,3,4,11,10,0,10,118
+A40,C,a 32-year-old woman studying political science as a PhD student,3,10,6,1,4,11,10,0,10,128
+A40,C,a 32-year-old woman studying political science as a PhD student,4,10,6,1,3,10,10,0,10,138
+A40,C,a 32-year-old woman studying political science as a PhD student,5,10,2,3,3,8,8,2,6,144
+A40,C,a 32-year-old woman studying political science as a PhD student,6,10,4,6,2,12,10,0,10,154
+A40,C,a 32-year-old woman studying political science as a PhD student,7,10,5,6,5,16,10,0,10,164
+A40,C,a 32-year-old woman studying political science as a PhD student,8,10,2,1,2,5,5,5,0,164
+A40,C,a 32-year-old woman studying political science as a PhD student,9,10,2,2,3,7,7,3,4,168
+A40,C,a 32-year-old woman studying political science as a PhD student,10,10,6,1,6,13,10,0,10,178
+A40,C,a 32-year-old woman studying political science as a PhD student,11,10,5,4,2,11,10,0,10,188
+A40,C,a 32-year-old woman studying political science as a PhD student,12,10,5,1,5,11,10,0,10,198
+A40,C,a 32-year-old woman studying political science as a PhD student,13,10,5,2,4,11,10,0,10,208
+A40,C,a 32-year-old woman studying political science as a PhD student,14,10,6,2,1,9,9,1,8,216
+A40,C,a 32-year-old woman studying political science as a PhD student,15,10,4,1,5,10,10,0,10,226
+A40,C,a 32-year-old woman studying political science as a PhD student,16,10,6,1,3,10,10,0,10,236
+A40,C,a 32-year-old woman studying political science as a PhD student,17,10,5,6,3,14,10,0,10,246
+A40,C,a 32-year-old woman studying political science as a PhD student,18,10,5,3,6,14,10,0,10,256
+A40,C,a 32-year-old woman studying political science as a PhD student,19,10,6,2,5,13,10,0,10,266
+A40,C,a 32-year-old woman studying political science as a PhD student,20,10,3,6,6,15,10,0,10,276
+A40,C,a 32-year-old woman studying political science as a PhD student,21,10,6,6,4,16,10,0,10,286
+A40,C,a 32-year-old woman studying political science as a PhD student,22,10,1,2,5,8,8,2,6,292
+A40,C,a 32-year-old woman studying political science as a PhD student,23,10,5,5,4,14,10,0,10,302
+A40,C,a 32-year-old woman studying political science as a PhD student,24,10,3,6,4,13,10,0,10,312
+A40,C,a 32-year-old woman studying political science as a PhD student,25,10,2,4,1,7,7,3,4,316
+A41,C,a 20-year-old man studying business administration as an undergraduate student,1,11,6,5,5,16,11,0,11,111
+A41,C,a 20-year-old man studying business administration as an undergraduate student,2,11,6,6,2,14,11,0,11,122
+A41,C,a 20-year-old man studying business administration as an undergraduate student,3,11,3,4,5,12,11,0,11,133
+A41,C,a 20-year-old man studying business administration as an undergraduate student,4,11,1,5,6,12,11,0,11,144
+A41,C,a 20-year-old man studying business administration as an undergraduate student,5,11,4,5,6,15,11,0,11,155
+A41,C,a 20-year-old man studying business administration as an undergraduate student,6,11,2,2,2,6,6,5,1,156
+A41,C,a 20-year-old man studying business administration as an undergraduate student,7,11,3,1,2,6,6,5,1,157
+A41,C,a 20-year-old man studying business administration as an undergraduate student,8,11,3,3,1,7,7,4,3,160
+A41,C,a 20-year-old man studying business administration as an undergraduate student,9,11,3,2,5,10,10,1,9,169
+A41,C,a 20-year-old man studying business administration as an undergraduate student,10,11,5,5,2,12,11,0,11,180
+A41,C,a 20-year-old man studying business administration as an undergraduate student,11,11,6,5,6,17,11,0,11,191
+A41,C,a 20-year-old man studying business administration as an undergraduate student,12,11,3,5,1,9,9,2,7,198
+A41,C,a 20-year-old man studying business administration as an undergraduate student,13,11,5,6,3,14,11,0,11,209
+A41,C,a 20-year-old man studying business administration as an undergraduate student,14,11,4,4,2,10,10,1,9,218
+A41,C,a 20-year-old man studying business administration as an undergraduate student,15,11,3,3,5,11,11,0,11,229
+A41,C,a 20-year-old man studying business administration as an undergraduate student,16,11,2,5,2,9,9,2,7,236
+A41,C,a 20-year-old man studying business administration as an undergraduate student,17,11,6,4,3,13,11,0,11,247
+A41,C,a 20-year-old man studying business administration as an undergraduate student,18,11,6,4,3,13,11,0,11,258
+A41,C,a 20-year-old man studying business administration as an undergraduate student,19,11,5,4,2,11,11,0,11,269
+A41,C,a 20-year-old man studying business administration as an undergraduate student,20,11,5,2,2,9,9,2,7,276
+A41,C,a 20-year-old man studying business administration as an undergraduate student,21,11,4,2,3,9,9,2,7,283
+A41,C,a 20-year-old man studying business administration as an undergraduate student,22,11,1,5,2,8,8,3,5,288
+A41,C,a 20-year-old man studying business administration as an undergraduate student,23,11,1,6,2,9,9,2,7,295
+A41,C,a 20-year-old man studying business administration as an undergraduate student,24,11,3,4,4,11,11,0,11,306
+A41,C,a 20-year-old man studying business administration as an undergraduate student,25,11,1,3,2,6,6,5,1,307
+A42,C,a 23-year-old woman studying political science as a master's student,1,10,4,5,5,14,10,0,10,110
+A42,C,a 23-year-old woman studying political science as a master's student,2,10,4,6,3,13,10,0,10,120
+A42,C,a 23-year-old woman studying political science as a master's student,3,10,6,5,5,16,10,0,10,130
+A42,C,a 23-year-old woman studying political science as a master's student,4,10,6,1,5,12,10,0,10,140
+A42,C,a 23-year-old woman studying political science as a master's student,5,10,1,4,3,8,8,2,6,146
+A42,C,a 23-year-old woman studying political science as a master's student,6,10,5,6,5,16,10,0,10,156
+A42,C,a 23-year-old woman studying political science as a master's student,7,10,3,5,5,13,10,0,10,166
+A42,C,a 23-year-old woman studying political science as a master's student,8,10,3,3,1,7,7,3,4,170
+A42,C,a 23-year-old woman studying political science as a master's student,9,10,4,3,2,9,9,1,8,178
+A42,C,a 23-year-old woman studying political science as a master's student,10,10,4,6,1,11,10,0,10,188
+A42,C,a 23-year-old woman studying political science as a master's student,11,10,3,5,4,12,10,0,10,198
+A42,C,a 23-year-old woman studying political science as a master's student,12,10,1,3,4,8,8,2,6,204
+A42,C,a 23-year-old woman studying political science as a master's student,13,10,5,5,2,12,10,0,10,214
+A42,C,a 23-year-old woman studying political science as a master's student,14,10,3,4,1,8,8,2,6,220
+A42,C,a 23-year-old woman studying political science as a master's student,15,10,4,4,6,14,10,0,10,230
+A42,C,a 23-year-old woman studying political science as a master's student,16,10,6,6,4,16,10,0,10,240
+A42,C,a 23-year-old woman studying political science as a master's student,17,10,1,5,2,8,8,2,6,246
+A42,C,a 23-year-old woman studying political science as a master's student,18,10,5,6,5,16,10,0,10,256
+A42,C,a 23-year-old woman studying political science as a master's student,19,10,6,6,4,16,10,0,10,266
+A42,C,a 23-year-old woman studying political science as a master's student,20,10,2,4,1,7,7,3,4,270
+A42,C,a 23-year-old woman studying political science as a master's student,21,10,5,6,2,13,10,0,10,280
+A42,C,a 23-year-old woman studying political science as a master's student,22,10,6,3,3,12,10,0,10,290
+A42,C,a 23-year-old woman studying political science as a master's student,23,10,2,2,1,5,5,5,0,290
+A42,C,a 23-year-old woman studying political science as a master's student,24,10,2,6,6,14,10,0,10,300
+A42,C,a 23-year-old woman studying political science as a master's student,25,10,6,4,1,11,10,0,10,310
+A43,C,a 19-year-old man studying nursing as a PhD student,1,10,2,2,3,7,7,3,4,104
+A43,C,a 19-year-old man studying nursing as a PhD student,2,10,2,2,4,8,8,2,6,110
+A43,C,a 19-year-old man studying nursing as a PhD student,3,10,5,4,2,11,10,0,10,120
+A43,C,a 19-year-old man studying nursing as a PhD student,4,10,4,3,4,11,10,0,10,130
+A43,C,a 19-year-old man studying nursing as a PhD student,5,10,5,3,4,12,10,0,10,140
+A43,C,a 19-year-old man studying nursing as a PhD student,6,10,6,1,5,12,10,0,10,150
+A43,C,a 19-year-old man studying nursing as a PhD student,7,10,5,4,1,10,10,0,10,160
+A43,C,a 19-year-old man studying nursing as a PhD student,8,10,5,3,2,10,10,0,10,170
+A43,C,a 19-year-old man studying nursing as a PhD student,9,10,1,4,5,10,10,0,10,180
+A43,C,a 19-year-old man studying nursing as a PhD student,10,10,4,1,3,8,8,2,6,186
+A43,C,a 19-year-old man studying nursing as a PhD student,11,10,5,2,4,11,10,0,10,196
+A43,C,a 19-year-old man studying nursing as a PhD student,12,10,6,6,4,16,10,0,10,206
+A43,C,a 19-year-old man studying nursing as a PhD student,13,10,2,5,4,11,10,0,10,216
+A43,C,a 19-year-old man studying nursing as a PhD student,14,10,6,1,4,11,10,0,10,226
+A43,C,a 19-year-old man studying nursing as a PhD student,15,10,4,6,4,14,10,0,10,236
+A43,C,a 19-year-old man studying nursing as a PhD student,16,10,2,1,1,4,4,6,-2,234
+A43,C,a 19-year-old man studying nursing as a PhD student,17,10,5,6,5,16,10,0,10,244
+A43,C,a 19-year-old man studying nursing as a PhD student,18,10,3,3,3,9,9,1,8,252
+A43,C,a 19-year-old man studying nursing as a PhD student,19,10,1,5,5,11,10,0,10,262
+A43,C,a 19-year-old man studying nursing as a PhD student,20,10,4,2,1,7,7,3,4,266
+A43,C,a 19-year-old man studying nursing as a PhD student,21,10,3,1,2,6,6,4,2,268
+A43,C,a 19-year-old man studying nursing as a PhD student,22,10,6,1,5,12,10,0,10,278
+A43,C,a 19-year-old man studying nursing as a PhD student,23,10,6,1,6,13,10,0,10,288
+A43,C,a 19-year-old man studying nursing as a PhD student,24,10,6,1,1,8,8,2,6,294
+A43,C,a 19-year-old man studying nursing as a PhD student,25,10,4,6,4,14,10,0,10,304
+A44,O,a 24-year-old man studying mathematics as a PhD student,1,11,3,5,5,13,11,0,11,111
+A44,O,a 24-year-old man studying mathematics as a PhD student,2,11,4,3,5,12,11,0,11,122
+A44,O,a 24-year-old man studying mathematics as a PhD student,3,11,6,4,1,11,11,0,11,133
+A44,O,a 24-year-old man studying mathematics as a PhD student,4,11,6,5,5,16,11,0,11,144
+A44,O,a 24-year-old man studying mathematics as a PhD student,5,11,3,5,1,9,9,2,7,151
+A44,O,a 24-year-old man studying mathematics as a PhD student,6,11,1,6,4,11,11,0,11,162
+A44,O,a 24-year-old man studying mathematics as a PhD student,7,11,3,6,3,12,11,0,11,173
+A44,O,a 24-year-old man studying mathematics as a PhD student,8,11,1,3,2,6,6,5,1,174
+A44,O,a 24-year-old man studying mathematics as a PhD student,9,11,2,6,5,13,11,0,11,185
+A44,O,a 24-year-old man studying mathematics as a PhD student,10,11,2,4,5,11,11,0,11,196
+A44,O,a 24-year-old man studying mathematics as a PhD student,11,11,6,4,2,12,11,0,11,207
+A44,O,a 24-year-old man studying mathematics as a PhD student,12,11,2,5,1,8,8,3,5,212
+A44,O,a 24-year-old man studying mathematics as a PhD student,13,11,1,1,3,5,5,6,-1,211
+A44,O,a 24-year-old man studying mathematics as a PhD student,14,11,3,3,4,10,10,1,9,220
+A44,O,a 24-year-old man studying mathematics as a PhD student,15,11,6,1,4,11,11,0,11,231
+A44,O,a 24-year-old man studying mathematics as a PhD student,16,11,4,5,6,15,11,0,11,242
+A44,O,a 24-year-old man studying mathematics as a PhD student,17,11,5,2,5,12,11,0,11,253
+A44,O,a 24-year-old man studying mathematics as a PhD student,18,11,4,4,5,13,11,0,11,264
+A44,O,a 24-year-old man studying mathematics as a PhD student,19,11,1,2,3,6,6,5,1,265
+A44,O,a 24-year-old man studying mathematics as a PhD student,20,11,2,4,4,10,10,1,9,274
+A44,O,a 24-year-old man studying mathematics as a PhD student,21,11,3,3,4,10,10,1,9,283
+A44,O,a 24-year-old man studying mathematics as a PhD student,22,11,5,1,4,10,10,1,9,292
+A44,O,a 24-year-old man studying mathematics as a PhD student,23,11,2,5,1,8,8,3,5,297
+A44,O,a 24-year-old man studying mathematics as a PhD student,24,11,6,1,2,9,9,2,7,304
+A44,O,a 24-year-old man studying mathematics as a PhD student,25,11,5,4,4,13,11,0,11,315
+A45,O,a 18-year-old woman studying political science as a master's student,1,10,1,4,3,8,8,2,6,106
+A45,O,a 18-year-old woman studying political science as a master's student,2,10,5,3,2,10,10,0,10,116
+A45,O,a 18-year-old woman studying political science as a master's student,3,11,1,2,1,4,4,7,-3,113
+A45,O,a 18-year-old woman studying political science as a master's student,4,10,1,1,6,8,8,2,6,119
+A45,O,a 18-year-old woman studying political science as a master's student,5,10,2,5,4,11,10,0,10,129
+A45,O,a 18-year-old woman studying political science as a master's student,6,10,2,3,1,6,6,4,2,131
+A45,O,a 18-year-old woman studying political science as a master's student,7,10,6,5,1,12,10,0,10,141
+A45,O,a 18-year-old woman studying political science as a master's student,8,11,3,2,1,6,6,5,1,142
+A45,O,a 18-year-old woman studying political science as a master's student,9,10,5,1,3,9,9,1,8,150
+A45,O,a 18-year-old woman studying political science as a master's student,10,10,4,4,4,12,10,0,10,160
+A45,O,a 18-year-old woman studying political science as a master's student,11,11,4,6,2,12,11,0,11,171
+A45,O,a 18-year-old woman studying political science as a master's student,12,11,6,2,5,13,11,0,11,182
+A45,O,a 18-year-old woman studying political science as a master's student,13,11,5,1,6,12,11,0,11,193
+A45,O,a 18-year-old woman studying political science as a master's student,14,11,5,4,2,11,11,0,11,204
+A45,O,a 18-year-old woman studying political science as a master's student,15,11,5,5,4,14,11,0,11,215
+A45,O,a 18-year-old woman studying political science as a master's student,16,11,6,6,4,16,11,0,11,226
+A45,O,a 18-year-old woman studying political science as a master's student,17,11,2,2,4,8,8,3,5,231
+A45,O,a 18-year-old woman studying political science as a master's student,18,10,6,5,1,12,10,0,10,241
+A45,O,a 18-year-old woman studying political science as a master's student,19,11,6,2,5,13,11,0,11,252
+A45,O,a 18-year-old woman studying political science as a master's student,20,11,2,1,6,9,9,2,7,259
+A45,O,a 18-year-old woman studying political science as a master's student,21,10,1,5,6,12,10,0,10,269
+A45,O,a 18-year-old woman studying political science as a master's student,22,11,5,2,1,8,8,3,5,274
+A45,O,a 18-year-old woman studying political science as a master's student,23,10,1,2,3,6,6,4,2,276
+A45,O,a 18-year-old woman studying political science as a master's student,24,10,1,5,5,11,10,0,10,286
+A45,O,a 18-year-old woman studying political science as a master's student,25,10,6,2,3,11,10,0,10,296
+A46,C,a 24-year-old woman studying economics as a PhD student,1,10,5,2,2,9,9,1,8,108
+A46,C,a 24-year-old woman studying economics as a PhD student,2,10,5,4,4,13,10,0,10,118
+A46,C,a 24-year-old woman studying economics as a PhD student,3,10,4,6,1,11,10,0,10,128
+A46,C,a 24-year-old woman studying economics as a PhD student,4,10,4,2,1,7,7,3,4,132
+A46,C,a 24-year-old woman studying economics as a PhD student,5,10,5,3,6,14,10,0,10,142
+A46,C,a 24-year-old woman studying economics as a PhD student,6,10,4,1,2,7,7,3,4,146
+A46,C,a 24-year-old woman studying economics as a PhD student,7,10,6,4,2,12,10,0,10,156
+A46,C,a 24-year-old woman studying economics as a PhD student,8,10,1,4,1,6,6,4,2,158
+A46,C,a 24-year-old woman studying economics as a PhD student,9,10,4,5,2,11,10,0,10,168
+A46,C,a 24-year-old woman studying economics as a PhD student,10,10,3,5,1,9,9,1,8,176
+A46,C,a 24-year-old woman studying economics as a PhD student,11,10,2,6,1,9,9,1,8,184
+A46,C,a 24-year-old woman studying economics as a PhD student,12,10,4,1,5,10,10,0,10,194
+A46,C,a 24-year-old woman studying economics as a PhD student,13,10,1,5,3,9,9,1,8,202
+A46,C,a 24-year-old woman studying economics as a PhD student,14,10,5,3,1,9,9,1,8,210
+A46,C,a 24-year-old woman studying economics as a PhD student,15,10,5,2,3,10,10,0,10,220
+A46,C,a 24-year-old woman studying economics as a PhD student,16,10,4,6,5,15,10,0,10,230
+A46,C,a 24-year-old woman studying economics as a PhD student,17,10,5,6,1,12,10,0,10,240
+A46,C,a 24-year-old woman studying economics as a PhD student,18,10,4,3,5,12,10,0,10,250
+A46,C,a 24-year-old woman studying economics as a PhD student,19,10,4,5,5,14,10,0,10,260
+A46,C,a 24-year-old woman studying economics as a PhD student,20,10,2,2,4,8,8,2,6,266
+A46,C,a 24-year-old woman studying economics as a PhD student,21,10,6,5,2,13,10,0,10,276
+A46,C,a 24-year-old woman studying economics as a PhD student,22,10,5,2,5,12,10,0,10,286
+A46,C,a 24-year-old woman studying economics as a PhD student,23,10,5,4,6,15,10,0,10,296
+A46,C,a 24-year-old woman studying economics as a PhD student,24,10,1,4,2,7,7,3,4,300
+A46,C,a 24-year-old woman studying economics as a PhD student,25,10,2,3,1,6,6,4,2,302
+A47,C,a 23-year-old man studying computer science as a master's student,1,10,4,5,3,12,10,0,10,110
+A47,C,a 23-year-old man studying computer science as a master's student,2,10,2,1,2,5,5,5,0,110
+A47,C,a 23-year-old man studying computer science as a master's student,3,10,3,4,2,9,9,1,8,118
+A47,C,a 23-year-old man studying computer science as a master's student,4,10,3,1,2,6,6,4,2,120
+A47,C,a 23-year-old man studying computer science as a master's student,5,10,1,2,3,6,6,4,2,122
+A47,C,a 23-year-old man studying computer science as a master's student,6,10,1,4,2,7,7,3,4,126
+A47,C,a 23-year-old man studying computer science as a master's student,7,10,2,5,2,9,9,1,8,134
+A47,C,a 23-year-old man studying computer science as a master's student,8,10,6,4,6,16,10,0,10,144
+A47,C,a 23-year-old man studying computer science as a master's student,9,10,2,3,4,9,9,1,8,152
+A47,C,a 23-year-old man studying computer science as a master's student,10,10,4,1,6,11,10,0,10,162
+A47,C,a 23-year-old man studying computer science as a master's student,11,10,2,6,4,12,10,0,10,172
+A47,C,a 23-year-old man studying computer science as a master's student,12,10,5,1,5,11,10,0,10,182
+A47,C,a 23-year-old man studying computer science as a master's student,13,10,3,5,3,11,10,0,10,192
+A47,C,a 23-year-old man studying computer science as a master's student,14,10,6,4,3,13,10,0,10,202
+A47,C,a 23-year-old man studying computer science as a master's student,15,10,2,3,1,6,6,4,2,204
+A47,C,a 23-year-old man studying computer science as a master's student,16,10,4,5,3,12,10,0,10,214
+A47,C,a 23-year-old man studying computer science as a master's student,17,10,5,3,1,9,9,1,8,222
+A47,C,a 23-year-old man studying computer science as a master's student,18,10,2,1,1,4,4,6,-2,220
+A47,C,a 23-year-old man studying computer science as a master's student,19,10,6,1,5,12,10,0,10,230
+A47,C,a 23-year-old man studying computer science as a master's student,20,10,3,2,5,10,10,0,10,240
+A47,C,a 23-year-old man studying computer science as a master's student,21,10,5,5,2,12,10,0,10,250
+A47,C,a 23-year-old man studying computer science as a master's student,22,10,2,5,6,13,10,0,10,260
+A47,C,a 23-year-old man studying computer science as a master's student,23,10,1,3,6,10,10,0,10,270
+A47,C,a 23-year-old man studying computer science as a master's student,24,10,2,1,2,5,5,5,0,270
+A47,C,a 23-year-old man studying computer science as a master's student,25,10,6,3,5,14,10,0,10,280
+A48,C,a 31-year-old woman studying biology as an undergraduate student,1,10,3,2,6,11,10,0,10,110
+A48,C,a 31-year-old woman studying biology as an undergraduate student,2,10,5,6,6,17,10,0,10,120
+A48,C,a 31-year-old woman studying biology as an undergraduate student,3,10,1,4,2,7,7,3,4,124
+A48,C,a 31-year-old woman studying biology as an undergraduate student,4,10,5,1,4,10,10,0,10,134
+A48,C,a 31-year-old woman studying biology as an undergraduate student,5,10,1,5,5,11,10,0,10,144
+A48,C,a 31-year-old woman studying biology as an undergraduate student,6,10,1,2,2,5,5,5,0,144
+A48,C,a 31-year-old woman studying biology as an undergraduate student,7,10,6,4,6,16,10,0,10,154
+A48,C,a 31-year-old woman studying biology as an undergraduate student,8,10,3,4,4,11,10,0,10,164
+A48,C,a 31-year-old woman studying biology as an undergraduate student,9,10,3,1,3,7,7,3,4,168
+A48,C,a 31-year-old woman studying biology as an undergraduate student,10,10,4,2,1,7,7,3,4,172
+A48,C,a 31-year-old woman studying biology as an undergraduate student,11,10,5,1,3,9,9,1,8,180
+A48,C,a 31-year-old woman studying biology as an undergraduate student,12,10,5,1,1,7,7,3,4,184
+A48,C,a 31-year-old woman studying biology as an undergraduate student,13,10,1,4,2,7,7,3,4,188
+A48,C,a 31-year-old woman studying biology as an undergraduate student,14,10,6,1,1,8,8,2,6,194
+A48,C,a 31-year-old woman studying biology as an undergraduate student,15,10,4,4,4,12,10,0,10,204
+A48,C,a 31-year-old woman studying biology as an undergraduate student,16,10,5,4,2,11,10,0,10,214
+A48,C,a 31-year-old woman studying biology as an undergraduate student,17,10,3,5,4,12,10,0,10,224
+A48,C,a 31-year-old woman studying biology as an undergraduate student,18,10,6,4,1,11,10,0,10,234
+A48,C,a 31-year-old woman studying biology as an undergraduate student,19,10,3,1,6,10,10,0,10,244
+A48,C,a 31-year-old woman studying biology as an undergraduate student,20,10,3,6,2,11,10,0,10,254
+A48,C,a 31-year-old woman studying biology as an undergraduate student,21,10,2,2,4,8,8,2,6,260
+A48,C,a 31-year-old woman studying biology as an undergraduate student,22,10,2,2,2,6,6,4,2,262
+A48,C,a 31-year-old woman studying biology as an undergraduate student,23,10,3,6,2,11,10,0,10,272
+A48,C,a 31-year-old woman studying biology as an undergraduate student,24,10,1,6,1,8,8,2,6,278
+A48,C,a 31-year-old woman studying biology as an undergraduate student,25,10,1,5,4,10,10,0,10,288
+A49,O,a 23-year-old man studying economics as an undergraduate student,1,10,1,4,6,11,10,0,10,110
+A49,O,a 23-year-old man studying economics as an undergraduate student,2,11,5,2,5,12,11,0,11,121
+A49,O,a 23-year-old man studying economics as an undergraduate student,3,11,4,1,3,8,8,3,5,126
+A49,O,a 23-year-old man studying economics as an undergraduate student,4,10,2,4,3,9,9,1,8,134
+A49,O,a 23-year-old man studying economics as an undergraduate student,5,10,3,2,3,8,8,2,6,140
+A49,O,a 23-year-old man studying economics as an undergraduate student,6,10,5,4,2,11,10,0,10,150
+A49,O,a 23-year-old man studying economics as an undergraduate student,7,11,1,4,1,6,6,5,1,151
+A49,O,a 23-year-old man studying economics as an undergraduate student,8,10,1,3,4,8,8,2,6,157
+A49,O,a 23-year-old man studying economics as an undergraduate student,9,10,1,4,4,9,9,1,8,165
+A49,O,a 23-year-old man studying economics as an undergraduate student,10,10,3,6,3,12,10,0,10,175
+A49,O,a 23-year-old man studying economics as an undergraduate student,11,11,4,1,5,10,10,1,9,184
+A49,O,a 23-year-old man studying economics as an undergraduate student,12,10,1,2,6,9,9,1,8,192
+A49,O,a 23-year-old man studying economics as an undergraduate student,13,10,3,5,1,9,9,1,8,200
+A49,O,a 23-year-old man studying economics as an undergraduate student,14,10,1,4,5,10,10,0,10,210
+A49,O,a 23-year-old man studying economics as an undergraduate student,15,11,4,6,5,15,11,0,11,221
+A49,O,a 23-year-old man studying economics as an undergraduate student,16,11,6,2,1,9,9,2,7,228
+A49,O,a 23-year-old man studying economics as an undergraduate student,17,10,3,3,2,8,8,2,6,234
+A49,O,a 23-year-old man studying economics as an undergraduate student,18,10,2,2,2,6,6,4,2,236
+A49,O,a 23-year-old man studying economics as an undergraduate student,19,10,2,3,6,11,10,0,10,246
+A49,O,a 23-year-old man studying economics as an undergraduate student,20,11,4,4,4,12,11,0,11,257
+A49,O,a 23-year-old man studying economics as an undergraduate student,21,11,2,4,5,11,11,0,11,268
+A49,O,a 23-year-old man studying economics as an undergraduate student,22,11,3,1,6,10,10,1,9,277
+A49,O,a 23-year-old man studying economics as an undergraduate student,23,10,4,4,6,14,10,0,10,287
+A49,O,a 23-year-old man studying economics as an undergraduate student,24,11,3,5,3,11,11,0,11,298
+A49,O,a 23-year-old man studying economics as an undergraduate student,25,11,2,5,6,13,11,0,11,309
+A50,O,a 32-year-old man studying communications as a master's student,1,10,3,1,5,9,9,1,8,108
+A50,O,a 32-year-old man studying communications as a master's student,2,10,2,6,1,9,9,1,8,116
+A50,O,a 32-year-old man studying communications as a master's student,3,10,1,6,5,12,10,0,10,126
+A50,O,a 32-year-old man studying communications as a master's student,4,11,4,4,5,13,11,0,11,137
+A50,O,a 32-year-old man studying communications as a master's student,5,11,5,5,3,13,11,0,11,148
+A50,O,a 32-year-old man studying communications as a master's student,6,11,6,5,5,16,11,0,11,159
+A50,O,a 32-year-old man studying communications as a master's student,7,11,4,2,1,7,7,4,3,162
+A50,O,a 32-year-old man studying communications as a master's student,8,11,1,5,6,12,11,0,11,173
+A50,O,a 32-year-old man studying communications as a master's student,9,11,5,3,3,11,11,0,11,184
+A50,O,a 32-year-old man studying communications as a master's student,10,11,1,5,5,11,11,0,11,195
+A50,O,a 32-year-old man studying communications as a master's student,11,11,4,1,1,6,6,5,1,196
+A50,O,a 32-year-old man studying communications as a master's student,12,10,2,5,3,10,10,0,10,206
+A50,O,a 32-year-old man studying communications as a master's student,13,11,1,4,4,9,9,2,7,213
+A50,O,a 32-year-old man studying communications as a master's student,14,10,6,3,2,11,10,0,10,223
+A50,O,a 32-year-old man studying communications as a master's student,15,11,5,6,4,15,11,0,11,234
+A50,O,a 32-year-old man studying communications as a master's student,16,11,1,1,5,7,7,4,3,237
+A50,O,a 32-year-old man studying communications as a master's student,17,10,1,1,6,8,8,2,6,243
+A50,O,a 32-year-old man studying communications as a master's student,18,10,4,3,1,8,8,2,6,249
+A50,O,a 32-year-old man studying communications as a master's student,19,10,4,5,1,10,10,0,10,259
+A50,O,a 32-year-old man studying communications as a master's student,20,10,1,5,2,8,8,2,6,265
+A50,O,a 32-year-old man studying communications as a master's student,21,10,3,4,4,11,10,0,10,275
+A50,O,a 32-year-old man studying communications as a master's student,22,11,3,2,2,7,7,4,3,278
+A50,O,a 32-year-old man studying communications as a master's student,23,10,2,6,1,9,9,1,8,286
+A50,O,a 32-year-old man studying communications as a master's student,24,10,5,1,4,10,10,0,10,296
+A50,O,a 32-year-old man studying communications as a master's student,25,10,4,2,3,9,9,1,8,304
