@@ -8,7 +8,7 @@ participant's condition, stores everything, and prints the next-day prompt.
 Commands (agents use only these):
   status  <id>                      show the current day's prompt
   order   <id> <q>                  submit order quantity q (integer 3..18)
-  debrief <id> <answer> "<text>"    after day 25: comprehension answer + one-line strategy
+  debrief <id> <profit> <lowest> <highest> "<text>"   after day 25: two comprehension checks + one-line strategy
 Setup (experimenter only):
   init    <id> <O|C> "<persona>"
 """
@@ -76,7 +76,10 @@ def main():
         return
     if cmd == "debrief":
         if len(s["rounds"]) < ROUNDS: sys.exit("The game is not over yet.")
-        s["debrief"] = dict(answer=a[2], strategy=a[3] if len(a) > 3 else "")
+        if len(a) >= 6:   # new format: profit check, range check (lowest, highest), strategy
+            s["debrief"] = dict(answer=a[2], range_min=a[3], range_max=a[4], strategy=a[5])
+        else:             # old format kept for earlier data
+            s["debrief"] = dict(answer=a[2], strategy=a[3] if len(a) > 3 else "")
         save(s["id"], s); print("Thank you for participating. You are finished."); return
     sys.exit(__doc__)
 

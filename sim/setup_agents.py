@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Create the 50 AI participants: 25 condition O + 25 condition C, balanced, random order,
-each with a randomly drawn student persona (mirrors 'undergraduate and graduate students from a
-variety of majors' in the original sample). Writes state files and one prompt file per agent."""
+with NO persona (identical prompt for every agent; only the payment wording differs). Writes state files and one prompt file per agent."""
 import random, subprocess, sys, json, os, argparse
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
@@ -32,7 +31,7 @@ Start Empty for Next Day: Then discard all leftover units from your store and st
 
 You begin with 100 play dollars. Your goal is to maximize your play dollars by the end of the 25 days."""}
 
-TEMPLATE = """You are a participant in a paid decision-making experiment at a university behavioral lab ("Supply Chain Ordering Decisions"). You are {persona}. Take part the way that person genuinely would; you are a human participant, not an AI assistant, and nobody will help you with the task.
+TEMPLATE = """You are a participant in a paid decision-making experiment at a university behavioral lab ("Supply Chain Ordering Decisions"). Take part the way a human participant genuinely would; you are not an AI assistant, and nobody will help you with the task.
 
 Thank you for participating in this experiment. This research is very important to us as researchers, so please try your best. You will receive $5 minimum for participating plus a bonus equal to 1 real dollar for every 50 play dollars you earn by the end of the game (rounded to the nearest dollar). You cannot receive a negative bonus, even if you lost money.
 
@@ -46,8 +45,10 @@ HOW TO PLAY. You play by running shell commands, and only these commands (your p
   1. See today's prompt:      python3 {env} status {pid}
   2. Place today's order:     python3 {env} order {pid} <number>
 Each order command shows what happened that day and the prompt for the next day. Keep placing one order per day until Day 25 is finished (25 orders in total). You can see all earlier days in this conversation, so you can use that history however you like.
-When the 25 days are over, run:   python3 {env} debrief {pid} <number> "<one sentence on how you decided your orders>"
-where <number> is your answer to this check question: "On a day when you order 10 units and the demand turns out to be 7, by how many play dollars does your balance change that day? (use a minus sign if it goes down)".
+When the 25 days are over, run:   python3 {env} debrief {pid} <profit> <lowest> <highest> "<one sentence on how you decided your orders>"
+where <profit> is your answer to check question 1, <lowest> and <highest> are your answers to check question 2:
+  1. "On a day when you order 10 units and the demand turns out to be 7, by how many play dollars does your balance change that day? (use a minus sign if it goes down)"
+  2. "What are the lowest and the highest possible demand on any day (the lowest and highest result of rolling the three dice and adding them up)?"
 
 RULES. Use only the commands above. Do not open, read, list or search any files or folders, do not look at the game program, and do not use any calculator, script, or other tool. Decide for yourself, as a participant would. No need to explain your reasoning for each day; just play. Your final message should only say "Done" and your final play-dollar balance."""
 
@@ -67,9 +68,9 @@ def main():
     pdir.mkdir(exist_ok=True)
     for n, cond in enumerate(conds, 1):
         pid = f"A{n:02d}"
-        persona = f"a {random.randint(18,34)}-year-old {random.choice(GENDER)} studying {random.choice(MAJORS)} as {random.choice(LEVELS)} student"
+        persona = "none"
         subprocess.run([sys.executable, str(ENV), "init", pid, cond, persona], check=True, env=env_vars)
-        (pdir/f"{pid}.txt").write_text(strip_bonus(TEMPLATE, v).format(persona=persona, instr=instr[cond], pid=pid, env=ENV))
+        (pdir/f"{pid}.txt").write_text(strip_bonus(TEMPLATE, v).format(instr=instr[cond], pid=pid, env=ENV))
         meta.append(dict(id=pid, cond=cond, persona=persona))
     (ROOT/"data"/f"agent_roster{suffix}.json").write_text(json.dumps(meta, indent=1))
     print(len(meta), "agents;", sum(m["cond"]=="O" for m in meta), "O /", sum(m["cond"]=="C" for m in meta), "C")

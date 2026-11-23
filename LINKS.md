@@ -1,4 +1,5 @@
 # Group Project 3 – links (published in Claude)
+Note: the report, deck and published dashboard below were built from the FIRST run (Claude Sonnet sub-agents with personas, one comprehension check). The results in this folder (Haiku 5.5 + Llama 3.1, four wordings, no personas, two checks) replace them; refresh those documents before submitting.
 - Short report (doc): https://claude.ai/artifact/18vo23PDQQwnmjZBaW3GV6
 - Full assignment guide (doc): https://claude.ai/artifact/P7fbagJCTemx7hWkFphhya
 - Presentation deck (11 slides): https://claude.ai/artifact/SrQjhDbhZHyCnbpY4F2YAm

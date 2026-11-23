@@ -1,0 +1,40 @@
+{
+ "_note": "Fallback numbers copied from the analyze.py output the team ran on its own computer (AI_TAG=_langchain_v1 / _langchain_v2) and the v3 quick_check pilot. If analysis/results_langchain_<v>.json exists, the dashboard uses that instead.",
+ "v1": {
+  "mean_O": 13.6864,
+  "mean_C": 13.68,
+  "diff": 0.0064,
+  "p": 0.9794,
+  "d": 0.0073,
+  "lo": -0.4817,
+  "hi": 0.4945,
+  "n": 50,
+  "fail": 48,
+  "share": 0.0632
+ },
+ "v2": {
+  "mean_O": 11.5792,
+  "mean_C": 12.024,
+  "diff": -0.4448,
+  "p": 0.3183,
+  "d": -0.2824,
+  "lo": -1.3181,
+  "hi": 0.4285,
+  "n": 50,
+  "fail": 47,
+  "share": 0.0864
+ },
+ "v3": {
+  "mean_O": 13.62,
+  "mean_C": 13.38,
+  "diff": 0.25,
+  "p": null,
+  "d": null,
+  "lo": null,
+  "hi": null,
+  "n": 10,
+  "fail": 10,
+  "share": 0.07,
+  "pilot": true
+ }
+}

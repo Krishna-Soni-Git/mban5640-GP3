@@ -20,8 +20,15 @@ for p in files:
         continue
     d = s.get("debrief") or {}
     ans = d.get("check_answer", d.get("answer"))
-    # check question: order 10, demand 7. O: 2*7-10 = +4.  C: 10-2*3 = +4.  (both +4)
-    passed = ans is not None and int(ans) == 4
+    def num(x):
+        try: return int(float(str(x).replace("+", "").strip()))
+        except Exception: return None
+    # check 1: order 10, demand 7. O: 2*7-10 = +4.  C: 10-2*3 = +4.  (both +4)
+    # check 2: lowest / highest demand from three dice = 3 and 18 (only if the run recorded it)
+    ok1 = num(ans) == 4
+    ok2 = (num(d.get("range_min")) == 3 and num(d.get("range_max")) == 18) if "range_min" in d else True
+    passed = ok1 and ok2
+    if "range_min" in d: ans = f"{ans} | range {d.get('range_min')}-{d.get('range_max')}"
     by[s["cond"]].append(st.mean(orders))
     rows.append((s["id"], s["cond"], len(orders), round(st.mean(orders), 2),
                  round(100 * sum(o in (10, 11) for o in orders) / len(orders)), ans, "pass" if passed else "FAIL"))
@@ -38,4 +45,4 @@ if by["O"] and by["C"]:
     print(f"O - C gap = {st.mean(by['O']) - st.mean(by['C']):.2f}   (humans in the paper: 1.98)")
 allo = [o for p in files for o in (r["order"] for r in json.loads(p.read_text())["rounds"])]
 print(f"Orders at 10-11 overall: {100 * sum(o in (10, 11) for o in allo) / len(allo):.0f}%   (best answer is 10 or 11)")
-print(f"Failed comprehension check: {sum(r[6] == 'FAIL' for r in rows)} of {len(rows)}")
+print(f"Failed comprehension checks (profit and/or range): {sum(r[6] == 'FAIL' for r in rows)} of {len(rows)}")

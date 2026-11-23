@@ -5,28 +5,30 @@
   "orders_out_of_range": 0,
   "missing": 0,
   "demand_mismatch": 0,
-  "comprehension_fail": 49,
+  "comprehension_fail": 46,
+  "fail_profit_check": 46,
+  "fail_range_check": 6,
   "payoff_rule_violations": 0,
-  "dice_mean_demand": 10.346
+  "dice_mean_demand": 10.458
  },
  "extra": {
   "share_orders_equal_10_or_11": {
-   "C": 0.0816,
-   "O": 0.0736
+   "C": 0.0768,
+   "O": 0.0768
   },
   "within_agent_sd": {
-   "C": 3.8456108434834944,
-   "O": 3.1677135719290614
+   "C": 2.912724315152157,
+   "O": 3.2443742543340504
   },
   "mean_final_cash": {
-   "C": 244.8,
-   "O": 244.24
+   "C": 257.08,
+   "O": 245.04
   },
   "order_by_half": {
-   "O_days1_5": 10.2,
-   "O_days6_25": 14.27,
-   "C_days1_5": 9.2,
-   "C_days6_25": 13.24
+   "O_days1_5": 9.744,
+   "O_days6_25": 14.1,
+   "C_days1_5": 10.816,
+   "C_days6_25": 13.866
   },
   "human_within_sd": {
    "UM online": {
@@ -43,8 +45,8 @@
    }
   },
   "mean_daily_profit": {
-   "C": 5.792,
-   "O": 5.7696
+   "C": 6.2832,
+   "O": 5.8016
   },
   "human_pooled_diff": 1.1454545454545464
  },
@@ -129,20 +131,20 @@
    "sample": "AI agents (all 50)",
    "n_O": 25,
    "n_C": 25,
-   "mean_O": 13.456,
-   "mean_C": 12.432,
-   "diff": 1.024,
-   "p_ols": 0.0011600594,
-   "dev_O": 2.956,
-   "dev_C": 1.932,
-   "sd_between_O": 0.8633268983,
-   "sd_between_C": 1.2043808921,
-   "t": 3.4551505693,
-   "p_cluster": 0.001033113,
-   "p_mannwhitney": 0.0044586467,
-   "cohen_d": 0.977264159,
-   "ci_lo": 0.4431164872,
-   "ci_hi": 1.6048835128
+   "mean_O": 13.2288,
+   "mean_C": 13.256,
+   "diff": -0.0272,
+   "p_ols": 0.9142464104,
+   "dev_O": 2.7288,
+   "dev_C": 2.756,
+   "sd_between_O": 0.9582289218,
+   "sd_between_C": 0.8124858973,
+   "t": -0.1082528097,
+   "p_cluster": 0.9133866134,
+   "p_mannwhitney": 0.7195595074,
+   "cohen_d": -0.0306185183,
+   "ci_lo": -0.5196768249,
+   "ci_hi": 0.4652768249
   }
  ]
 }

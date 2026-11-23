@@ -1,0 +1,169 @@
+{
+ "checks": {
+  "n_agents": 50,
+  "n_rows": 1250,
+  "orders_out_of_range": 0,
+  "missing": 0,
+  "demand_mismatch": 0,
+  "comprehension_fail": 33,
+  "fail_profit_check": 33,
+  "fail_range_check": 0,
+  "payoff_rule_violations": 0,
+  "dice_mean_demand": 10.502
+ },
+ "extra": {
+  "share_orders_equal_10_or_11": {
+   "C": 0.9456,
+   "O": 0.8944
+  },
+  "within_agent_sd": {
+   "C": 0.39688531746247085,
+   "O": 0.10859964517110919
+  },
+  "mean_final_cash": {
+   "C": 301.44,
+   "O": 300.68
+  },
+  "order_by_half": {
+   "O_days1_5": 11.024,
+   "O_days6_25": 11.114,
+   "C_days1_5": 10.648,
+   "C_days6_25": 10.762
+  },
+  "human_within_sd": {
+   "UM online": {
+    "C": 1.4228581947967738,
+    "O": 1.4198630947547248
+   },
+   "UTD online": {
+    "C": 1.4044989993654502,
+    "O": 1.8615295021236755
+   },
+   "UM in-person": {
+    "C": 1.1943269582228864,
+    "O": 2.1054254959891683
+   }
+  },
+  "mean_daily_profit": {
+   "C": 8.0576,
+   "O": 8.0272
+  },
+  "human_pooled_diff": 1.1454545454545464
+ },
+ "table": [
+  {
+   "sample": "Original (Duke) *",
+   "n_O": 29,
+   "n_C": 21,
+   "mean_O": 11.728,
+   "mean_C": 9.749,
+   "diff": 1.979,
+   "p_ols": 1.612e-06,
+   "dev_O": 1.228,
+   "dev_C": -0.751,
+   "sd_between_O": null,
+   "sd_between_C": null,
+   "t": null,
+   "p_cluster": null,
+   "p_mannwhitney": null,
+   "cohen_d": null,
+   "ci_lo": null,
+   "ci_hi": null
+  },
+  {
+   "sample": "UM online",
+   "n_O": 27,
+   "n_C": 25,
+   "mean_O": 10.8637037037,
+   "mean_C": 9.9648,
+   "diff": 0.8989037037,
+   "p_ols": 0.0754120495,
+   "dev_O": 0.3637037037,
+   "dev_C": -0.5352,
+   "sd_between_O": 1.8259078841,
+   "sd_between_C": 1.7367525251,
+   "t": 1.8157204524,
+   "p_cluster": 0.072082206,
+   "p_mannwhitney": 0.0936794732,
+   "cohen_d": 0.5039631374,
+   "ci_lo": -0.0695259649,
+   "ci_hi": 1.8673333723
+  },
+  {
+   "sample": "UTD online",
+   "n_O": 25,
+   "n_C": 25,
+   "mean_O": 11.2848,
+   "mean_C": 9.8656,
+   "diff": 1.4192,
+   "p_ols": 0.0036016018,
+   "dev_O": 0.7848,
+   "dev_C": -0.6344,
+   "sd_between_O": 1.665385641,
+   "sd_between_C": 1.6120330849,
+   "t": 3.0615343561,
+   "p_cluster": 0.0032768801,
+   "p_mannwhitney": 0.0046032009,
+   "cohen_d": 0.8659326816,
+   "ci_lo": 0.5106255153,
+   "ci_hi": 2.3277744847
+  },
+  {
+   "sample": "UM in-person",
+   "n_O": 25,
+   "n_C": 27,
+   "mean_O": 10.9616,
+   "mean_C": 9.8340740741,
+   "diff": 1.1275259259,
+   "p_ols": 0.0099701663,
+   "dev_O": 0.4616,
+   "dev_C": -0.6659259259,
+   "sd_between_O": 1.8857882525,
+   "sd_between_C": 1.0674313498,
+   "t": 2.6789406308,
+   "p_cluster": 0.0106464186,
+   "p_mannwhitney": 0.0031849155,
+   "cohen_d": 0.7435546168,
+   "ci_lo": 0.2857561205,
+   "ci_hi": 1.9692957313
+  },
+  {
+   "sample": "AI agents (all 50)",
+   "n_O": 25,
+   "n_C": 25,
+   "mean_O": 11.096,
+   "mean_C": 10.7392,
+   "diff": 0.3568,
+   "p_ols": 0.000344896,
+   "dev_O": 0.596,
+   "dev_C": 0.2392,
+   "sd_between_O": 0.2558645475,
+   "sd_between_C": 0.3857667689,
+   "t": 3.8539078743,
+   "p_cluster": 0.000300108,
+   "p_mannwhitney": 1.7224e-06,
+   "cohen_d": 1.0900497568,
+   "ci_lo": 0.1753405508,
+   "ci_hi": 0.5382594492
+  },
+  {
+   "sample": "AI agents (passed check)",
+   "n_O": 5,
+   "n_C": 12,
+   "mean_O": 11.064,
+   "mean_C": 10.5633333333,
+   "diff": 0.5006666667,
+   "p_ols": 0.003139461,
+   "dev_O": 0.564,
+   "dev_C": 0.0633333333,
+   "sd_between_O": 0.1431083506,
+   "sd_between_C": 0.3005247935,
+   "t": 3.5128786547,
+   "p_cluster": 0.0001926241,
+   "p_mannwhitney": 0.0017551951,
+   "cohen_d": 1.8698724534,
+   "ci_lo": 0.2893657341,
+   "ci_hi": 0.7119675992
+  }
+ ]
+}

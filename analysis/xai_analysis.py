@@ -5,14 +5,16 @@
    feature subsets, interventional expectation over a background sample), exactly the procedure on lecture slides 17-22.
 Human files contain orders only (no dice), so the like-for-like comparison uses features available for both groups:
  cond_O, day, prev_order.  AI data also has dice, so an extended AI model adds prev_demand and prev_change.
-Run: python3 analysis/xai_analysis.py   -> analysis/xai_results.json, analysis/fig_xai.png"""
-import json, itertools, math
+Run: python3 analysis/xai_analysis.py   -> analysis/xai_results.json, analysis/fig_xai.png (Claude Haiku)
+     AI_TAG=_langchain python3 analysis/xai_analysis.py  -> the same for Llama (xai_results_langchain.json)"""
+import json, itertools, math, os
 from pathlib import Path
 import numpy as np, pandas as pd
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.model_selection import GroupKFold, cross_val_predict
 ROOT = Path(__file__).resolve().parent.parent
 rng = np.random.default_rng(0)
+TAG = os.environ.get("AI_TAG", "")      # "" = Claude Haiku (main), "_langchain" = Llama; same tags as analyze.py
 
 def human_long():
     fr = []
@@ -26,7 +28,7 @@ def human_long():
     return l.dropna(subset=["prev_order"]).rename(columns={"pid":"id"})
 
 def ai_long():
-    l = pd.read_csv(ROOT/"data/ai_agent_long.csv").sort_values(["agent_id","day"])
+    l = pd.read_csv(ROOT/f"data/ai_agent_long{TAG}.csv").sort_values(["agent_id","day"])
     g = l.groupby("agent_id")
     l["prev_order"] = g.order.shift(1); l["prev_demand"] = g.demand.shift(1); l["prev_change"] = g.change.shift(1)
     l["cond_O"] = (l.condition=="O").astype(int)
@@ -76,7 +78,7 @@ common = ["cond_O", "day", "prev_order"]; ext = common + ["prev_demand", "prev_c
 out = dict(
   ols_human=ols(H, common), ols_ai_common=ols(A, common), ols_ai_extended=ols(A, ext),
   shap_human=run(H, common, "Humans (3 replications)"), shap_ai_common=run(A, common, "AI agents, same features"), shap_ai_extended=run(A, ext, "AI agents + dice features"))
-json.dump(out, open(ROOT/"analysis/xai_results.json","w"), indent=1)
+json.dump(out, open(ROOT/f"analysis/xai_results{TAG}.json","w"), indent=1)
 
 import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
 fig, ax = plt.subplots(1, 2, figsize=(11, 3.8))
@@ -84,5 +86,5 @@ for a, keys, ttl in [(ax[0], ["shap_human","shap_ai_common"], "Same features, hu
     feats = list(out[keys[0]]["mean_abs_shap"]); x = np.arange(len(feats)); w = .8/len(keys)
     for i, k in enumerate(keys): a.bar(x+i*w-.4+w/2, [out[k]["mean_abs_shap"][f] for f in feats], w, label=out[k]["label"]+f" (CV R²={out[k]['cv_R2_by_agent_group']:.2f})")
     a.set_xticks(x); a.set_xticklabels(feats, fontsize=8); a.set_ylabel("mean |Shapley value| (order units)"); a.set_title(ttl); a.legend(fontsize=7)
-plt.tight_layout(); plt.savefig(ROOT/"analysis/fig_xai.png", dpi=160)
+plt.tight_layout(); plt.savefig(ROOT/f"analysis/fig_xai{TAG}.png", dpi=160)
 print(json.dumps(out, indent=1))

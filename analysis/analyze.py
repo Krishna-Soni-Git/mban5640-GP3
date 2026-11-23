@@ -20,11 +20,17 @@ for f in sorted(glob.glob(str(STATE/"A*.json"))):
         print("INCOMPLETE:", s["id"], len(s["rounds"])); continue
     for r in s["rounds"]:
         rows.append(dict(agent_id=s["id"], condition=s["cond"], persona=s["persona"], **r))
-    ans = str(s["debrief"]["answer"]).replace("+", "").strip()
-    try: ok = int(float(ans)) == 4
-    except: ok = False
-    parts.append(dict(agent_id=s["id"], condition=s["cond"], persona=s["persona"], comprehension_answer=s["debrief"]["answer"],
-                      comprehension_fail=int(not ok), final_cash=s["cash"], strategy=s["debrief"]["strategy"]))
+    def num(x):
+        try: return int(float(str(x).replace("+", "").strip()))
+        except Exception: return None
+    d = s["debrief"]
+    ok_profit = num(d["answer"]) == 4                                  # check 1: order 10, demand 7 -> +4
+    has_range = "range_min" in d
+    ok_range = (num(d.get("range_min")) == 3 and num(d.get("range_max")) == 18) if has_range else True   # check 2: dice range 3..18
+    parts.append(dict(agent_id=s["id"], condition=s["cond"], persona=s["persona"], comprehension_answer=d["answer"],
+                      range_min_answer=d.get("range_min"), range_max_answer=d.get("range_max"),
+                      fail_profit_check=int(not ok_profit), fail_range_check=int(not ok_range),
+                      comprehension_fail=int(not (ok_profit and ok_range)), final_cash=s["cash"], strategy=d["strategy"]))
 long = pd.DataFrame(rows); P = pd.DataFrame(parts)
 long.to_csv(ROOT/f"data/ai_agent_long{TAG}.csv", index=False)
 wide = long.pivot(index="agent_id", columns="day", values="order"); wide.columns = [f"order{c}" for c in wide.columns]
@@ -35,7 +41,8 @@ wide.to_csv(ROOT/f"data/ai_agent_wide{TAG}.csv", index=False)
 # ---------- 2. validate ----------
 chk = dict(n_agents=len(P), n_rows=len(long), orders_out_of_range=int(((long.order<3)|(long.order>18)).sum()),
            missing=int(long.isna().sum().sum()), demand_mismatch=int((long.demand != long.d1+long.d2+long.d3).sum()),
-           comprehension_fail=int(P.comprehension_fail.sum()))
+           comprehension_fail=int(P.comprehension_fail.sum()),
+           fail_profit_check=int(P.fail_profit_check.sum()), fail_range_check=int(P.fail_range_check.sum()))
 # payoff rule check (O: 2*sold-q ; C: q-2*left)
 exp = np.where(long.condition=="O", 2*long.sold - long.order, long.order - 2*long.leftover)
 chk["payoff_rule_violations"] = int((exp != long.change).sum())

@@ -1,2 +1,5 @@
 .env
 __pycache__/
+_sync_tmp/
+*.tgz
+.venv/
