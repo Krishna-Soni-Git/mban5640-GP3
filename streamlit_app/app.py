@@ -58,12 +58,60 @@ h1,h2,h3,.hero h1 {font-family:'Bricolage Grotesque','Segoe UI',sans-serif !impo
 .pace-ok {color:#0E7A4F; font-weight:600;} .pace-bad {color:#B3261E; font-weight:600;}
 .footer {text-align:center; color:#7A8794; font-size:.8rem; margin:26px 0 6px 0;}
 .lead {font-size:1.25rem; line-height:1.5; color:#14202B;}
+.fhead {font:700 1.02rem 'Bricolage Grotesque',sans-serif; padding:4px 10px; border-radius:8px; display:inline-block; margin-bottom:2px;}
+.fhead.o {background:#F6E3D2; color:#9A4D0C;} .fhead.c {background:#D5ECEE; color:#0E5A62;} .fhead.e {background:#E9E5F6; color:#463A8C;}
+.fnote {font-size:.95rem; line-height:1.45; color:#3A4558;}
 </style>
 """
 
 
+DARK_CSS = """
+<style>
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {background:#0E1522 !important; color:#E3E8EF;}
+.stApp .stMarkdown, .stApp .stMarkdown p, .stApp li, .stApp .katex, [data-testid="stWidgetLabel"] p, .stApp label p {color:#E3E8EF !important;}
+[data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p, .cap, .kick, .footer {color:#9AA8B5 !important;}
+.big, .sec, .tile b, .stApp h1, .stApp h2, .stApp h3, .stMarkdown b, .stMarkdown strong {color:#F4F6FA !important;}
+.take {color:#5CC6CF !important;} .lead {color:#E3E8EF !important;}
+[data-testid="stVerticalBlockBorderWrapper"] {background:#151E2E !important; border-color:#2A3850 !important; box-shadow:none !important;}
+.tile {background:#1B2638 !important; border-color:#2C3B54 !important; color:#E3E8EF !important;}
+.card-o, .card-c, .verdict {background:#1B2638 !important; color:#E3E8EF !important; box-shadow:none !important;}
+[data-testid="stMetric"] {background:#1B2638 !important; border-color:#2C3B54 !important; box-shadow:none !important;}
+[data-testid="stMetricValue"], [data-testid="stMetricValue"] div {color:#F4F6FA !important;}
+[data-testid="stMetricLabel"] p {color:#9AA8B5 !important;}
+.fnote {color:#C9D3E3 !important;}
+.fhead.o {background:#4A2B12 !important; color:#F5B47A !important;} .fhead.c {background:#103E44 !important; color:#7FD3DA !important;} .fhead.e {background:#2E2754 !important; color:#C3B8F5 !important;}
+.stApp button {background:#1B2638; color:#E3E8EF; border-color:#34445F;}
+.stApp button p {color:#E3E8EF !important;}
+.stApp button[kind="primary"], .stApp button[kind="primary"]:hover {background:#17808A !important; border-color:#17808A !important;}
+.stApp button[kind="primary"] p {color:#fff !important;}
+.stApp button[kind="pillsActive"], .stApp button[kind="segmented_controlActive"] {background:#3A2A1A !important; border-color:#C8681A !important;}
+.stApp button[kind="pillsActive"] p, .stApp button[kind="segmented_controlActive"] p {color:#F5B47A !important;}
+[data-testid="stExpander"] details, [data-testid="stExpander"] summary {background:#151E2E !important; border-color:#2A3850 !important; color:#E3E8EF !important;}
+[data-testid="stCode"] pre, .stCode pre {background:#1B2638 !important;} [data-testid="stCode"] code {color:#E3E8EF !important;}
+[data-testid="stAlert"] {background:#1B2638 !important; color:#E3E8EF !important;}
+[data-testid="stProgress"] [role="progressbar"] > div {background:#2A3850 !important;} [data-testid="stProgress"] [role="progressbar"] > div > div {background:#C8681A !important;}
+blockquote {border-left-color:#5CC6CF !important;} blockquote p {color:#C9D3E3 !important;}
+</style>
+"""
+
+
+def is_dark():
+    return bool(st.session_state.get("dark", False))
+
+
+def ink():
+    """Colour for 'human' marks: navy on light, near-white on dark."""
+    return "#E3E8EF" if is_dark() else "#14213D"
+
+
 def polish(chart):
     """Consistent chart styling."""
+    if is_dark():
+        return (chart.configure(background="transparent")
+                     .configure_axis(gridColor="#26334A", domainColor="#5A6B7A", tickColor="#5A6B7A", labelFontSize=13, titleFontSize=13, labelColor="#C9D3E3", titleColor="#C9D3E3")
+                     .configure_legend(labelFontSize=13, titleFontSize=13, labelColor="#C9D3E3", titleColor="#9AA8B5")
+                     .configure_header(labelColor="#E3E8EF", titleColor="#E3E8EF")
+                     .configure_view(stroke=None))
     return (chart.configure_axis(gridColor="#E3E7EB", domainColor="#9AA8B5", tickColor="#9AA8B5", labelFontSize=13, titleFontSize=13, labelColor="#3A4558", titleColor="#3A4558")
                  .configure_legend(labelFontSize=13, titleFontSize=13)
                  .configure_view(stroke=None))
@@ -285,7 +333,7 @@ def wording_chart(rows):
     """Dot = O minus C gap; line = 95% confidence interval. Click a group in the legend to highlight it."""
     d = pd.DataFrame(rows)
     order = list(d.label)
-    pal = alt.Scale(domain=["Humans", "Claude", "Llama"], range=["#14213D", OPT, "#8A97A6"])
+    pal = alt.Scale(domain=["Humans", "Claude", "Llama"], range=[ink(), OPT, "#8A97A6"])
     pick = alt.selection_point(fields=["kind"], bind="legend")
     col = alt.Color("kind:N", scale=pal, legend=alt.Legend(title="Group (click to highlight)", orient="top"))
     op = alt.condition(pick, alt.value(1), alt.value(0.12))
@@ -447,7 +495,22 @@ def step_original():
     a, b = st.columns(2)
     a.markdown("<div class='card-o'><b>O · Own financing</b><br>You pay 1 play dollar per unit when you order. You receive 2 play dollars per unit sold.</div>", unsafe_allow_html=True)
     b.markdown("<div class='card-c'><b>C · Customer financing</b><br>You receive 1 play dollar per unit when you order. You pay 2 play dollars per unit left unsold.</div>", unsafe_allow_html=True)
-    st.latex(r"\Delta_O = 2\min(q,D) - q \qquad \Delta_C = q - 2\max(q-D,0)\qquad\Rightarrow\ \Delta_O=\Delta_C")
+    st.markdown("<div class='cap' style='margin-top:12px'><b>q</b> = units ordered &nbsp;·&nbsp; <b>D</b> = demand (the dice total) &nbsp;·&nbsp; "
+                "<b>Δ</b> = the day's profit in play dollars</div>", unsafe_allow_html=True)
+    f1, f2, f3 = st.columns(3)
+    with f1.container(border=True):
+        st.markdown("<div class='fhead o'>① Profit under O</div>", unsafe_allow_html=True)
+        st.latex(r"\small \Delta_O = 2\min(q,D) - q")
+        st.markdown("<div class='fnote'><b>$2 × units sold</b>, minus <b>$1 × units ordered</b> (paid up front).</div>", unsafe_allow_html=True)
+    with f2.container(border=True):
+        st.markdown("<div class='fhead c'>② Profit under C</div>", unsafe_allow_html=True)
+        st.latex(r"\small \Delta_C = q - 2\max(q-D,0)")
+        st.markdown("<div class='fnote'><b>$1 × units ordered</b> (received up front), minus <b>$2 × units left over</b>.</div>", unsafe_allow_html=True)
+    with f3.container(border=True):
+        st.markdown("<div class='fhead e'>③ Why they are always equal</div>", unsafe_allow_html=True)
+        st.latex(r"\small \Delta_O = \Delta_C")
+        st.markdown("<div class='fnote'>Put <i>sold = ordered − leftover</i> into ①: 2(q − leftover) − q = <b>q − 2 × leftover</b>, which is ②. "
+                    "Same profit for every order and every dice roll.</div>", unsafe_allow_html=True)
     c1, c2 = st.columns(2)
     tile(c1, "<b>How the experiment worked</b><br>99 Duke students played a widget shop for <b>25 days</b>, starting with <b>100 play dollars</b>, using poker chips and real dice. Each day: choose an order, then <b>three dice</b> are rolled and their sum is demand (3 to 18, average 10.5). Leftovers are discarded. A real bonus depended on the final play dollars.")
     tile(c2, "<b>Same profit, different timing</b><br>For every order and every dice roll the schemes pay exactly the same, and the best order is <b>10 or 11</b>. Each person played one scheme. The original also had a neutral scheme <b>S</b> (all money moves after demand); the replications, and we, compare O with C.")
@@ -685,6 +748,10 @@ def present_tab():
 # ----------------------------------------------------------------- layout
 def main():
     st.markdown(CSS, unsafe_allow_html=True)
+    _, tcol = st.columns([4, 1])
+    tcol.toggle("Dark mode", key="dark")
+    if is_dark():
+        st.markdown(DARK_CSS, unsafe_allow_html=True)
     st.markdown("""<div class='hero'><h1>Payment Framing Lab</h1>
       <p>Same profit, different wording. Can AI agents reproduce the bias people show?</p>
       <span class='chip o'>O · OWN FINANCING</span><span class='chip c'>C · CUSTOMER FINANCING</span><span class='chip n'>Chen, Kök &amp; Tong (2013) replication with AI agents</span></div>""", unsafe_allow_html=True)
