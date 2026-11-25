@@ -246,18 +246,24 @@ def load_wording():
 
 # ----------------------------------------------------------------- charts
 def dumbbell(rows):
+    """Mean order under O and C per group. Click O or C in the legend to highlight one scheme."""
     df = pd.DataFrame([r for r in rows if r["O"] is not None and r["C"] is not None])
     df["gap"] = (df.O - df.C).round(2)
     order = list(df.label)
     long = pd.concat([df[["label", "C", "gap"]].rename(columns={"C": "mean"}).assign(scheme="C"),
                       df[["label", "O", "gap"]].rename(columns={"O": "mean"}).assign(scheme="O")])
     XS = alt.Scale(domain=[8.5, 14])
+    y = alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260, labelOverlap=False))
+    pick = alt.selection_point(fields=["scheme"], bind="legend")
     band = alt.Chart(pd.DataFrame({"a": [10], "b": [11]})).mark_rect(opacity=0.13, color=OPT).encode(x=alt.X("a:Q", scale=XS), x2="b:Q", tooltip=alt.value(None))
-    rule = alt.Chart(df).mark_rule(color="#5A6B7A", strokeWidth=2).encode(y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260, labelOverlap=False)), x=alt.X("C:Q", scale=XS, title="Mean order (units)", axis=alt.Axis(values=[9, 10, 11, 12, 13, 14], format="d")), x2="O:Q")
-    pts = alt.Chart(long).mark_circle(size=170, opacity=1).encode(
-        y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260, labelOverlap=False)), x=alt.X("mean:Q", scale=XS),
-        color=alt.Color("scheme:N", scale=alt.Scale(domain=["O", "C"], range=[O_COL, C_COL]), legend=alt.Legend(title="Scheme", orient="top")),
-        tooltip=["label", "scheme", alt.Tooltip("mean:Q", format=".2f"), "gap"])
+    rule = alt.Chart(df).mark_rule(color="#5A6B7A", strokeWidth=2).encode(y=y, x=alt.X("C:Q", scale=XS, title="Mean order (units)", axis=alt.Axis(values=[9, 10, 11, 12, 13, 14], format="d")), x2="O:Q",
+                                                                           tooltip=["label", alt.Tooltip("gap:Q", title="O − C", format="+.2f")])
+    pts = alt.Chart(long).mark_circle(size=190).encode(
+        y=y, x=alt.X("mean:Q", scale=XS),
+        color=alt.Color("scheme:N", scale=alt.Scale(domain=["O", "C"], range=[O_COL, C_COL]), legend=alt.Legend(title="Scheme (click to highlight)", orient="top")),
+        opacity=alt.condition(pick, alt.value(1), alt.value(0.15)),
+        tooltip=[alt.Tooltip("label:N", title="Group"), alt.Tooltip("scheme:N", title="Scheme"), alt.Tooltip("mean:Q", title="Mean order", format=".2f"), alt.Tooltip("gap:Q", title="O − C", format="+.2f")]
+    ).add_params(pick)
     return (band + rule + pts).properties(height=alt.Step(44))   # fixed row height, so every row keeps its label
 
 
@@ -276,22 +282,26 @@ def rows_for_dumbbell():
 
 
 def wording_chart(rows):
-    """Dot = O minus C gap; line = 95% confidence interval. Humans for reference."""
+    """Dot = O minus C gap; line = 95% confidence interval. Click a group in the legend to highlight it."""
     d = pd.DataFrame(rows)
     order = list(d.label)
     pal = alt.Scale(domain=["Humans", "Claude", "Llama"], range=["#14213D", OPT, "#8A97A6"])
-    col = alt.Color("kind:N", scale=pal, legend=alt.Legend(title="Group", orient="top"))
+    pick = alt.selection_point(fields=["kind"], bind="legend")
+    col = alt.Color("kind:N", scale=pal, legend=alt.Legend(title="Group (click to highlight)", orient="top"))
+    op = alt.condition(pick, alt.value(1), alt.value(0.12))
     XS = alt.Scale(domain=[-1.2, 2.8])
-    y = alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=300, labelFontSize=13))
+    y = alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=300, labelFontSize=13, labelOverlap=False))
+    tip = [alt.Tooltip("label:N", title="Run"), alt.Tooltip("diff:Q", title="O − C", format="+.2f"),
+           alt.Tooltip("lo:Q", title="95% CI low", format="+.2f"), alt.Tooltip("hi:Q", title="95% CI high", format="+.2f")]
     zero = alt.Chart(pd.DataFrame({"x": [0.0]})).mark_rule(color="#9AA8B5", strokeWidth=2).encode(x=alt.X("x:Q", scale=XS))
-    pts = alt.Chart(d).mark_circle(size=200, opacity=1).encode(y=y, x=alt.X("diff:Q", scale=XS, title="Mean order, O minus C (units). Right of 0 = people-like direction"),
-                                                              color=col, tooltip=["label", alt.Tooltip("diff:Q", format="+.2f")])
+    pts = alt.Chart(d).mark_circle(size=210).encode(y=y, x=alt.X("diff:Q", scale=XS, title="Mean order, O minus C (units). Right of 0 = people-like direction"),
+                                                   color=col, opacity=op, tooltip=tip).add_params(pick)
     layers = [zero]
     ci = d.dropna(subset=["lo", "hi"])
     if len(ci):
-        layers.append(alt.Chart(ci).mark_rule(strokeWidth=3, opacity=0.65).encode(y=y, x=alt.X("lo:Q", scale=XS), x2="hi:Q", color=col))
+        layers.append(alt.Chart(ci).mark_rule(strokeWidth=3).encode(y=y, x=alt.X("lo:Q", scale=XS), x2="hi:Q", color=col, opacity=op, tooltip=tip))
     layers.append(pts)
-    return alt.layer(*layers).properties(height=46 * len(d) + 50)
+    return alt.layer(*layers).properties(height=alt.Step(40))
 
 
 # ----------------------------------------------------------------- tables
@@ -314,6 +324,108 @@ def behaviour_table():
     if "llama" in D:
         add("Llama agents", D["llama"]["wide"], f"{D['llama_checks']['comprehension_fail']} of 50")
     return pd.DataFrame(rows)
+
+
+
+GROUPS = [("human", "Humans (3 replications)"), ("claude", "Claude"), ("claude_f", "Claude, human-like feedback"), ("llama", "Llama")]
+
+
+@st.cache_data
+def by_day():
+    """Mean order per day and scheme for humans and each AI run (AI: original exclusion rule)."""
+    rows = []
+    for key, name in GROUPS:
+        W = D["human"] if key == "human" else (D[key]["wide"] if key in D else None)
+        if W is None:
+            continue
+        for cond in "OC":
+            m = grp(W, cond)[OC].mean()
+            rows += [dict(group=name, scheme=cond, day=i + 1, mean=float(v)) for i, v in enumerate(m.values)]
+    return pd.DataFrame(rows)
+
+
+def day_chart(df):
+    """Small multiples: average order by day, O vs C. Hover a day to read the values."""
+    hover = alt.selection_point(nearest=True, on="pointerover", fields=["day"], empty=False, clear="pointerout")
+    base = alt.Chart().encode(x=alt.X("day:Q", title="Day", scale=alt.Scale(domain=[1, 25]), axis=alt.Axis(values=[1, 5, 10, 15, 20, 25])))
+    color = alt.Color("scheme:N", scale=alt.Scale(domain=["O", "C"], range=[O_COL, C_COL]), legend=alt.Legend(title="Scheme", orient="top"))
+    YS = alt.Scale(domain=[6, 17], zero=False, clamp=True)
+    band = base.transform_calculate(lo="10", hi="11").mark_area(opacity=0.14, color=OPT).encode(y=alt.Y("lo:Q", scale=YS), y2="hi:Q")
+    lines = base.mark_line(strokeWidth=2.5).encode(y=alt.Y("mean:Q", title="Average order", scale=YS), color=color)
+    pts = base.mark_circle(size=70).encode(y="mean:Q", color=color, opacity=alt.condition(hover, alt.value(1), alt.value(0)),
+                                           tooltip=[alt.Tooltip("group:N", title="Group"), alt.Tooltip("day:Q", title="Day"), alt.Tooltip("scheme:N", title="Scheme"),
+                                                    alt.Tooltip("mean:Q", title="Average order", format=".2f")]).add_params(hover)
+    rule = base.mark_rule(color="#9AA8B5").encode(opacity=alt.condition(hover, alt.value(0.8), alt.value(0)))
+    return alt.layer(band, lines, rule, pts, data=df).properties(width=330, height=210).facet(
+        facet=alt.Facet("group:N", title=None, sort=[n for _, n in GROUPS], header=alt.Header(labelFontSize=14, labelFontWeight="bold")), columns=2)
+
+
+@st.cache_data
+def reason_table():
+    """Every agent's end-of-game strategy sentence, coded with the keyword rules in analysis/reason_coding.py."""
+    S = D.get("strat", pd.DataFrame())
+    if not len(S) or "strategy" not in S:
+        return None, []
+    try:
+        sys.path.insert(0, str(ROOT / "analysis"))
+        import reason_coding as rc
+    except Exception:
+        return None, []
+    C = pd.DataFrame([rc.code(t) for t in S["strategy"]])
+    X = pd.concat([S[["model", "wording", "condition", "strategy"]].reset_index(drop=True), C], axis=1)
+    return X, list(rc.CATS)
+
+
+REASON_NAMES = {"average demand (10.5 / expected)": "Average demand (10.5)", "order-time payment": "Money at order time",
+                "leftover / penalty risk": "Leftover / penalty risk", "lost sales / running short": "Lost sales",
+                "balance / trade-off": "Trade-off", "recent demand / adjusting": "Recent demand", "explicit profit calculation": "Profit calculation"}
+
+
+def reasons_chart(t):
+    pick = alt.selection_point(fields=["reason", "scheme"], name="pick")
+    order = list(t.groupby("reason")["share"].mean().sort_values(ascending=False).index)
+    return alt.Chart(t).mark_bar(cornerRadiusEnd=4, height=11).encode(
+        y=alt.Y("reason:N", sort=order, title=None, axis=alt.Axis(labelLimit=220, labelOverlap=False)),
+        yOffset=alt.YOffset("scheme:N", sort=["O", "C"]),
+        x=alt.X("share:Q", title="Share of agents mentioning it", axis=alt.Axis(format="%"), scale=alt.Scale(domain=[0, 1])),
+        color=alt.Color("scheme:N", scale=alt.Scale(domain=["O", "C"], range=[O_COL, C_COL]), legend=alt.Legend(title="Scheme", orient="top")),
+        opacity=alt.condition(pick, alt.value(1), alt.value(0.35)),
+        tooltip=[alt.Tooltip("reason:N", title="Reason"), alt.Tooltip("scheme:N", title="Scheme"), alt.Tooltip("share:Q", title="Share", format=".0%"),
+                 alt.Tooltip("n:Q", title="Agents")]
+    ).add_params(pick).properties(height=alt.Step(26))
+
+
+def shap_chart(X, XL):
+    rows = []
+    for who, src, key in [("Humans", X, "shap_human"), ("Claude", X, "shap_ai_common"), ("Llama", XL, "shap_ai_common")]:
+        if src and key in src:
+            v = src[key]["mean_abs_shap"]; tot = sum(v.values())
+            for f, name in [("cond_O", "Payment scheme"), ("prev_order", "Own last order"), ("day", "Day of the game")]:
+                rows.append(dict(who=who, feature=name, share=v.get(f, 0) / tot))
+    d = pd.DataFrame(rows)
+    pick = alt.selection_point(fields=["feature"], bind="legend")
+    return alt.Chart(d).mark_bar(height=26).encode(
+        y=alt.Y("who:N", sort=["Humans", "Claude", "Llama"], title=None),
+        x=alt.X("share:Q", stack="normalize", title="Share of what explains the next order (Shapley values)", axis=alt.Axis(format="%")),
+        color=alt.Color("feature:N", sort=["Payment scheme", "Own last order", "Day of the game"],
+                        scale=alt.Scale(domain=["Payment scheme", "Own last order", "Day of the game"], range=[OPT, "#8A97A6", "#C9D1DA"]),
+                        legend=alt.Legend(title="Driver (click to highlight)", orient="top")),
+        order=alt.Order("feature:N", sort="descending"),
+        opacity=alt.condition(pick, alt.value(1), alt.value(0.2)),
+        tooltip=[alt.Tooltip("who:N", title="Who"), alt.Tooltip("feature:N", title="Driver"), alt.Tooltip("share:Q", title="Share", format=".0%")]
+    ).add_params(pick).properties(height=alt.Step(40))
+
+
+def pick_one(label, options, default, key):
+    """Single choice as buttons; falls back to the default when nothing is selected."""
+    v = st.segmented_control(label, options, default=default, key=key)
+    return v if v else default
+
+
+def pick_many(label, options, default, key):
+    v = st.pills(label, options, selection_mode="multi", default=default, key=key)
+    return v or []
+
 
 
 # ----------------------------------------------------------------- presenter steps
@@ -380,15 +492,37 @@ def step_design():
 
 
 def step_compare():
-    _w(st.altair_chart, polish(dumbbell(rows_for_dumbbell())))
+    view = pick_one("View", ["Averages", "Day by day"], "Averages", key="cmp_view")
+    if view == "Averages":
+        rows = rows_for_dumbbell()
+        labels = [r["label"] for r in rows]
+        show = pick_many("Show", labels, labels, key="cmp_show")
+        sel = [r for r in rows if r["label"] in show]
+        if sel:
+            _w(st.altair_chart, polish(dumbbell(sel)))
+        else:
+            st.info("Pick at least one group above.")
+        st.caption("Each row: average order under O and C, the line between them is the gap. Shaded band: the best order, 10 or 11. "
+                   "Hover a dot for its values; click O or C in the legend to highlight one scheme.")
+    else:
+        df = by_day()
+        names = [n for _, n in GROUPS if n in set(df.group)]
+        show = pick_many("Show", names, names, key="day_show")
+        last = st.slider("Days shown (drag to replay the game day by day)", 1, 25, 25, key="day_last")
+        d = df[df.group.isin(show) & (df.day <= last)]
+        if len(d):
+            st.altair_chart(polish(day_chart(d)))
+        else:
+            st.info("Pick at least one group above.")
+        st.caption("Average order each day under O and C. People keep a gap all game; Claude settles on 10–11 within a few days; Llama drifts upward. "
+                   "Hover a day to read the values. Shaded band: the best order.")
     m = st.columns(5)
     m[0].metric("Humans", f"{K['hg']:+.2f}", help="Pooled across the three replications")
     m[1].metric("Claude", f"{K['cg']:+.2f}")
     m[2].metric("Feedback run", "–" if K["fg"] is None else f"{K['fg']:+.2f}")
     m[3].metric("Llama", "–" if K["lg"] is None else f"{K['lg']:+.2f}", help="Agents that got the dice range wrong are excluded, as in the original study")
     m[4].metric("At 10–11", f"{K['c_share']:.0%}")
-    st.caption("Tiles: the O − C gap in average order (units); feedback run = Claude with human-like feedback; the last tile is the share of Claude's orders at 10 or 11. Shaded band in the chart: the best order.")
-    st.dataframe(behaviour_table(), hide_index=True)
+    st.caption("Tiles: the O − C gap in average order (units); feedback run = Claude with human-like feedback; the last tile is the share of Claude's orders at 10 or 11.")
     rc_, rl_, rf_ = cmp_row("Claude Haiku 5.5 – base"), cmp_row("Llama 3.1 – base"), cmp_row("Claude Haiku 5.5 – faithful")
     test = ""
     if rc_ is not None and rl_ is not None:
@@ -396,11 +530,26 @@ def step_compare():
                 f"Claude by {abs(rc_.OxAI):.2f} units (p {pfmt(rc_.OxAI_p)}), Llama by {abs(rl_.OxAI):.2f} (p {pfmt(rl_.OxAI_p)})"
                 + (f", and Claude with human-like feedback by {abs(rf_.OxAI):.2f} (p {pfmt(rf_.OxAI_p)})." if rf_ is not None else "."))
     st.markdown(f"<div class='lead' style='font-size:1.05rem'><b>With the study's wording, neither model shows the human gap.</b> People order about {K['hg']:.2f} units more under O; Claude's gap is {K['cg']:+.2f} and Llama's {'–' if K['lg'] is None else format(K['lg'], '+.2f')}.{test} Claude orders almost only 10 or 11; Llama over-orders and drifts upward.</div>", unsafe_allow_html=True)
+    with st.expander("Behaviour table: orders at 10–11, spread, comprehension checks"):
+        st.dataframe(behaviour_table(), hide_index=True)
 
 
 def step_wording():
     rows = wording_rows_for_chart()
-    _w(st.altair_chart, polish(wording_chart(rows)))
+    wl = [label for _, label, _ in WORDINGS if any(r["wording"] == label for r in rows)]
+    c1, c2 = st.columns([2, 1])
+    with c1:
+        models = pick_many("Models", ["Claude", "Llama"], ["Claude", "Llama"], key="w_models")
+    with c2:
+        st.write("")
+        humans = st.toggle("Show humans", value=True, key="w_humans")
+    words = pick_many("Wordings", wl, wl, key="w_words")
+    sel = [r for r in rows if (r["kind"] == "Humans" and humans) or (r["kind"] in models and r["wording"] in words)]
+    if sel:
+        _w(st.altair_chart, polish(wording_chart(sel)))
+    else:
+        st.info("Pick at least one model and wording above.")
+    st.caption("Dot = O − C gap, line = 95% confidence interval; 0 = no framing effect. Hover for exact values; click a group in the legend to highlight it.")
     W = load_wording()
     cg = ", ".join(f"{KEYNAME.get(r['key'], r['key'])} {r['diff']:+.2f}" for r in W.get("claude", [])); lg = ", ".join(f"{KEYNAME.get(r['key'], r['key'])} {r['diff']:+.2f}" for r in W.get("llama", []))
     st.markdown(f"**The gap moves with the wording, but never reaches the human gap.** O − C for Claude: {cg}. Llama: {lg}. We kept the study's wording for the main results and report the others openly.")
@@ -408,24 +557,54 @@ def step_wording():
 
 def step_why():
     X, XL = D.get("xai", {}), D.get("xai_llama", {})
-
-    def share(k, src):
-        s_ = src[k]["mean_abs_shap"]; return s_["cond_O"] / sum(s_.values())
-    a, b = st.columns(2)
     if X:
-        tile(a, f"<b>Humans</b><br>Anchor on their own last order (mean |Shapley| {X['shap_human']['mean_abs_shap']['prev_order']:.2f}). The payment scheme is about {share('shap_human', X):.0%} of the explanation. Cross-validated R² {X['shap_human']['cv_R2_by_agent_group']:.2f}.")
-        tile(b, f"<b>Claude agents</b><br>Follow their own last order even more closely than people, and the payment scheme is only about {share('shap_ai_common', X):.0%} of the explanation; last demand and profit add little. R² {X['shap_ai_common']['cv_R2_by_agent_group']:.2f}, {X['shap_ai_extended']['cv_R2_by_agent_group']:.2f} with dice history.")
-    rs = reason_shares()
-    if rs:
-        st.markdown(f"**In their own words** (end-of-game strategy sentences, keyword-coded): only **{rs['ot_all']} of {rs['n_all']}** agents mention the money that moves at order time, the thing the theory is about. "
-                    f"Claude agents mostly cite average demand ({rs['cl_avg']:.0%}) and leftover risk ({rs['cl_left']:.0%}): a rule of thumb that happens to be optimal here. "
-                    f"The scheme shapes what they <i>say</i> (lost sales mentioned by {rs['lost_O']:.0%} of O agents vs {rs['lost_C']:.0%} of C agents) but not what they <i>order</i>.", unsafe_allow_html=True)
-    xf = ROOT / "analysis/fig_xai.png"
-    if xf.exists():
-        _w(st.image, str(xf))
-    if "llama_checks" in D:
-        extra = f" The payment scheme is about {share('shap_ai_common', XL):.0%} of its explanation." if XL else ""
-        st.markdown(f"**Llama:** {D['llama_checks']['comprehension_fail']} of 50 failed a comprehension check and its orders drift upward through the game, so its results reflect weak task understanding more than human-like bias.{extra}")
+        st.markdown("**What drives each next order?** A machine-learning model of every decision, explained with Shapley values.")
+        _w(st.altair_chart, polish(shap_chart(X, XL)))
+        st.caption("Share of the explanation for each driver. People and Claude both mostly follow their own last order; the payment scheme matters for people, "
+                   "hardly at all for the agents. Hover for values; click a driver in the legend to highlight it.")
+    T, cats = reason_table()
+    if T is not None:
+        st.markdown("**In their own words:** each agent's end-of-game sentence on how it decided, sorted into reasons.")
+        c1, c2 = st.columns([1, 2])
+        with c1:
+            model = pick_one("Model", ["Claude", "Llama"], "Claude", key="r_model")
+        present = [w for w in ["base", "faithful", "v1", "v2", "v3"] if ((T.model.str.startswith(model)) & (T.wording == w)).any()]
+        names = [KEYNAME.get(w, w) for w in present]
+        default = [n for n in names if n in ("base", "human-like feedback")]
+        with c2:
+            words = pick_many("Wordings", names, default, key=f"r_words_{model}")
+        inv = {KEYNAME.get(w, w): w for w in present}
+        sub = T[T.model.str.startswith(model) & T.wording.isin([inv[w] for w in words])]
+        if len(sub):
+            rows = []
+            for cat in cats:
+                for sch in "OC":
+                    g = sub[sub.condition == sch]
+                    if len(g):
+                        rows.append(dict(reason=REASON_NAMES.get(cat, cat), scheme=sch, share=float(g[cat].mean()), n=int(g[cat].sum()), cat=cat))
+            tbl = pd.DataFrame(rows)
+            try:
+                ev = st.altair_chart(polish(reasons_chart(tbl)), on_select="rerun", key=f"r_chart_{model}", width="stretch")
+            except TypeError:
+                ev = st.altair_chart(polish(reasons_chart(tbl)), on_select="rerun", key=f"r_chart_{model}", use_container_width=True)
+            picked = []
+            try:
+                picked = ev["selection"]["pick"] or []
+            except Exception:
+                picked = []
+            if picked and "reason" in picked[0] and "scheme" in picked[0]:
+                reason, sch = picked[0]["reason"], picked[0]["scheme"]
+                cat = next(c for c in cats if REASON_NAMES.get(c, c) == reason)
+                ex = sub[(sub.condition == sch) & (sub[cat] == 1)]["strategy"].head(3).tolist()
+                st.markdown(f"**{reason}**, scheme {sch}: what the agents wrote" if ex else f"No {sch} agent mentioned {reason.lower()}.")
+                for e in ex:
+                    st.markdown(f"> {e}")
+            else:
+                st.caption("Click a bar to read what those agents actually wrote.")
+        rs = reason_shares()
+        if rs:
+            st.markdown(f"Only **{rs['ot_all']} of {rs['n_all']}** agents ever mention the money that moves at order time, the thing the theory is about. "
+                        f"The scheme shapes what Claude says (lost sales: {rs['lost_O']:.0%} of O agents vs {rs['lost_C']:.0%} of C agents) but not what it orders.")
 
 
 def step_conclusion():
@@ -439,11 +618,11 @@ def step_conclusion():
 
 def wording_rows_for_chart():
     ro, rp = cmp_row("Original (Duke)"), cmp_row("Human – 3 replications pooled")
-    rows = [dict(label="Humans, original study", kind="Humans", diff=float(K["orig"]), lo=None if ro is None else ro.ci_low, hi=None if ro is None else ro.ci_high),
-            dict(label="Humans, replications (pooled)", kind="Humans", diff=float(K["hg"]), lo=None if rp is None else rp.ci_low, hi=None if rp is None else rp.ci_high)]
+    rows = [dict(label="Humans, original study", kind="Humans", wording=None, diff=float(K["orig"]), lo=None if ro is None else ro.ci_low, hi=None if ro is None else ro.ci_high),
+            dict(label="Humans, replications (pooled)", kind="Humans", wording=None, diff=float(K["hg"]), lo=None if rp is None else rp.ci_low, hi=None if rp is None else rp.ci_high)]
     for mkey, rs in load_wording().items():
         for r in rs:
-            rows.append(dict(label=f"{r['label']} · {r['group']}", kind=r["group"], diff=float(r["diff"]), lo=r.get("lo"), hi=r.get("hi")))
+            rows.append(dict(label=f"{r['label']} · {r['group']}", kind=r["group"], wording=r["label"], diff=float(r["diff"]), lo=r.get("lo"), hi=r.get("hi")))
     return rows
 
 
