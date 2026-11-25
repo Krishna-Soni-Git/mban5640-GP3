@@ -66,6 +66,8 @@ h1,h2,h3,.hero h1 {font-family:'Bricolage Grotesque','Segoe UI',sans-serif !impo
 .fmath {font:italic clamp(.95rem, 1.6vw, 1.25rem) 'Cambria Math','Cambria','Times New Roman',serif; text-align:center; color:#14213D; padding:6px 0; white-space:nowrap;}
 .fmath sub {font-size:.7em;}
 @media (max-width: 760px) {.fgrid {grid-template-columns:1fr;}}
+.vega-bind {font:600 .95rem 'IBM Plex Sans',sans-serif; color:#14213D; margin-top:8px; display:flex; align-items:center; gap:8px;}
+.vega-bind input[type=range] {width:320px; accent-color:#C8681A; cursor:pointer;}
 </style>
 """
 
@@ -83,7 +85,7 @@ DARK_CSS = """
 [data-testid="stMetric"] {background:#1B2638 !important; border-color:#2C3B54 !important; box-shadow:none !important;}
 [data-testid="stMetricValue"], [data-testid="stMetricValue"] div {color:#F4F6FA !important;}
 [data-testid="stMetricLabel"] p {color:#9AA8B5 !important;}
-.fnote {color:#C9D3E3 !important;} .fbox {background:#1B2638 !important; border-color:#2C3B54 !important;} .fmath {color:#F4F6FA !important;}
+.fnote {color:#C9D3E3 !important;} .vega-bind, .vega-bind label, .vega-bind span {color:#E3E8EF !important;} .fbox {background:#1B2638 !important; border-color:#2C3B54 !important;} .fmath {color:#F4F6FA !important;}
 .fhead.o {background:#4A2B12 !important; color:#F5B47A !important;} .fhead.c {background:#103E44 !important; color:#7FD3DA !important;} .fhead.e {background:#2E2754 !important; color:#C3B8F5 !important;}
 .stApp button {background:#1B2638; color:#E3E8EF; border-color:#34445F;}
 .stApp button p {color:#E3E8EF !important;}
@@ -400,17 +402,20 @@ def by_day():
 def day_chart(df):
     """Small multiples: average order by day, O vs C. Hover a day to read the values."""
     hover = alt.selection_point(nearest=True, on="pointerover", fields=["day"], empty=False, clear="pointerout")
+    # slider drawn by the chart itself, so the lines update live while dragging (no wait for release)
+    days = alt.param(name="days", value=25, bind=alt.binding_range(min=1, max=25, step=1, name="Days shown: "))
     base = alt.Chart().encode(x=alt.X("day:Q", title="Day", scale=alt.Scale(domain=[1, 25]), axis=alt.Axis(values=[1, 5, 10, 15, 20, 25])))
     color = alt.Color("scheme:N", scale=alt.Scale(domain=["O", "C"], range=[O_COL, C_COL]), legend=alt.Legend(title="Scheme", orient="top"))
     YS = alt.Scale(domain=[6, 17], zero=False, clamp=True)
     band = base.transform_calculate(lo="10", hi="11").mark_area(opacity=0.14, color=OPT).encode(y=alt.Y("lo:Q", scale=YS), y2="hi:Q")
-    lines = base.mark_line(strokeWidth=2.5).encode(y=alt.Y("mean:Q", title="Average order", scale=YS), color=color)
-    pts = base.mark_circle(size=70).encode(y="mean:Q", color=color, opacity=alt.condition(hover, alt.value(1), alt.value(0)),
+    shown = base.transform_filter(alt.datum.day <= days)
+    lines = shown.mark_line(strokeWidth=2.5).encode(y=alt.Y("mean:Q", title="Average order", scale=YS), color=color)
+    pts = shown.mark_circle(size=70).encode(y="mean:Q", color=color, opacity=alt.condition(hover, alt.value(1), alt.value(0)),
                                            tooltip=[alt.Tooltip("group:N", title="Group"), alt.Tooltip("day:Q", title="Day"), alt.Tooltip("scheme:N", title="Scheme"),
                                                     alt.Tooltip("mean:Q", title="Average order", format=".2f")]).add_params(hover)
-    rule = base.mark_rule(color="#9AA8B5").encode(opacity=alt.condition(hover, alt.value(0.8), alt.value(0)))
+    rule = shown.mark_rule(color="#9AA8B5").encode(opacity=alt.condition(hover, alt.value(0.8), alt.value(0)))
     return alt.layer(band, lines, rule, pts, data=df).properties(width=330, height=210).facet(
-        facet=alt.Facet("group:N", title=None, sort=[n for _, n in GROUPS], header=alt.Header(labelFontSize=14, labelFontWeight="bold")), columns=2)
+        facet=alt.Facet("group:N", title=None, sort=[n for _, n in GROUPS], header=alt.Header(labelFontSize=14, labelFontWeight="bold")), columns=2).add_params(days)
 
 
 @st.cache_data
@@ -573,14 +578,13 @@ def step_compare():
         df = by_day()
         names = [n for _, n in GROUPS if n in set(df.group)]
         show = pick_many("Show", names, names, key="day_show")
-        last = st.slider("Days shown (drag to replay the game day by day)", 1, 25, 25, key="day_last")
-        d = df[df.group.isin(show) & (df.day <= last)]
+        d = df[df.group.isin(show)]
         if len(d):
             st.altair_chart(polish(day_chart(d)))
         else:
             st.info("Pick at least one group above.")
         st.caption("Average order each day under O and C. People keep a gap all game; Claude settles on 10–11 within a few days; Llama drifts upward. "
-                   "Hover a day to read the values. Shaded band: the best order.")
+                   "Drag the **Days shown** slider under the chart to replay the game; hover a day to read the values. Shaded band: the best order.")
     m = st.columns(5)
     m[0].metric("Humans", f"{K['hg']:+.2f}", help="Pooled across the three replications")
     m[1].metric("Claude", f"{K['cg']:+.2f}")
