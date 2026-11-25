@@ -1,13 +1,13 @@
 """Payment Framing Lab (Streamlit): a presentation dashboard for MBAN 5640 Group Project 3.
 
 Replicates Chen, Kok & Tong (2013) with AI agents. Tabs:
-  Present         guided 10 or 12 minute talk, one step per grading criterion, timer, optional speaker notes
-  Game            the newsvendor game (presenter plays a few days to show what participants saw)
+  Present         guided 10-minute talk in 9 steps, one per grading criterion, optional speaker notes
+  Game            the newsvendor game, playable (kept for questions; the talk shows a worked example instead)
   AI system       how the agents were made, original vs replication settings, the prompt, validation
-  AI replay       watch any saved agent play its 25 days
+  AI replay       watch any saved agent play its 25 days (kept for questions)
   Results         human vs AI comparison with statistics
   Prompt wording  robustness check: does the result survive different instruction wording?
-  Q&A, Checklist  presenter-only tabs (add ?presenter=1 to the address, which also shows the timer, speaker notes and grading badges)
+  Q&A, Checklist  presenter-only tabs (add ?presenter=1 to the address, which also shows the speaker notes and grading badges)
 
 Run:  python -m streamlit run streamlit_app/app.py
 Reads the project's own files (data/, analysis/, prompts/), so re-running the analysis updates the app.
@@ -26,7 +26,7 @@ OC = [f"order{i}" for i in range(1, 26)]
 FACES = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"]
 O_COL, C_COL, OPT = "#C8681A", "#17808A", "#6B5BB5"
 RNG = secrets.SystemRandom()
-# Class view by default. Add ?presenter=1 to the address to show the timer, speaker notes, grading badges, Q&A and Checklist tabs.
+# Class view by default. Add ?presenter=1 to the address to show the speaker notes, grading badges, Q&A and Checklist tabs.
 PRESENTER = str(st.query_params.get("presenter", "")).lower() in ("1", "true", "yes")
 
 st.set_page_config(page_title="Payment Framing Lab", page_icon="🎲", layout="wide")
@@ -490,9 +490,14 @@ def step_human():
 
 
 def step_demo():
-    st.markdown("<div class='lead'>Open the <b>Game</b> tab, choose a scheme, and play two or three days. After each day, open <b>Same day in the other wording</b> to see that the profit is identical.</div>", unsafe_allow_html=True)
+    st.markdown("<div class='lead'>One example day: order <b>11</b> units, the dice show 3, 2 and 4, so demand is <b>9</b>.</div>", unsafe_allow_html=True)
+    a, b = st.columns(2)
+    tile(a, "<b>O · Own financing</b><br>At order time: you <b>pay</b> 11 × 1 = <b>−11</b><br>After demand: 9 sold × 2 = <b>+18</b><br>2 left over, discarded<br><b>Day's result: +7</b>")
+    tile(b, "<b>C · Customer financing</b><br>At order time: you <b>receive</b> 11 × 1 = <b>+11</b><br>After demand: 9 sold, nothing received<br>2 left over × 2 penalty = <b>−4</b><br><b>Day's result: +7</b>")
     st.write("")
-    st.info("This is exactly what the human participants and the AI agents saw: the same instructions, the same dice, a different description of the money.")
+    st.markdown("<div class='lead'>Same order, same dice, same <b>+7</b>. Only the timing and the description of the money differ. "
+                "This is exactly the task the human participants had, and the task we gave the AI agents.</div>", unsafe_allow_html=True)
+    st.caption("The playable game is in the Game tab, for questions.")
 
 
 def step_design():
@@ -507,12 +512,6 @@ def step_design():
     tile(b, "<b>Kept the same:</b> payoffs, 25 rounds, dice, instructions word for word.<br><b>Changed, and why:</b> a structured answer instead of a screen (agents cannot click); orders limited to 3–18, as in the online replication; no real money.<br><b>Checked:</b> our main runs showed agents a daily net 'change in play dollars' and called C's money 'an advance'. Humans saw the two payments separately, so we re-ran Claude without both (the <i>human-like feedback</i> run).")
     st.code("decide (order 3–18)  →  engine rolls dice and applies payoff  →  repeat for 25 days  →  debrief: follow-up question, two comprehension checks, strategy sentence", language="text")
     st.caption("Full settings table, the exact prompt and the validation checks are in the AI system tab.")
-
-
-def step_replay_pointer():
-    st.markdown("<div class='lead'>Open the <b>AI replay</b> tab. Pick a Claude agent and press <b>Play</b>: it settles on 10 or 11 within a few days. Then pick a Llama agent: it often drifts upward to 13 or more.</div>", unsafe_allow_html=True)
-    st.write("")
-    st.info("At the end, read the agent's own sentence about how it decided.")
 
 
 def step_compare():
@@ -578,13 +577,12 @@ def notes(i):
         0: ["Start with the question, not the method.", "A shop orders before it knows demand: too little loses sales, too much wastes stock.", "Same money, different wording: do people, and AI agents, decide differently?"],
         1: ["Walk the two cards slowly: O pays up front, C is paid up front.", "Point to the formula: both pay 2·min(q,D) − q. Identical for every order and every dice roll.", "Best order is 10 or 11. 25 days, 100 play dollars, orders 3 to 18."],
         2: [f"Original study gap {K_['orig']:+.2f}; replications found the same direction, pooled {K_['hg']:+.2f}.", "Mechanism: prospective accounting. Money at order time gets less weight: under O it is a cost (order more), under C it is income (order less).", "The neutral scheme S sat at the optimum; loss aversion and time discounting were rejected.", f"People vary a lot (spread about {K_['h_sd']:.1f})."],
-        3: ["Play one or two days, then open 'Same day in the other wording'.", "Say: this is what every participant, human or AI, saw."],
+        3: ["Walk the two cards: same order 11, same demand 9, both end at +7.", "Say: only the timing and the wording differ; this is the task every participant, human or AI, had.", "No live demo: the Game tab is there for questions."],
         4: ["Four building blocks: instructions only (no personas), engine, memory, debrief with checks.", "Same instructions word for word; real dice rolled by code after the order.", "Two models and four wordings, 50 agents per run, 25 per scheme.", "Say what changed and why: program instead of a screen, orders 3–18, no real money.", "Mention the human-like feedback run: no net-change line, study's C wording."],
-        5: ["AI replay tab: a Claude agent first, then a Llama agent.", "Read the agent's own strategy sentence."],
-        6: [f"Claude: gap {K_['cg']:+.2f} versus {K_['hg']:+.2f} for people (pooled replications); {K_['c_share']:.0%} of orders at 10–11.", f"With human-like feedback Claude's gap is {'–' if K_['fg'] is None else format(K_['fg'], '+.2f')}: still not significant.", f"Llama: gap {'–' if K_['lg'] is None else format(K_['lg'], '+.2f')} and it orders too much in both schemes.", "Formal test: the AI gap is significantly smaller than the human gap (pooled regression, clustered by participant).", "Answer the question: the human gap did not appear in either model."],
-        7: ["Same game, different wording: both models' gaps move.", "We did not tune prompts to get a result; the main run uses the study's wording.", "Comparisons are within the same scheme (variant C against base C, variant O against base O).", "Caveat: the O text for v1 and v2 was drafted by us."],
-        8: ["People and Claude both follow their last order; the scheme explains ~17% for people, ~2–3% for Claude.", "Own words: almost no agent mentions the order-time money; they order around average demand.", "The scheme changes what they say (lost sales vs leftovers), not what they order."],
-        9: ["AI did not reproduce the human gap, also with human-like feedback; a few wordings gave Claude a small one.", "Limits: not independent, no real stakes, wording sensitivity, run-to-run instability, profit check is ours.", "Validate with people before relying on AI participants.", "Invite questions."],
+        5: [f"Claude: gap {K_['cg']:+.2f} versus {K_['hg']:+.2f} for people (pooled replications); {K_['c_share']:.0%} of orders at 10–11.", f"With human-like feedback Claude's gap is {'–' if K_['fg'] is None else format(K_['fg'], '+.2f')}: still not significant.", f"Llama: gap {'–' if K_['lg'] is None else format(K_['lg'], '+.2f')} and it orders too much in both schemes.", "Formal test: the AI gap is significantly smaller than the human gap (pooled regression, clustered by participant).", "Answer the question: the human gap did not appear in either model."],
+        6: ["Same game, different wording: both models' gaps move.", "We did not tune prompts to get a result; the main run uses the study's wording.", "Comparisons are within the same scheme (variant C against base C, variant O against base O).", "Caveat: the O text for v1 and v2 was drafted by us."],
+        7: ["People and Claude both follow their last order; the scheme explains ~17% for people, ~2–3% for Claude.", "Own words: almost no agent mentions the order-time money; they order around average demand.", "The scheme changes what they say (lost sales vs leftovers), not what they order."],
+        8: ["AI did not reproduce the human gap, also with human-like feedback; a few wordings gave Claude a small one.", "Limits: not independent, no real stakes, wording sensitivity, run-to-run instability, profit check is ours.", "Validate with people before relying on AI participants.", "Invite questions."],
     }
     return L[i]
 
@@ -604,10 +602,9 @@ STEPS = [
     ("business", "The business problem", 45, "bg", "Same money, different words. Do AI agents react like people?", step_business),
     ("original", "The original experiment", 75, "orig", "Two payment wordings, identical profit.", step_original),
     ("human", "What people did, and why", 60, "orig", "People order more when they pay up front.", step_human),
-    ("demo", "Try the game", 30, "qual", "You see exactly what participants saw.", step_demo),
+    ("demo", "Same task, same profit", 30, "qual", "Same order, same dice, same profit; only the timing differs.", step_demo),
     ("design", "How we built the AI participants", 90, "ai", "Same instructions and engine, no personas, 50 agents per run.", step_design),
-    ("replay", "Watch an agent play", 30, "ai", "Claude settles quickly; Llama often drifts upward.", step_replay_pointer),
-    ("compare", "Results: AI versus people", 130, "cmp", "In the study wording, neither model shows the human gap.", step_compare),
+    ("compare", "Results: AI versus people", 160, "cmp", "In the study wording, neither model shows the human gap.", step_compare),
     ("wording", "Does the prompt wording matter?", 40, "cmp", "The gap changes with the wording for both models.", step_wording),
     ("why", "What explains the difference?", 40, "cmp", "Agents order around average demand and ignore the payment timing.", step_why),
     ("conclude", "Conclusions and limits", 60, "conc", "Weak or no framing effect in AI agents.", step_conclusion),
@@ -622,26 +619,12 @@ def fmt_t(sec):
 
 def present_tab():
     ss = st.session_state
-    ss.setdefault("step", 0); ss.setdefault("t0", None)
+    ss.setdefault("step", 0)
     cur = ss.step
-    talk, show_notes = 10, False
-    secs = [s[2] for s in STEPS]
+    show_notes = False
+    secs = [s[2] for s in STEPS]          # planned seconds per step (10-minute talk), shown to the presenter only
     if PRESENTER:
-        top = st.columns([2, 2, 3, 2])
-        talk = top[0].radio("Talk length", [10, 12], horizontal=True, format_func=lambda x: f"{x} min", key="talk")
-        secs = [s[2] * talk / 10 for s in STEPS]
-        total = sum(secs)
-        if btn(top[1], "⏱ Start timer" if ss.t0 is None else "⏱ Reset timer", key="timer"):
-            ss.t0 = time.time() if ss.t0 is None else None
-            st.rerun()
-        show_notes = top[3].checkbox("Speaker notes", key="notes")
-        plan_end = sum(secs[:cur + 1])
-        if ss.t0:
-            e = time.time() - ss.t0
-            cls, msg = ("pace-ok", "on pace") if e <= plan_end else ("pace-bad", f"over by {fmt_t(e - plan_end)}")
-            top[2].markdown(f"**{fmt_t(e)}** of {fmt_t(total)} · <span class='{cls}'>{msg}</span> (this step should end by {fmt_t(plan_end)}; updates when you click)", unsafe_allow_html=True)
-        else:
-            top[2].caption(f"Planned {fmt_t(total)} plus Q&A. This step should end by {fmt_t(plan_end)}.")
+        show_notes = st.checkbox("Speaker notes", key="notes")
     cols = st.columns(len(STEPS))
     for i, s in enumerate(STEPS):
         if btn(cols[i], str(i + 1), key=f"jump{i}", help=s[1], type="primary" if i == cur else "secondary"):
@@ -999,7 +982,7 @@ def checklist_tab():
         ("A  Source code", "sim/ (game engine, agent setup, prompt variants), langchain_sim/ (LangGraph agents: Claude API and Ollama), analysis/ (statistics), prompts/ (A01–A50 plus _v1 to _v3), streamlit_app/ (this dashboard), README.md, requirements.txt", "Done"),
         ("B  AI-generated dataset", f"data/ai_dataset_all_long.csv ({n_ai_agents() * 25:,} decisions) and ai_dataset_all_participants.csv ({n_ai_agents()} agents), the per-run ai_agent_*.csv files, analysis/results_summary.csv, results_vs_base.csv and human_vs_ai_table.csv; DATA_DICTIONARY.md explains every variable and the collection procedure", "Done"),
         ("C  Short report (maximum 2 pages)", "GP3-Report.pdf (two pages) and its editable .docx", "Done"),
-        ("D  Group presentation", "This dashboard (Present tab) with the presentation script (.docx). Backup figures: analysis/fig_gap_ci.png and fig_human_vs_ai_days.png", "Rehearse with the timer"),
+        ("D  Group presentation", "This dashboard (Present tab) with the presentation script (.docx). Backup figures: analysis/fig_gap_ci.png and fig_human_vs_ai_days.png", "Rehearse with a stopwatchr"),
     ], columns=["Deliverable", "Where it is", "Status"])
     box.dataframe(dl, hide_index=True)
 
@@ -1009,25 +992,25 @@ def checklist_tab():
         ("2  Design and generate AI agents", "AI system tab, sections 1, 3 and 5 (models, generation, prompts, information, memory, settings)"),
         ("3  Simulate the original experiment", "AI system tab, section 2 (sample size, instructions, rounds, rules, data collection, and every modification with its reason)"),
         ("4  Save and analyse the AI data", "AI system tab sections 4 and 6 (validation and dataset), Results tab (statistics)"),
-        ("5  Compare AI with humans", "Results tab and Present steps 7–9: gap with 95% CI, formal human-vs-AI regression, behaviour, and the agents' own reasons"),
+        ("5  Compare AI with humans", "Results tab and Present steps 6–8: gap with 95% CI, formal human-vs-AI regression, behaviour, and the agents' own reasons"),
     ], columns=["Task", "Where it is covered"])
     box.dataframe(tk, hide_index=True)
 
-    box = card("Grading criteria (100 points) and the planned talk", "Minutes are for the 10-minute plan; use the Present tab switch for 12 minutes.")
+    box = card("Grading criteria (100 points) and the planned talk", "Minutes are for the 10-minute plan.")
     mins = {}
     for s in STEPS:
         mins[s[3]] = mins.get(s[3], 0) + s[2]
-    where = {"bg": "Present step 1", "orig": "Present steps 2–3", "ai": "Present steps 5–6, AI system tab", "cmp": "Present steps 7–9, Results and Prompt wording tabs", "qual": "Whole talk: tables, figures and a live game; step 10 for conclusions"}
+    where = {"bg": "Present step 1", "orig": "Present steps 2–3", "ai": "Present step 5, AI system tab", "cmp": "Present steps 6–8, Results and Prompt wording tabs", "qual": "Whole talk: tables, figures and a worked example (step 4); step 9 for conclusions"}
     desc = {"bg": "Business context, research question and why it matters", "orig": "Human results, behavioural biases and relevant theory", "ai": "Agent generation, prompts, settings, implementation and data collection",
             "cmp": "Meaningful quantitative comparison and whether AI reproduces the biases", "qual": "Clear and logical, with appropriate tables, figures and evidence"}
     rows = [(RUBRIC[k][0], RUBRIC[k][1], desc[k], where[k], fmt_t(mins.get(k, 0) + (mins.get("conc", 0) if k == "qual" else 0))) for k in ("bg", "orig", "ai", "cmp", "qual")]
-    rows.append(("Time management", 10, "Finish within the allotted time", "Timer and pace indicator on the Present tab", "10:00 total"))
+    rows.append(("Time management", 10, "Finish within the allotted time", "Nine steps planned at 10:00 in total, rehearsed with the script", "10:00 total"))
     box.dataframe(pd.DataFrame(rows, columns=["Criterion", "Points", "What graders look for", "Where it is covered", "Planned time"]), hide_index=True)
-    box.caption("The brief gives two different time limits: 12 minutes plus 3 for Q&A in the presentation section, but 10 plus 2 in the grading table. Confirm with the instructor and set the talk length on the Present tab.")
+    box.caption("The brief gives two different time limits: 12 minutes plus 3 for Q&A in the presentation section, but 10 plus 2 in the grading table. Our talk is planned for 10 minutes, which fits both; confirm with the instructor.")
 
     box = card("Before presenting")
-    for i, item in enumerate(["Confirm the talk length with the instructor (10+2 or 12+3)", "Export the report to PDF and check it is two pages or fewer", "Run the dashboard on the presentation computer and click through all ten steps",
-                              "Test the Game and AI replay tabs once", "Push the code to GitHub without the .env file", "Have the backup figures open in case the app does not start"]):
+    for i, item in enumerate(["Confirm the talk length with the instructor (10+2 or 12+3)", "Export the report to PDF and check it is two pages or fewer", "Run the dashboard on the presentation computer and click through all nine steps",
+                              "Open the Game and AI replay tabs once (for questions only)", "Push the code to GitHub without the .env file", "Have the backup figures open in case the app does not start"]):
         box.checkbox(item, key=f"todo{i}")
 
 
