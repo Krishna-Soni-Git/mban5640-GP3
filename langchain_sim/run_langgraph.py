@@ -15,6 +15,7 @@ Run:     python langchain_sim/run_langgraph.py --limit 2                       (
          python langchain_sim/run_langgraph.py --variant all --n 50 --workers 5   (full: 4 wordings x 50 agents)
          python langchain_sim/run_langgraph.py --provider ollama --model llama3.1:latest --workers 2 --variant all   (free, local)
 Output:  data/state_api_haiku_5_5[_v1..v3]/A*.json (Claude)   data/state_langchain[_v1..v3]/ (Llama).  Re-run the same command to resume.
+         python langchain_sim/run_langgraph.py --faithful --n 50 --workers 5     (base wording, human-like feedback; see README)
 Then:    python analysis/variant_comparison.py haiku     (or llama)
 """
 import argparse, json, random, sys, concurrent.futures as cf
@@ -38,6 +39,7 @@ class Decision(BaseModel):
     order: int = Field(ge=env.QMIN, le=env.QMAX, description="Units to order today (whole number 3-18)")
 
 class Debrief(BaseModel):
+    followup_order: int = Field(description="If you could play the game again choosing only one order quantity, what number would you choose?")
     check_answer: int = Field(description="Change in play dollars if you order 10 and demand is 7 (minus sign if it falls)")
     range_min: int = Field(description="Lowest possible demand on a day (three dice added up)")
     range_max: int = Field(description="Highest possible demand on a day (three dice added up)")
@@ -75,9 +77,9 @@ def build_graph(llm, system_prompt_msgs):
         return {"sim": sim, "messages": s["messages"] + [HumanMessage(content=msg)]}
 
     def debrief(s: S):
-        q = HumanMessage(content='Final questions. (1) "On a day when you order 10 units and the demand turns out to be 7, by how many play dollars does your balance change that day?" (2) What are the lowest and the highest possible demand on any day (three dice added up)? (3) In one sentence, how did you decide your orders?')
+        q = HumanMessage(content='Final questions. (1) "If you could play the game again choosing only one order quantity, what number would you choose?" (2) "On a day when you order 10 units and the demand turns out to be 7, by how many play dollars does your balance change that day?" (3) What are the lowest and the highest possible demand on any day (three dice added up)? (4) In one sentence, how did you decide your orders?')
         d = debriefer.invoke(system_prompt_msgs(s["sim"]) + s["messages"] + [q])
-        sim = dict(s["sim"]); sim["debrief"] = dict(answer=str(d.check_answer), range_min=str(d.range_min), range_max=str(d.range_max), strategy=d.strategy)
+        sim = dict(s["sim"]); sim["debrief"] = dict(followup=str(d.followup_order), answer=str(d.check_answer), range_min=str(d.range_min), range_max=str(d.range_max), strategy=d.strategy)
         return {"sim": sim}
 
     g = StateGraph(S)
@@ -97,7 +99,7 @@ def make_llm(a):
 
 def out_dir(a, variant):
     tag = "state_langchain" if a.provider == "ollama" else "state_api_" + a.model.split(":")[0].replace("claude-", "").replace("-", "_")
-    return ROOT / "data" / (tag + ("" if variant == "base" else "_" + variant))
+    return ROOT / "data" / (tag + ("" if variant == "base" else "_" + variant) + ("_faithful" if a.faithful else ""))
 
 def run_variant(a, variant):
     from prompt_variants import get_instr, strip_bonus
@@ -119,19 +121,19 @@ def run_variant(a, variant):
         f = out / f"{r['id']}.json"
         if f.exists() and json.loads(f.read_text()).get("debrief"):      # resume: skip finished agents
             return r["id"] + " (already done)"
-        sim = dict(id=r["id"], cond=r["cond"], persona=r["persona"], cash=env.START_CASH, rounds=[], debrief=None)
+        sim = dict(id=r["id"], cond=r["cond"], persona=r["persona"], cash=env.START_CASH, rounds=[], debrief=None, faithful=a.faithful)
         first = HumanMessage(content=env.prompt(sim))
         try:
             res = graph.invoke({"sim": sim, "messages": [first]},
                 config={"run_name": f"newsvendor-{variant}-{r['id']}-{r['cond']}", "tags": [r["cond"], a.model, variant],
-                        "metadata": dict(agent_id=r["id"], condition=r["cond"], model=a.model, variant=variant, temperature=a.temperature),
+                        "metadata": dict(agent_id=r["id"], condition=r["cond"], model=a.model, variant=variant, temperature=a.temperature, faithful=a.faithful),
                         "recursion_limit": 200})
         except Exception as e:                                           # one bad agent must not stop the batch
             return f"{r['id']} FAILED: {type(e).__name__}: {str(e)[:150]}"
         f.write_text(json.dumps(res["sim"], indent=1)); return r["id"]
 
     (out / "roster.json").write_text(json.dumps(roster, indent=1))
-    print(f"[{variant}] {a.provider}/{a.model}  n={a.n}  -> {out}", flush=True)
+    print(f"[{variant}{' faithful' if a.faithful else ''}] {a.provider}/{a.model}  n={a.n}  -> {out}", flush=True)
     todo = roster[:a.limit] if a.limit else roster
     with cf.ThreadPoolExecutor(a.workers) as ex:
         for done in ex.map(run_one, todo): print("finished", done, flush=True)
@@ -145,7 +147,10 @@ def main():
     ap.add_argument("--seed", type=int, default=2026); ap.add_argument("--out", default=None)
     ap.add_argument("--variant", default="base", help="base | v1 | v2 | v3 | all  (wording, see sim/prompt_variants.py)")
     ap.add_argument("--limit", type=int, default=0, help="only run the first N agents (use --limit 2 for a cheap test run)")
+    ap.add_argument("--faithful", action="store_true",
+                    help="feedback closer to the human study: no daily net-change line, C wording 'a profit' (saves to *_faithful)")
     a = ap.parse_args()
+    env.FAITHFUL = a.faithful
     a.model = a.model or ("llama3.1:8b" if a.provider == "ollama" else "claude-haiku-5-5")
     for v in (["base", "v1", "v2", "v3"] if a.variant == "all" else [a.variant]):
         run_variant(a, v)

@@ -29,7 +29,7 @@ Both models show **no framing effect in the base wording**. Full tables: `analys
 | Llama base / v1 / v2 / v3 | −0.03 / −0.37 / +0.20 / +0.41 | 0.91 / 0.10 / 0.57 / 0.09 | 46 / 47 / 47 / 49 of 50 | 6 / 7 / 12 / 7 |
 
 Reading the results: Haiku orders almost always at 10–11 (about 93% of orders) and shows a small gap in the human direction in some wordings; Llama over-orders (about 12.3–14 units on average, 8% at 10–11) and its gap changes sign with the wording. Most agents of both models fail the profit check, so the agents that pass are few and unevenly split between O and C (for Haiku base 17 O vs 5 C); treat the passed-only numbers as suggestive. The 50 agents of one model are not 50 independent people.
-Haiku 5.5 does not accept a temperature setting, so it ran at its default sampling; Llama ran at temperature 1.0.
+Haiku 5.5 does not accept a temperature setting; when it is left out the API samples at its default, temperature 1.0, the same as Llama.
 
 ## Layout
 - `sim/newsvendor_env.py` game engine (real dice, O/C payoffs, validation, logging, the two comprehension checks)
@@ -72,7 +72,28 @@ python analysis\export_results_csv.py
 python analysis\xai_analysis.py            # Claude Haiku;  $env:AI_TAG="_langchain"; python analysis\xai_analysis.py  for Llama
 python analysis\variant_comparison.py haiku
 python analysis\variant_comparison.py llama
+python analysis\human_vs_ai.py             # formal human-vs-AI tests + fig_gap_ci.png, fig_human_vs_ai_days.png
 ```
+
+## Robustness run: human-like feedback (`--faithful`)
+The main runs differ from the human study in two places: after each day the engine printed one net number
+("Change in play dollars today: +X"), which adds the two payments up for the agent, and the daily C prompt called the
+order-time money "an advance payment" instead of the study's "a profit". `--faithful` removes the net line (the next
+day still shows the cash balance, as the human screens did) and restores the study's C wording. It also uses the new
+debrief, which now asks the original follow-up question ("If you could play again choosing only one order quantity...").
+Existing runs are unchanged (the default is the old behaviour).
+```
+python langchain_sim\run_langgraph.py --faithful --n 50 --workers 5       # Claude Haiku, base wording -> data\state_api_haiku_5_5_faithful
+$env:AI_STATE_DIR="data\state_api_haiku_5_5_faithful"; $env:AI_TAG="_faithful"; python analysis\analyze.py
+Remove-Item Env:AI_STATE_DIR, Env:AI_TAG
+python analysis\build_master_dataset.py; python analysis\export_results_csv.py; python analysis\human_vs_ai.py
+```
+`results_vs_base.csv` then has "faithful O vs base O" and "faithful C vs base C", and both charts add the faithful run.
+
+## Exclusion rule
+Primary = the original study's rule: drop agents that get the dice range (3 and 18) wrong. This keeps all Claude
+agents and drops a few Llama agents per wording. "Passed both checks" is secondary only: the profit check is our own
+addition and Claude fails it more often in C than in O (72% vs 57%), so that subset is unbalanced.
 Quick per-agent check of one run: `python analysis\quick_check.py data\state_api_haiku_5_5`.
 
 ## XAI step (Lecture Note 03)
@@ -85,4 +106,4 @@ python -m streamlit run streamlit_app\app.py
 Tabs: Present (10-step guided talk, timer, notes), Game (the newsvendor game for the presenter), AI system, AI replay (any saved Claude or Llama agent), Results (humans vs both models), Prompt wording (both models, four wordings, within-scheme comparisons), Q&A, Checklist. No API key is needed. Add `?presenter=1` to the address on your own laptop for notes and the timer.
 
 ## Limits
-Agents of one model are not independent observations; agents have no real stakes; the alternative O texts for v1 and v2 were drafted by us from the C text supplied by the team; most agents fail the profit comprehension check, especially Llama; Haiku ran at default sampling.
+Agents of one model are not independent observations; agents have no real stakes; the alternative O texts for v1 and v2 were drafted by us from the C text supplied by the team; most agents fail the profit comprehension check, especially Llama; the main runs showed agents a daily net-change line that humans did not see (see the `--faithful` run).

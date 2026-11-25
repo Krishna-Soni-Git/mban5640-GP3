@@ -27,7 +27,7 @@ for f in sorted(glob.glob(str(STATE/"A*.json"))):
     ok_profit = num(d["answer"]) == 4                                  # check 1: order 10, demand 7 -> +4
     has_range = "range_min" in d
     ok_range = (num(d.get("range_min")) == 3 and num(d.get("range_max")) == 18) if has_range else True   # check 2: dice range 3..18
-    parts.append(dict(agent_id=s["id"], condition=s["cond"], persona=s["persona"], comprehension_answer=d["answer"],
+    parts.append(dict(agent_id=s["id"], condition=s["cond"], persona=s["persona"], comprehension_answer=d["answer"], followup_order=num(d.get("followup")),
                       range_min_answer=d.get("range_min"), range_max_answer=d.get("range_max"),
                       fail_profit_check=int(not ok_profit), fail_range_check=int(not ok_range),
                       comprehension_fail=int(not (ok_profit and ok_range)), final_cash=s["cash"], strategy=d["strategy"]))

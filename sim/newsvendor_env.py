@@ -18,6 +18,12 @@ from pathlib import Path
 STATE = Path(os.environ.get("NV_STATE_DIR", Path(__file__).resolve().parent.parent / "data" / "state"))
 ROUNDS, START_CASH, QMIN, QMAX, PRICE, COST = 25, 100, 3, 18, 2, 1
 rng = random.SystemRandom()
+# FAITHFUL mode (set NV_FAITHFUL=1, or --faithful in run_langgraph.py) matches the feedback humans got more closely:
+#  * no "Change in play dollars today" line: humans saw the two payments separately and only their cash balance,
+#    never a single net number that adds them up for them;
+#  * C keeps the study's wording ("a profit of 1 play dollar") instead of "an advance payment".
+# The default (0) reproduces the original runs exactly, so existing data stay valid.
+FAITHFUL = os.environ.get("NV_FAITHFUL", "0") == "1"
 
 def load(i):
     p = STATE / f"{i}.json"
@@ -29,9 +35,12 @@ def save(i, s): (STATE / f"{i}.json").write_text(json.dumps(s, indent=1))
 def prompt(s):
     d = len(s["rounds"]) + 1
     if d > ROUNDS: return None
-    verb = ("You pay 1 play dollar per unit ordered, at the time you order."
-            if s["cond"] == "O" else
-            "You receive 1 play dollar per unit ordered, as an advance payment, at the time you order.")
+    if s["cond"] == "O":
+        verb = "You pay 1 play dollar per unit ordered, at the time you order."
+    elif FAITHFUL:
+        verb = "You receive a profit of 1 play dollar per unit ordered, at the time you order."
+    else:
+        verb = "You receive 1 play dollar per unit ordered, as an advance payment, at the time you order."
     return (f"It is the beginning of Day {d} of {ROUNDS}. You are starting with {s['cash']} play dollars.\n"
             f"{verb}\nHow many units would you like to order for Day {d}? "
             f"(whole number from {QMIN} to {QMAX})")
@@ -46,10 +55,23 @@ def play(s, q):
     else:
         text = (f"You ordered {q} units and received {q} play dollars in advance.\nThe three dice show {d1}, {d2}, {d3}: demand is {demand}.\n"
                 f"You sold {sold} units. {left} units are unsold, so you pay {PRICE*left} play dollars. Leftovers are discarded.")
+    if FAITHFUL:   # two separate transfers, in the study's words; no net number
+        if s["cond"] == "O":
+            text = (f"You ordered {q} units. At this time you pay 1 play dollar per unit ordered: you pay {COST*q} play dollars.\n"
+                    f"The three dice show {d1}, {d2}, {d3}: demand is {demand}.\n"
+                    f"You sell {sold} units and have {left} leftover. You receive {PRICE*sold} play dollars for the {sold} units you sold. "
+                    f"Leftovers are discarded.")
+        else:
+            text = (f"You ordered {q} units. At this time you receive a profit of 1 play dollar per unit ordered: you receive {(PRICE-COST)*q} play dollars.\n"
+                    f"The three dice show {d1}, {d2}, {d3}: demand is {demand}.\n"
+                    f"You sell {sold} units and have {left} leftover. You receive 0 play dollars for the units you sold, and you pay a "
+                    f"penalty of {PRICE*left} play dollars for the {left} leftover units. Leftovers are discarded.")
     change = (PRICE*sold - COST*q) if s["cond"] == "O" else (COST*q - PRICE*left)
     s["cash"] += change
     s["rounds"].append(dict(day=len(s["rounds"])+1, order=q, d1=d1, d2=d2, d3=d3, demand=demand,
                             sold=sold, leftover=left, change=change, cash_end=s["cash"]))
+    if FAITHFUL:   # the next day's prompt states the cash balance, as the human screens did
+        return text
     return text + f"\nChange in play dollars today: {change:+d}. You now have {s['cash']} play dollars."
 
 def main():

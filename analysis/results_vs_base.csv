@@ -5,6 +5,8 @@ Claude Haiku 5.5,v2 O vs base O,25,25,10.888,10.563,0.325,0.0078,0.79
 Claude Haiku 5.5,v2 C vs base C,25,25,10.24,10.538,-0.298,0.0223,-0.67
 Claude Haiku 5.5,v3 O vs base O,25,25,10.89,10.563,0.326,0.004,0.85
 Claude Haiku 5.5,v3 C vs base C,25,25,10.768,10.538,0.23,0.0415,0.59
+Claude Haiku 5.5,faithful O vs base O,25,25,10.357,10.563,-0.206,0.075,-0.52
+Claude Haiku 5.5,faithful C vs base C,25,25,10.165,10.538,-0.373,0.0016,-0.95
 Llama 3.1,v1 O vs base O,25,25,13.518,13.229,0.29,0.2571,0.32
 Llama 3.1,v1 C vs base C,25,25,13.885,13.256,0.629,0.0051,0.83
 Llama 3.1,v2 O vs base O,25,25,12.525,13.229,-0.704,0.033,-0.62

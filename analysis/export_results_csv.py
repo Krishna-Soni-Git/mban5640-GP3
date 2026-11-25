@@ -6,7 +6,7 @@ from pathlib import Path
 from scipy import stats
 ROOT = Path(__file__).resolve().parent.parent
 DIRS = {"Claude Haiku 5.5": "state_api_haiku_5_5", "Llama 3.1": "state_langchain"}
-WORDINGS = ["base", "v1", "v2", "v3"]
+WORDINGS = ["base", "v1", "v2", "v3", "faithful"]   # "faithful" is skipped if that run has not been made
 
 def load(pre, w):
     rows = []
@@ -28,10 +28,16 @@ def welch(a, b):
 def r(x, k=3): return "" if x is None or (isinstance(x, float) and np.isnan(x)) else round(float(x), k)
 
 data = {(m, w): load(p, w) for m, p in DIRS.items() for w in WORDINGS}
+data = {k: v for k, v in data.items() if v}          # drop runs that do not exist (e.g. no faithful run yet)
 out1, out2 = [], []
 for (m, w), rows in data.items():
-    for subset in ["all agents", "passed both checks"]:
-        sel = [x for x in rows if subset == "all agents" or not (x["profit_fail"] or x["range_fail"])]
+    # "passed range check" = the original study's rule (only the 3/18 question was asked of humans) -> primary.
+    # "passed both checks" is secondary: the profit check is our addition and failure rates differ by scheme,
+    # so that subset is not balanced (selection bias).
+    for subset in ["all agents", "passed range check (original rule)", "passed both checks"]:
+        sel = [x for x in rows if subset == "all agents"
+               or (subset.startswith("passed range") and not x["range_fail"])
+               or (subset == "passed both checks" and not (x["profit_fail"] or x["range_fail"]))]
         O = [x["mean_order"] for x in sel if x["cond"] == "O"]; C = [x["mean_order"] for x in sel if x["cond"] == "C"]
         p, d = welch(O, C)
         out1.append(dict(model=m, wording=w, subset=subset, n_agents=len(sel), n_O=len(O), n_C=len(C),
@@ -40,6 +46,7 @@ for (m, w), rows in data.items():
                          profit_check_fails=sum(x["profit_fail"] for x in rows), range_check_fails=sum(x["range_fail"] for x in rows), agents_total=len(rows)))
 for m in DIRS:
     for w in WORDINGS[1:]:
+        if (m, w) not in data: continue
         for sc in ["O", "C"]:
             a = [x["mean_order"] for x in data[(m, w)] if x["cond"] == sc]; b = [x["mean_order"] for x in data[(m, "base")] if x["cond"] == sc]
             p, d = welch(a, b)

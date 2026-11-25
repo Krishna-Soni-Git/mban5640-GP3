@@ -3,3 +3,6 @@ __pycache__/
 _sync_tmp/
 *.tgz
 .venv/
+# Word files kept locally, not in the repository
+GP3-Report.docx
+MBAN_5640_GP3_Presentation_Script.docx
