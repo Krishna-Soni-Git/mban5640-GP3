@@ -111,7 +111,7 @@ def tile(container, html):
 # ----------------------------------------------------------------- data
 @st.cache_data
 def load_all():
-    R = json.loads((ROOT / "analysis/results.json").read_text())
+    R = json.loads((ROOT / "analysis/results.json").read_text(encoding="utf-8"))
     samples = []
     for r in R["table"]:
         samples.append(dict(sample=r["sample"].replace(" *", ""), n_O=int(r["n_O"]), n_C=int(r["n_C"]), mean_O=r["mean_O"], mean_C=r["mean_C"],
@@ -137,16 +137,16 @@ def load_all():
     pf = DATA / "ai_dataset_all_participants.csv"
     out["strat"] = pd.read_csv(pf) if pf.exists() else pd.DataFrame()
     xf = ROOT / "analysis/xai_results.json"
-    out["xai"] = json.loads(xf.read_text()) if xf.exists() else {}
+    out["xai"] = json.loads(xf.read_text(encoding="utf-8")) if xf.exists() else {}
     xl = ROOT / "analysis/xai_results_langchain.json"
-    out["xai_llama"] = json.loads(xl.read_text()) if xl.exists() else {}
+    out["xai_llama"] = json.loads(xl.read_text(encoding="utf-8")) if xl.exists() else {}
     rl = ROOT / "analysis/results_langchain.json"
     if rl.exists():
-        RL = json.loads(rl.read_text()); t = RL["table"][-1]
+        RL = json.loads(rl.read_text(encoding="utf-8")); t = RL["table"][-1]
         out["llama_row"] = dict(sample="Llama agents", n_O=int(t["n_O"]), n_C=int(t["n_C"]), mean_O=t["mean_O"], mean_C=t["mean_C"], diff=t["diff"], d=t.get("cohen_d"), p=t.get("p_ols"))
         out["llama_extra"] = RL["extra"]; out["llama_checks"] = RL["checks"]; out["llama_results"] = RL
     vf = ROOT / "analysis/verdict.json"
-    out["verdict"] = json.loads(vf.read_text()) if vf.exists() else {}
+    out["verdict"] = json.loads(vf.read_text(encoding="utf-8")) if vf.exists() else {}
     return out
 
 
@@ -233,7 +233,7 @@ MODELS = [("claude", "Claude", "Claude Haiku 5.5", ""), ("llama", "Llama", "Llam
 
 
 def _row_from_results(path):
-    R = json.loads(path.read_text())
+    R = json.loads(path.read_text(encoding="utf-8"))
     t = [r for r in R["table"] if str(r["sample"]).startswith("AI agents (all")]
     t = t[-1] if t else R["table"][-1]
     sh = R["extra"].get("share_orders_equal_10_or_11", {})
@@ -292,9 +292,9 @@ def dumbbell(rows):
                       df[["label", "O", "gap"]].rename(columns={"O": "mean"}).assign(scheme="O")])
     XS = alt.Scale(domain=[8.5, 14])
     band = alt.Chart(pd.DataFrame({"a": [10], "b": [11]})).mark_rect(opacity=0.13, color=OPT).encode(x=alt.X("a:Q", scale=XS), x2="b:Q")
-    rule = alt.Chart(df).mark_rule(color="#5A6B7A", strokeWidth=2).encode(y=alt.Y("label:N", sort=order, title=None), x=alt.X("C:Q", scale=XS, title="Mean order (units)", axis=alt.Axis(values=[9, 10, 11, 12, 13, 14], format="d")), x2="O:Q")
+    rule = alt.Chart(df).mark_rule(color="#5A6B7A", strokeWidth=2).encode(y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260)), x=alt.X("C:Q", scale=XS, title="Mean order (units)", axis=alt.Axis(values=[9, 10, 11, 12, 13, 14], format="d")), x2="O:Q")
     pts = alt.Chart(long).mark_circle(size=170, opacity=1).encode(
-        y=alt.Y("label:N", sort=order, title=None), x=alt.X("mean:Q", scale=XS),
+        y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260)), x=alt.X("mean:Q", scale=XS),
         color=alt.Color("scheme:N", scale=alt.Scale(domain=["O", "C"], range=[O_COL, C_COL]), legend=alt.Legend(title="Scheme", orient="top")),
         tooltip=["label", "scheme", alt.Tooltip("mean:Q", format=".2f"), "gap"])
     return (band + rule + pts).properties(height=44 * len(df) + 40)
@@ -426,9 +426,9 @@ def wording_table(rows):
 def prompt_text(cond):
     """Full prompt of the first agent in a condition, with the engine path shortened for display."""
     try:
-        roster = json.loads((DATA / "state_api_haiku_5_5" / "roster.json").read_text())
+        roster = json.loads((DATA / "state_api_haiku_5_5" / "roster.json").read_text(encoding="utf-8"))
         pid = next(a["id"] for a in roster if a["cond"] == cond)
-        txt = (ROOT / "prompts" / f"{pid}.txt").read_text()
+        txt = (ROOT / "prompts" / f"{pid}.txt").read_text(encoding="utf-8")
         txt = txt.split("HOW TO PLAY.")[0].rstrip() + "\n\n[Then each day: the day number, current play dollars and the question 'How many units would you like to order? (whole number from 3 to 18)'. After 25 days: two comprehension questions and a one-sentence strategy.]"
         return pid, txt
     except Exception:
@@ -530,7 +530,7 @@ def step_compare():
         test = (f" A pooled regression with the human data confirms the agents' gap is significantly <b>smaller</b> than the human gap: "
                 f"Claude by {abs(rc_.OxAI):.2f} units (p {pfmt(rc_.OxAI_p)}), Llama by {abs(rl_.OxAI):.2f} (p {pfmt(rl_.OxAI_p)})"
                 + (f", and Claude with human-like feedback by {abs(rf_.OxAI):.2f} (p {pfmt(rf_.OxAI_p)})." if rf_ is not None else "."))
-    st.markdown(f"<div class='lead' style='font-size:1.05rem'><b>With the study's wording, neither model shows the human gap.</b> People order about {K['hg']:.1f} units more under O; Claude's gap is {K['cg']:+.2f} and Llama's {'–' if K['lg'] is None else format(K['lg'], '+.2f')}.{test} Claude orders almost only 10 or 11; Llama over-orders and drifts upward.</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='lead' style='font-size:1.05rem'><b>With the study's wording, neither model shows the human gap.</b> People order about {K['hg']:.2f} units more under O; Claude's gap is {K['cg']:+.2f} and Llama's {'–' if K['lg'] is None else format(K['lg'], '+.2f')}.{test} Claude orders almost only 10 or 11; Llama over-orders and drifts upward.</div>", unsafe_allow_html=True)
 
 
 def step_wording():
