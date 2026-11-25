@@ -1,0 +1,16 @@
+[Message to the agent at the start of day 1]
+It is the beginning of Day 1 of 25. You are starting with 100 play dollars.
+You pay 1 play dollar per unit ordered, at the time you order.
+How many units would you like to order for Day 1? (whole number from 3 to 18)
+
+[Agent's structured answer]
+I order 11 units.
+
+[Message after the dice; it ends with the prompt for day 2]
+You ordered 11 units. At this time you pay 1 play dollar per unit ordered: you pay 11 play dollars.
+The three dice show 3, 2, 4: demand is 9.
+You sell 9 units and have 2 leftover. You receive 18 play dollars for the 9 units you sold. Leftovers are discarded.
+
+It is the beginning of Day 2 of 25. You are starting with 107 play dollars.
+You pay 1 play dollar per unit ordered, at the time you order.
+How many units would you like to order for Day 2? (whole number from 3 to 18)
