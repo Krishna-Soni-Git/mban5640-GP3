@@ -213,26 +213,25 @@ With no argument it codes the end-of-game strategy sentence of every agent in ev
 
 The dashboard is the presentation. It calls no model and needs no API key: it only reads the files the earlier stages wrote, so every number on screen is the same number as in the report.
 
-**Loading data.** `load_all()` runs once (cached with `@st.cache_data`) and reads the human CSVs, each AI run's wide/long/participant files (Claude base, Claude faithful, Llama base), `human_vs_ai_table.csv`, the master participants file and the JSON results. For each AI run it keeps two versions: `wide` applies the original exclusion rule (used by every statistic) and `wide_all` keeps every agent (used by the replay tab).
+**Loading data.** `load_all()` runs once (cached with `@st.cache_data`) and reads the human CSVs, each AI run's wide/long/participant files (Claude base, Claude faithful, Llama base), `human_vs_ai_table.csv`, the master participants file and the JSON results. For each AI run, statistics use the original exclusion rule (agents that got the dice range wrong are left out).
 
 **Small helpers do the rest.** `kpis()` computes the headline gaps; `cmp_row(sample)` fetches one row of the comparison table; `load_wording()` assembles the robustness rows with failure counts from `results_summary.csv`; `reason_shares()` imports the rules from `reason_coding.py` and codes the strategy sentences live. Charts are Altair, drawn from the same rows.
 
-**Tabs.**
+**The talk.** The app has no tabs: it is the presentation, nine steps listed in `STEPS` (title, planned seconds, rubric criterion, takeaway, the function that draws it), moved with Back / Next or the step numbers. The planned times add up to 600 seconds (10 minutes).
 
-| Tab | What it shows |
-| --- | --- |
-| Present | The 10-step guided talk: one step per screen, a timer and speaker notes. Step numbers match the presentation script. |
-| Game | The newsvendor game itself, playable, with a "same day in the other wording" view proving the profit is identical |
-| AI system | How the agents are built: the original-vs-AI settings table, the exact prompt, the models, validation checks, the dataset |
-| AI replay | Step through any saved agent's 25 days and read its strategy sentence |
-| Results | KPI row, the gap chart with 95% CIs, the statistics table with the formal human-vs-AI test, behaviour and reasons |
-| Prompt wording | Every wording for both models, within-scheme comparisons, caveats |
-| Q&A | Likely questions with short answers |
-| Checklist | Each assignment deliverable and task mapped to where it is |
+| Step | Screen | Rubric criterion |
+| --- | --- | --- |
+| 1 | The business problem | Business background and research question |
+| 2 | The original experiment | Original findings and theory |
+| 3 | What people did, and why | Original findings and theory |
+| 4 | Same task, same profit (a worked example of one day) | Presentation quality |
+| 5 | How we built the AI participants | AI-agent system and design |
+| 6 | Results: AI versus people | Comparison with humans |
+| 7 | Does the prompt wording matter? | Comparison with humans |
+| 8 | What explains the difference? | Comparison with humans |
+| 9 | Conclusions and limits | Conclusions |
 
-**Presenter mode.** Add `?presenter=1` to the address on the presenting laptop to show the notes and the timer; the audience view hides them. Step timings add up to 600 seconds (10 minutes).
-
-**When results change,** nothing in the app needs editing: re-run the analysis (section 10) and restart the app. The only hand-written result text is `analysis/verdict.json`, the headline and verdict shown on the Results tab.
+**When results change,** nothing in the app needs editing: re-run the analysis (section 10) and restart the app; if it still shows old numbers, press C and clear the cache. The only hand-written result text is `analysis/verdict.json`.
 
 ## 10. Running it, and questions to expect
 
@@ -247,7 +246,7 @@ All commands run from the project folder in PowerShell with the virtual environm
 4. **Analyse each run:** `$env:AI_STATE_DIR="data\state_api_haiku_5_5_faithful"; $env:AI_TAG="_faithful"; python analysis\analyze.py` (the README lists the loop over all nine runs), then `Remove-Item Env:AI_STATE_DIR, Env:AI_TAG`.
 5. **Combine and compare:** `python analysis\build_master_dataset.py`, `python analysis\export_results_csv.py`, `python analysis\human_vs_ai.py`.
 6. **Explain:** `python analysis\xai_analysis.py` (and with `$env:AI_TAG="_langchain"` for Llama), `python analysis\reason_coding.py`.
-7. **Present:** `python -m streamlit run streamlit_app\app.py`, with `?presenter=1` on the presenting laptop.
+7. **Present:** `python -m streamlit run streamlit_app\app.py`; the page opens at http://localhost:8501.
 
 **Code questions likely in Q&A**
 

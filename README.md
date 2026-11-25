@@ -103,7 +103,7 @@ Quick per-agent check of one run: `python analysis\quick_check.py data\state_api
 ```
 python -m streamlit run streamlit_app\app.py
 ```
-Tabs: Present (10-step guided talk, timer, notes), Game (the newsvendor game for the presenter), AI system, AI replay (any saved Claude or Llama agent), Results (humans vs both models), Prompt wording (both models, four wordings, within-scheme comparisons), Q&A, Checklist. No API key is needed. Add `?presenter=1` to the address on your own laptop for notes and the timer.
+The app is the 10-minute talk itself: nine steps (business problem, original experiment, human results, a worked example, how the agents were built, results, prompt wording, explanations, conclusions), moved with Back / Next or the step numbers. It reads the result files in `data/` and `analysis/`, so re-running the analysis updates it; no API key is needed. If the page shows old numbers after a re-run, press C and clear the cache.
 
 ## Limits
 Agents of one model are not independent observations; agents have no real stakes; the alternative O texts for v1 and v2 were drafted by us from the C text supplied by the team; most agents fail the profit comprehension check, especially Llama; the main runs showed agents a daily net-change line that humans did not see (see the `--faithful` run).
