@@ -61,6 +61,11 @@ h1,h2,h3,.hero h1 {font-family:'Bricolage Grotesque','Segoe UI',sans-serif !impo
 .fhead {font:700 1.02rem 'Bricolage Grotesque',sans-serif; padding:4px 10px; border-radius:8px; display:inline-block; margin-bottom:2px;}
 .fhead.o {background:#F6E3D2; color:#9A4D0C;} .fhead.c {background:#D5ECEE; color:#0E5A62;} .fhead.e {background:#E9E5F6; color:#463A8C;}
 .fnote {font-size:.95rem; line-height:1.45; color:#3A4558;}
+.fgrid {display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin:6px 0 16px 0;}
+.fbox {background:#fff; border:1px solid #D5DCE3; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:10px;}
+.fmath {font:italic clamp(.95rem, 1.6vw, 1.25rem) 'Cambria Math','Cambria','Times New Roman',serif; text-align:center; color:#14213D; padding:6px 0; white-space:nowrap;}
+.fmath sub {font-size:.7em;}
+@media (max-width: 760px) {.fgrid {grid-template-columns:1fr;}}
 </style>
 """
 
@@ -78,7 +83,7 @@ DARK_CSS = """
 [data-testid="stMetric"] {background:#1B2638 !important; border-color:#2C3B54 !important; box-shadow:none !important;}
 [data-testid="stMetricValue"], [data-testid="stMetricValue"] div {color:#F4F6FA !important;}
 [data-testid="stMetricLabel"] p {color:#9AA8B5 !important;}
-.fnote {color:#C9D3E3 !important;}
+.fnote {color:#C9D3E3 !important;} .fbox {background:#1B2638 !important; border-color:#2C3B54 !important;} .fmath {color:#F4F6FA !important;}
 .fhead.o {background:#4A2B12 !important; color:#F5B47A !important;} .fhead.c {background:#103E44 !important; color:#7FD3DA !important;} .fhead.e {background:#2E2754 !important; color:#C3B8F5 !important;}
 .stApp button {background:#1B2638; color:#E3E8EF; border-color:#34445F;}
 .stApp button p {color:#E3E8EF !important;}
@@ -497,20 +502,17 @@ def step_original():
     b.markdown("<div class='card-c'><b>C · Customer financing</b><br>You receive 1 play dollar per unit when you order. You pay 2 play dollars per unit left unsold.</div>", unsafe_allow_html=True)
     st.markdown("<div class='cap' style='margin-top:12px'><b>q</b> = units ordered &nbsp;·&nbsp; <b>D</b> = demand (the dice total) &nbsp;·&nbsp; "
                 "<b>Δ</b> = the day's profit in play dollars</div>", unsafe_allow_html=True)
-    f1, f2, f3 = st.columns(3)
-    with f1.container(border=True):
-        st.markdown("<div class='fhead o'>① Profit under O</div>", unsafe_allow_html=True)
-        st.latex(r"\small \Delta_O = 2\min(q,D) - q")
-        st.markdown("<div class='fnote'><b>$2 × units sold</b>, minus <b>$1 × units ordered</b> (paid up front).</div>", unsafe_allow_html=True)
-    with f2.container(border=True):
-        st.markdown("<div class='fhead c'>② Profit under C</div>", unsafe_allow_html=True)
-        st.latex(r"\small \Delta_C = q - 2\max(q-D,0)")
-        st.markdown("<div class='fnote'><b>$1 × units ordered</b> (received up front), minus <b>$2 × units left over</b>.</div>", unsafe_allow_html=True)
-    with f3.container(border=True):
-        st.markdown("<div class='fhead e'>③ Why they are always equal</div>", unsafe_allow_html=True)
-        st.latex(r"\small \Delta_O = \Delta_C")
-        st.markdown("<div class='fnote'>Put <i>sold = ordered − leftover</i> into ①: 2(q − leftover) − q = <b>q − 2 × leftover</b>, which is ②. "
-                    "Same profit for every order and every dice roll.</div>", unsafe_allow_html=True)
+    st.markdown("""<div class='fgrid'>
+  <div class='fbox'><div class='fhead o'>① Profit under O</div>
+    <div class='fmath'>Δ<sub>O</sub> = 2 · min(q, D) − q</div>
+    <div class='fnote'><b>$2 × units sold</b>, minus <b>$1 × units ordered</b> (paid up front).</div></div>
+  <div class='fbox'><div class='fhead c'>② Profit under C</div>
+    <div class='fmath'>Δ<sub>C</sub> = q − 2 · max(q − D, 0)</div>
+    <div class='fnote'><b>$1 × units ordered</b> (received up front), minus <b>$2 × units left over</b>.</div></div>
+  <div class='fbox'><div class='fhead e'>③ Why they are always equal</div>
+    <div class='fmath'>Δ<sub>O</sub> = Δ<sub>C</sub></div>
+    <div class='fnote'><b>Units sold = ordered − leftover.</b> Put that into ① and you get ②, for every order and every dice roll.</div></div>
+</div>""", unsafe_allow_html=True)
     c1, c2 = st.columns(2)
     tile(c1, "<b>How the experiment worked</b><br>99 Duke students played a widget shop for <b>25 days</b>, starting with <b>100 play dollars</b>, using poker chips and real dice. Each day: choose an order, then <b>three dice</b> are rolled and their sum is demand (3 to 18, average 10.5). Leftovers are discarded. A real bonus depended on the final play dollars.")
     tile(c2, "<b>Same profit, different timing</b><br>For every order and every dice roll the schemes pay exactly the same, and the best order is <b>10 or 11</b>. Each person played one scheme. The original also had a neutral scheme <b>S</b> (all money moves after demand); the replications, and we, compare O with C.")
