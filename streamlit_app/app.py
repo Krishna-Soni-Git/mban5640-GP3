@@ -252,13 +252,13 @@ def dumbbell(rows):
     long = pd.concat([df[["label", "C", "gap"]].rename(columns={"C": "mean"}).assign(scheme="C"),
                       df[["label", "O", "gap"]].rename(columns={"O": "mean"}).assign(scheme="O")])
     XS = alt.Scale(domain=[8.5, 14])
-    band = alt.Chart(pd.DataFrame({"a": [10], "b": [11]})).mark_rect(opacity=0.13, color=OPT).encode(x=alt.X("a:Q", scale=XS), x2="b:Q")
-    rule = alt.Chart(df).mark_rule(color="#5A6B7A", strokeWidth=2).encode(y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260)), x=alt.X("C:Q", scale=XS, title="Mean order (units)", axis=alt.Axis(values=[9, 10, 11, 12, 13, 14], format="d")), x2="O:Q")
+    band = alt.Chart(pd.DataFrame({"a": [10], "b": [11]})).mark_rect(opacity=0.13, color=OPT).encode(x=alt.X("a:Q", scale=XS), x2="b:Q", tooltip=alt.value(None))
+    rule = alt.Chart(df).mark_rule(color="#5A6B7A", strokeWidth=2).encode(y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260, labelOverlap=False)), x=alt.X("C:Q", scale=XS, title="Mean order (units)", axis=alt.Axis(values=[9, 10, 11, 12, 13, 14], format="d")), x2="O:Q")
     pts = alt.Chart(long).mark_circle(size=170, opacity=1).encode(
-        y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260)), x=alt.X("mean:Q", scale=XS),
+        y=alt.Y("label:N", sort=order, title=None, axis=alt.Axis(labelLimit=260, labelOverlap=False)), x=alt.X("mean:Q", scale=XS),
         color=alt.Color("scheme:N", scale=alt.Scale(domain=["O", "C"], range=[O_COL, C_COL]), legend=alt.Legend(title="Scheme", orient="top")),
         tooltip=["label", "scheme", alt.Tooltip("mean:Q", format=".2f"), "gap"])
-    return (band + rule + pts).properties(height=44 * len(df) + 40)
+    return (band + rule + pts).properties(height=alt.Step(44))   # fixed row height, so every row keeps its label
 
 
 def rows_for_dumbbell():
@@ -348,8 +348,8 @@ def step_human():
     m[0].metric("Original O − C", f"{S[0]['diff']:+.2f}")
     for i in range(3):
         m[i + 1].metric(S[i + 1]["sample"], f"{S[i + 1]['diff']:+.2f}")
-    m[4].metric("Spread between people", f"{K['h_sd']:.1f}")
-    st.caption(f"O − C in units of order quantity. The three replications pool to {K['hg']:+.2f}.")
+    m[4].metric("Spread", f"{K['h_sd']:.1f}", help="Standard deviation of participants' average orders")
+    st.caption(f"Shaded band: the best order, 10 or 11. O − C in units of order quantity; the three replications pool to {K['hg']:+.2f}. Spread = standard deviation of participants' average orders.")
     st.markdown("**Why? Prospective accounting**, a form of mental accounting: people give less weight to money that changes hands *at order time*, before demand is known. "
                 "Under **O** that money is a cost, so ordering feels cheaper and people **order more**. Under **C** it is income, so ordering feels less rewarding and people **order less**. "
                 "In the original, the neutral scheme S (no money at order time) sat at the optimum (10.57), and the loss-aversion and time-discounting explanations predicted patterns the data rejected. "
@@ -382,11 +382,12 @@ def step_design():
 def step_compare():
     _w(st.altair_chart, polish(dumbbell(rows_for_dumbbell())))
     m = st.columns(5)
-    m[0].metric("Humans O − C", f"{K['hg']:+.2f}", help="Pooled across the three replications")
-    m[1].metric("Claude O − C", f"{K['cg']:+.2f}")
-    m[2].metric("Claude, human-like feedback", "–" if K["fg"] is None else f"{K['fg']:+.2f}")
-    m[3].metric("Llama O − C", "–" if K["lg"] is None else f"{K['lg']:+.2f}", help="Agents that got the dice range wrong are excluded, as in the original study")
-    m[4].metric("Claude at 10–11", f"{K['c_share']:.0%}")
+    m[0].metric("Humans", f"{K['hg']:+.2f}", help="Pooled across the three replications")
+    m[1].metric("Claude", f"{K['cg']:+.2f}")
+    m[2].metric("Feedback run", "–" if K["fg"] is None else f"{K['fg']:+.2f}")
+    m[3].metric("Llama", "–" if K["lg"] is None else f"{K['lg']:+.2f}", help="Agents that got the dice range wrong are excluded, as in the original study")
+    m[4].metric("At 10–11", f"{K['c_share']:.0%}")
+    st.caption("Tiles: the O − C gap in average order (units); feedback run = Claude with human-like feedback; the last tile is the share of Claude's orders at 10 or 11. Shaded band in the chart: the best order.")
     st.dataframe(behaviour_table(), hide_index=True)
     rc_, rl_, rf_ = cmp_row("Claude Haiku 5.5 – base"), cmp_row("Llama 3.1 – base"), cmp_row("Claude Haiku 5.5 – faithful")
     test = ""
@@ -474,7 +475,7 @@ def present_tab():
         st.markdown(f"<div class='kick'>Step {cur + 1} of {len(STEPS)}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='big'>{title}</div><div class='take'>{take}</div>", unsafe_allow_html=True)
         fn()
-    a, b, _ = st.columns([1, 1, 8])
+    a, b, _ = st.columns([1.5, 1.5, 7])
     if btn(a, "← Back", disabled=cur == 0):
         ss.step -= 1; st.rerun()
     if btn(b, "Next →", type="primary", disabled=cur == len(STEPS) - 1):
